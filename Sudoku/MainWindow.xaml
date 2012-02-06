@@ -1,20 +1,11 @@
-﻿<Window x:Class="Sudoku.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        <ListBox ItemsSource="{Binding Fields}">
-            <ListBox.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <UniformGrid Rows="9" Columns="9"/>
-                </ItemsPanelTemplate>
-            </ListBox.ItemsPanel>
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <ContentControl Content="{Binding}"/>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-        
+﻿<Window 
+    x:Class="Sudoku.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    ResizeMode="NoResize"
+    Title="MainWindow" Height="500" Width="700">
+    
+    <Grid>        
+        <ContentControl Content="{Binding Content}"/>        
     </Grid>
 </Window>

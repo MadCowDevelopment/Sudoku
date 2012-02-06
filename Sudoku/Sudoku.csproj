@@ -55,6 +55,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="ResourceDictionaries\DataTemplates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CellView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\GameBoardView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -64,6 +76,12 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="CommonAssemblyInfo.cs" />
+    <Compile Include="Views\CellView.xaml.cs">
+      <DependentUpon>CellView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GameBoardView.xaml.cs">
+      <DependentUpon>GameBoardView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
