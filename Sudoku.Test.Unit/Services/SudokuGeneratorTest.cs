@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Sudoku.Models;
 using Sudoku.Services;
 
-namespace Sudoku.Test.Unit
+namespace Sudoku.Test.Unit.Services
 {
     [TestClass]
     public class SudokuGeneratorTest
