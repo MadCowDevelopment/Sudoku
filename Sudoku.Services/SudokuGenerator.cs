@@ -6,12 +6,13 @@ using Sudoku.Models;
 
 namespace Sudoku.Services
 {
-    public class SudokuGenerator
+    public class SudokuGenerator : ISudokuGenerator
     {
         #region Fields
 
         private GameBoard _gameBoard;
-        private Random _random = new Random((int)DateTime.Now.Ticks);
+
+        private readonly Random _random = new Random((int)DateTime.Now.Ticks);
 
         #endregion Fields
 

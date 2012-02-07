@@ -1,12 +1,15 @@
-﻿namespace Sudoku.ViewModels
+﻿using Sudoku.Services;
+
+namespace Sudoku.ViewModels
 {
     public class MainWindowVM : ViewModelBase
     {
         private ViewModelBase _content;
 
-        public MainWindowVM()
+        public MainWindowVM(ISudokuGenerator sudokuGenerator)
         {
-            Content = new GameBoardViewModel();
+            var gameBoard = sudokuGenerator.GeneratePuzzle();
+            Content = new GameBoardViewModel(gameBoard);
         }
 
         public ViewModelBase Content

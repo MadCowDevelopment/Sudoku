@@ -1,16 +1,18 @@
 ﻿using System.Collections.Generic;
 
+using Sudoku.Models;
+
 namespace Sudoku.ViewModels
 {
     public class GameBoardViewModel : ViewModelBase
     {
-        public GameBoardViewModel()
+        public GameBoardViewModel(GameBoard gameBoard)
         {
             Cells = new List<CellViewModel>();
 
-            for (int i = 0; i < 81; i++)
+            foreach (var value in gameBoard.Fields)
             {
-                Cells.Add(new CellViewModel());
+                Cells.Add(new CellViewModel(value));
             }
         }
 
