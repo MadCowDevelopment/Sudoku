@@ -3,11 +3,15 @@
                     xmlns:ViewModels="clr-namespace:Sudoku.ViewModels;assembly=Sudoku.ViewModels"
                     xmlns:Views="clr-namespace:Sudoku.Views">
     
-    <DataTemplate DataType="{x:Type ViewModels:GameBoardViewModel}">
+    <DataTemplate DataType="{x:Type ViewModels:GameBoardVM}">
         <Views:GameBoardView/>
     </DataTemplate>
     
-    <DataTemplate DataType="{x:Type ViewModels:CellViewModel}">
-        <Views:CellView/>
+    <DataTemplate DataType="{x:Type ViewModels:FixedCellVM}">
+        <Views:FixedCellView/>              
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type ViewModels:ChangeableCellVM}">
+        <Views:ChangeableCellView/>
     </DataTemplate>
 </ResourceDictionary>

@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -18,6 +19,27 @@ namespace Sudoku.Test.Unit.Models
         #endregion Fields
 
         #region Public Methods
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void ConstructorThrowsExceptionWhenArgumentIsNull()
+        {
+            _gameBoard = new GameBoard(null);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void ConstructorThrowsExceptionWhenArrayIsLessThan81Elements()
+        {
+            _gameBoard = new GameBoard(new int[80]);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void ConstructorThrowsExceptionWhenArrayIsMoreThan81Elements()
+        {
+            _gameBoard = new GameBoard(new int[82]);
+        }
 
         [TestMethod]
         public void GameBoardConsistsOf81Fields()

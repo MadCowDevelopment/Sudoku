@@ -59,7 +59,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\CellView.xaml">
+    <Page Include="Views\ChangeableCellView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FixedCellView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -76,8 +80,11 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="CommonAssemblyInfo.cs" />
-    <Compile Include="Views\CellView.xaml.cs">
-      <DependentUpon>CellView.xaml</DependentUpon>
+    <Compile Include="Views\ChangeableCellView.xaml.cs">
+      <DependentUpon>ChangeableCellView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FixedCellView.xaml.cs">
+      <DependentUpon>FixedCellView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\GameBoardView.xaml.cs">
       <DependentUpon>GameBoardView.xaml</DependentUpon>

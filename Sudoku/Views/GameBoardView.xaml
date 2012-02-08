@@ -19,6 +19,11 @@
                             <UniformGrid Rows="9" Columns="9"/>
                         </ItemsPanelTemplate>
                     </ListBox.ItemsPanel>
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="{x:Type ListBoxItem}">
+                            <Setter Property="IsSelected" Value="{Binding IsSelected}"/>
+                        </Style>
+                    </ListBox.ItemContainerStyle>
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <ContentControl Content="{Binding}"/>
@@ -26,7 +31,7 @@
                     </ListBox.ItemTemplate>
                 </ListBox>
                 <!-- Grid for dashed lines. -->
-                <Grid Background="Transparent" ShowGridLines="True">
+                <Grid Background="Transparent" ShowGridLines="True" IsHitTestVisible="False">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
@@ -52,7 +57,7 @@
                 </Grid>
 
                 <!-- Grid that separates boxes with lines. -->
-                <Grid Background="Transparent">
+                <Grid Background="Transparent" IsHitTestVisible="False">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>

@@ -1,15 +1,25 @@
-﻿using Sudoku.Services;
+﻿using Sudoku.Models;
+using Sudoku.Services;
 
 namespace Sudoku.ViewModels
 {
     public class MainWindowVM : ViewModelBase
     {
+        private readonly ISudokuGenerator _sudokuGenerator;
+
+        private readonly IPuzzleGenerator _puzzleGenerator;
+
         private ViewModelBase _content;
 
-        public MainWindowVM(ISudokuGenerator sudokuGenerator)
+        public MainWindowVM(ISudokuGenerator sudokuGenerator, IPuzzleGenerator puzzleGenerator)
         {
+            _sudokuGenerator = sudokuGenerator;
+            _puzzleGenerator = puzzleGenerator;
+
             var gameBoard = sudokuGenerator.GeneratePuzzle();
-            Content = new GameBoardViewModel(gameBoard);
+            puzzleGenerator.GeneratePuzzle(gameBoard, Difficulty.Easy);
+
+            Content = new GameBoardVM(gameBoard);
         }
 
         public ViewModelBase Content

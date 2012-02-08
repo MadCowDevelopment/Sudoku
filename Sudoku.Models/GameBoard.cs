@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -17,13 +18,28 @@ namespace Sudoku.Models
             }
         }
 
+        public GameBoard(int[] fields)
+        {
+            if (fields == null)
+            {
+                throw new ArgumentNullException("fields");
+            }
+
+            if (fields.Length != 81)
+            {
+                throw new ArgumentException("The fields must have length 81.");
+            }
+
+            Fields = fields;
+        }
+
         #endregion Constructors
 
         #region Public Properties
 
         public int[] Fields
         {
-            get; set;
+            get; private set;
         }
 
         #endregion Public Properties

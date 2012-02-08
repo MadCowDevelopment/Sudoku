@@ -43,8 +43,10 @@
     <Compile Include="..\Sudoku\CommonAssemblyInfo.cs">
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="IPuzzleGenerator.cs" />
     <Compile Include="ISudokuGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PuzzleGenerator.cs" />
     <Compile Include="SudokuGenerator.cs" />
   </ItemGroup>
   <ItemGroup>

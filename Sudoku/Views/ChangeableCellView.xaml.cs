@@ -15,11 +15,11 @@ using System.Windows.Shapes;
 namespace Sudoku.Views
 {
     /// <summary>
-    /// Interaction logic for CellView.xaml
+    /// Interaction logic for ChangeableCellView.xaml
     /// </summary>
-    public partial class CellView : UserControl
+    public partial class ChangeableCellView : UserControl
     {
-        public CellView()
+        public ChangeableCellView()
         {
             InitializeComponent();
         }

@@ -14,8 +14,9 @@ namespace Sudoku
         {
             InitializeComponent();
 
-            var generator = new SudokuGenerator();
-            DataContext = new MainWindowVM(generator);
+            var sudokuGenerator = new SudokuGenerator();
+            var puzzleGenerator = new PuzzleGenerator();
+            DataContext = new MainWindowVM(sudokuGenerator, puzzleGenerator);
         }
 
         #endregion Constructors
