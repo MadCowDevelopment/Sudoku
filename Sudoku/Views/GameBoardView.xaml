@@ -11,7 +11,7 @@
         <Border BorderBrush="Black" BorderThickness="2">
             <Grid>
                 <!-- Listbox containing all cells. -->
-                <ListBox ItemsSource="{Binding Cells}" 
+                <ListBox ItemsSource="{Binding Cells}" Margin="-1,-1,-1,-1"
                          HorizontalContentAlignment="Stretch" 
                          VerticalContentAlignment="Stretch">
                     <ListBox.ItemsPanel>
