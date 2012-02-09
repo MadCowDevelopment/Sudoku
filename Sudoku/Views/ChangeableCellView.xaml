@@ -19,11 +19,10 @@
     <Grid>
         <ListBox 
             BorderThickness="0"
-            IsHitTestVisible="false" ItemsSource="{Binding PencilMarks}" 
-
-                 Background="Transparent"
-                 HorizontalContentAlignment="Stretch" 
-                 VerticalContentAlignment="Stretch">
+            IsHitTestVisible="false" ItemsSource="{Binding PencilMarks}"
+            Background="Transparent"
+            HorizontalContentAlignment="Stretch" 
+            VerticalContentAlignment="Stretch">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <UniformGrid Rows="3" Columns="3"/>
@@ -41,7 +40,7 @@
         <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="White"
                 Visibility="{Binding Number, Converter={StaticResource NumberVisibilityConverter}}">
             <TextBlock 
-            Text="{Binding Number}"
+            Text="{Binding Number}" Foreground="Blue"
             FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Border>
 
