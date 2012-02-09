@@ -7,6 +7,10 @@
     mc:Ignorable="d" 
     d:DesignHeight="300" d:DesignWidth="300">
     
-    <TextBlock Text="{Binding Number}" FontSize="36" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-       
+    <Border HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="White"
+                >
+        <TextBlock 
+            Text="{Binding Number}"
+            FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    </Border>
 </UserControl>

@@ -11,7 +11,8 @@ namespace Sudoku.Test.Unit.Converters
     {
         private NumberConverter _converter;
 
-        public NumberConverterTest()
+        [TestInitialize]
+        public void Initialize()
         {
             _converter = new NumberConverter();
         }

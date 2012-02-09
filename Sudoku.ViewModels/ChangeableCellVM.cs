@@ -9,7 +9,7 @@ namespace Sudoku.ViewModels
             PencilMarks = new ObservableCollection<int>();
             for (int i = 0; i < 9; i++)
             {
-                PencilMarks.Add(i+1);
+                PencilMarks.Add(i + 1);
             }
         }
 

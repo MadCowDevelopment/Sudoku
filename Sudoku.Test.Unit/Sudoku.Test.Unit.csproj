@@ -37,6 +37,7 @@
     <Reference Include="Moq">
       <HintPath>..\Libs\Moq.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core">
@@ -53,6 +54,7 @@
       <Link>CommonAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Converters\NumberConverterTest.cs" />
+    <Compile Include="Converters\NumberVisibilityConverterTest.cs" />
     <Compile Include="Models\GameBoardTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\PuzzleGeneratorTest.cs" />

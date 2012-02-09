@@ -7,23 +7,64 @@
     mc:Ignorable="d"
     Width="450" Height="450"
     d:DesignHeight="450" d:DesignWidth="450">
+
+    <UserControl.Resources>
+        <Style x:Key="CellContainerStyle" TargetType="{x:Type ListBoxItem}">
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            <Setter Property="IsSelected" Value="{Binding IsSelected}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                        <Border 
+                            BorderBrush="Orange"
+                            Background="Transparent"
+                            x:Name="TemplateBorder">
+                            <ContentPresenter/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="true">
+                                <Setter TargetName="TemplateBorder" Property="BorderThickness" Value="2"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <UserControl.InputBindings>
+        <KeyBinding Key="D1" Command="{Binding EnterNumberCommand}" CommandParameter="1"/>
+        <KeyBinding Key="D2" Command="{Binding EnterNumberCommand}" CommandParameter="2"/>
+        <KeyBinding Key="D3" Command="{Binding EnterNumberCommand}" CommandParameter="3"/>
+        <KeyBinding Key="D4" Command="{Binding EnterNumberCommand}" CommandParameter="4"/>
+        <KeyBinding Key="D5" Command="{Binding EnterNumberCommand}" CommandParameter="5"/>
+        <KeyBinding Key="D6" Command="{Binding EnterNumberCommand}" CommandParameter="6"/>
+        <KeyBinding Key="D7" Command="{Binding EnterNumberCommand}" CommandParameter="7"/>
+        <KeyBinding Key="D8" Command="{Binding EnterNumberCommand}" CommandParameter="8"/>
+        <KeyBinding Key="D9" Command="{Binding EnterNumberCommand}" CommandParameter="9"/>
+        <KeyBinding Key="NumPad1" Command="{Binding EnterNumberCommand}" CommandParameter="1"/>
+        <KeyBinding Key="NumPad2" Command="{Binding EnterNumberCommand}" CommandParameter="2"/>
+        <KeyBinding Key="NumPad3" Command="{Binding EnterNumberCommand}" CommandParameter="3"/>
+        <KeyBinding Key="NumPad4" Command="{Binding EnterNumberCommand}" CommandParameter="4"/>
+        <KeyBinding Key="NumPad5" Command="{Binding EnterNumberCommand}" CommandParameter="5"/>
+        <KeyBinding Key="NumPad6" Command="{Binding EnterNumberCommand}" CommandParameter="6"/>
+        <KeyBinding Key="NumPad7" Command="{Binding EnterNumberCommand}" CommandParameter="7"/>
+        <KeyBinding Key="NumPad8" Command="{Binding EnterNumberCommand}" CommandParameter="8"/>
+        <KeyBinding Key="NumPad9" Command="{Binding EnterNumberCommand}" CommandParameter="9"/>
+    </UserControl.InputBindings>
     <Grid>
         <Border BorderBrush="Black" BorderThickness="2">
             <Grid>
                 <!-- Listbox containing all cells. -->
-                <ListBox ItemsSource="{Binding Cells}" Margin="-1,-1,-1,-1"
+                <ListBox ItemsSource="{Binding Cells}" SelectedItem="{Binding SelectedCell}"
+                         Margin="-1,-1,-1,-1"
                          HorizontalContentAlignment="Stretch" 
-                         VerticalContentAlignment="Stretch">
+                         VerticalContentAlignment="Stretch"
+                         ItemContainerStyle="{StaticResource CellContainerStyle}">
                     <ListBox.ItemsPanel>
                         <ItemsPanelTemplate>
                             <UniformGrid Rows="9" Columns="9"/>
                         </ItemsPanelTemplate>
                     </ListBox.ItemsPanel>
-                    <ListBox.ItemContainerStyle>
-                        <Style TargetType="{x:Type ListBoxItem}">
-                            <Setter Property="IsSelected" Value="{Binding IsSelected}"/>
-                        </Style>
-                    </ListBox.ItemContainerStyle>
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <ContentControl Content="{Binding}"/>
@@ -68,7 +109,7 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    
+
                     <Rectangle Grid.Row="0" Grid.Column="0" Stroke="Black"/>
                     <Rectangle Grid.Row="0" Grid.Column="1" Stroke="Black"/>
                     <Rectangle Grid.Row="0" Grid.Column="2" Stroke="Black"/>
@@ -81,7 +122,7 @@
                     <Rectangle Grid.Row="2" Grid.Column="1" Stroke="Black"/>
                     <Rectangle Grid.Row="2" Grid.Column="2" Stroke="Black"/>
                 </Grid>
-            </Grid>            
-        </Border>        
+            </Grid>
+        </Border>
     </Grid>
 </UserControl>
