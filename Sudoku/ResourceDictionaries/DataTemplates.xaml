@@ -1,7 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:ViewModels="clr-namespace:Sudoku.ViewModels;assembly=Sudoku.ViewModels"
-                    xmlns:Views="clr-namespace:Sudoku.Views">
+                    xmlns:Views="clr-namespace:Sudoku.Views"
+                    xmlns:Tools="clr-namespace:Sudoku.ViewModels.Tools;assembly=Sudoku.ViewModels">
     
     <DataTemplate DataType="{x:Type ViewModels:GameBoardVM}">
         <Views:GameBoardView/>
@@ -14,4 +15,19 @@
     <DataTemplate DataType="{x:Type ViewModels:ChangeableCellVM}">
         <Views:ChangeableCellView/>
     </DataTemplate>
+    
+    <DataTemplate DataType="{x:Type ViewModels:GameVM}">
+        <Views:GameView/>
+    </DataTemplate>
+    
+    
+    <DataTemplate DataType="{x:Type Tools:ToggleToolVM}">
+        <RadioButton Margin="3" Width="40" Height="40" Style="{StaticResource {x:Type ToggleButton}}" 
+                     IsChecked="{Binding IsChecked}" GroupName="Tools">
+            <RadioButton.Content>
+                <Image Source="{Binding Image}"/>
+            </RadioButton.Content>
+        </RadioButton>
+    </DataTemplate>
+    
 </ResourceDictionary>

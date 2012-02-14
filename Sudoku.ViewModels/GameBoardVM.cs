@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows.Input;
+﻿using System.Collections.Generic;
 
 using Sudoku.Models;
 
@@ -28,17 +26,6 @@ namespace Sudoku.ViewModels
 
         public List<CellVM> Cells { get; private set; }
 
-        private ICommand _enterNumberCommand;
-
-
-        public ICommand EnterNumberCommand
-        {
-            get
-            {
-                return _enterNumberCommand ?? (_enterNumberCommand = new RelayCommand(OnNumberEntered));
-            }
-        }
-
         private CellVM _selectedCell;
 
         public CellVM SelectedCell
@@ -52,17 +39,6 @@ namespace Sudoku.ViewModels
             {
                 _selectedCell = value;
                 RaisePropertyChanged("SelectedCell");
-            }
-        }
-
-        private void OnNumberEntered(object obj)
-        {
-            if (SelectedCell is ChangeableCellVM)
-            {
-                var number = int.Parse(obj.ToString());
-                SelectedCell.Number = SelectedCell.Number == number ? 0 : number;
-
-                // TODO: adjust pencil marks
             }
         }
     }

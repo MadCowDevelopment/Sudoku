@@ -19,7 +19,7 @@ namespace Sudoku.ViewModels
             var gameBoard = sudokuGenerator.GeneratePuzzle();
             puzzleGenerator.GeneratePuzzle(gameBoard, Difficulty.Easy);
 
-            Content = new GameBoardVM(gameBoard);
+            Content = new GameVM(new GameBoardVM(gameBoard));
         }
 
         public ViewModelBase Content

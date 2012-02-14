@@ -10,7 +10,7 @@
 
         #endregion Fields
 
-        public CellVM(int actualValue)
+        protected CellVM(int actualValue)
         {
             Number = actualValue;
         }

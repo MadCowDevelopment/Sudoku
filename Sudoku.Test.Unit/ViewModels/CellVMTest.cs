@@ -3,7 +3,7 @@
 namespace Sudoku.Test.Unit.ViewModels
 {
     [TestClass]
-    public class CellViewModelTest
+    public class CellVMTest
     {
     }
 }

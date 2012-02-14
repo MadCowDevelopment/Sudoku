@@ -31,7 +31,7 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-    <UserControl.InputBindings>
+    <!--<UserControl.InputBindings>
         <KeyBinding Key="D1" Command="{Binding EnterNumberCommand}" CommandParameter="1"/>
         <KeyBinding Key="D2" Command="{Binding EnterNumberCommand}" CommandParameter="2"/>
         <KeyBinding Key="D3" Command="{Binding EnterNumberCommand}" CommandParameter="3"/>
@@ -50,7 +50,7 @@
         <KeyBinding Key="NumPad7" Command="{Binding EnterNumberCommand}" CommandParameter="7"/>
         <KeyBinding Key="NumPad8" Command="{Binding EnterNumberCommand}" CommandParameter="8"/>
         <KeyBinding Key="NumPad9" Command="{Binding EnterNumberCommand}" CommandParameter="9"/>
-    </UserControl.InputBindings>
+    </UserControl.InputBindings>-->
     <Grid>
         <Border BorderBrush="Black" BorderThickness="2">
             <Grid>

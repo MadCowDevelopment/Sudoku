@@ -59,7 +59,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\PuzzleGeneratorTest.cs" />
     <Compile Include="Services\SudokuGeneratorTest.cs" />
-    <Compile Include="ViewModels\CellViewModelTest.cs" />
+    <Compile Include="ViewModels\CellVMTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Sudoku.Converters\Sudoku.Converters.csproj">
