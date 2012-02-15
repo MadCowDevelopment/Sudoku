@@ -1,8 +1,10 @@
 ﻿using System.Collections.ObjectModel;
 
+using Sudoku.ViewModels.Interfaces;
+
 namespace Sudoku.ViewModels
 {
-    public class ChangeableCellVM : CellVM
+    public class ChangeableCellVM : CellVM, IChangeableCellVM
     {
         public ChangeableCellVM() : base(0)
         {

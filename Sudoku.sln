@@ -20,6 +20,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.ViewModels", "Sudoku
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.Converters", "Sudoku.Converters\Sudoku.Converters.csproj", "{D13EBFDB-497A-41F3-A775-258C50406C6B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.ViewModels.Interfaces", "Sudoku.ViewModels.Interfaces\Sudoku.ViewModels.Interfaces.csproj", "{BA254042-ABCE-48A0-A92D-28CD1CD76899}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = Sudoku.vsmdi
@@ -93,6 +95,16 @@ Global
 		{D13EBFDB-497A-41F3-A775-258C50406C6B}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{D13EBFDB-497A-41F3-A775-258C50406C6B}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{D13EBFDB-497A-41F3-A775-258C50406C6B}.Release|x86.ActiveCfg = Release|Any CPU
+		{BA254042-ABCE-48A0-A92D-28CD1CD76899}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA254042-ABCE-48A0-A92D-28CD1CD76899}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA254042-ABCE-48A0-A92D-28CD1CD76899}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{BA254042-ABCE-48A0-A92D-28CD1CD76899}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{BA254042-ABCE-48A0-A92D-28CD1CD76899}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{BA254042-ABCE-48A0-A92D-28CD1CD76899}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA254042-ABCE-48A0-A92D-28CD1CD76899}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA254042-ABCE-48A0-A92D-28CD1CD76899}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{BA254042-ABCE-48A0-A92D-28CD1CD76899}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{BA254042-ABCE-48A0-A92D-28CD1CD76899}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

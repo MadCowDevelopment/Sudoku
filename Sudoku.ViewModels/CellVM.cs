@@ -1,6 +1,8 @@
-﻿namespace Sudoku.ViewModels
+﻿using Sudoku.ViewModels.Interfaces;
+
+namespace Sudoku.ViewModels
 {
-    public abstract class CellVM : ViewModelBase
+    public abstract class CellVM : ViewModelBase, ICellVM
     {
         #region Fields
 

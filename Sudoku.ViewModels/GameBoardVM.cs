@@ -1,14 +1,15 @@
 ﻿using System.Collections.Generic;
 
 using Sudoku.Models;
+using Sudoku.ViewModels.Interfaces;
 
 namespace Sudoku.ViewModels
 {
-    public class GameBoardVM : ViewModelBase
+    public class GameBoardVM : ViewModelBase, IGameBoardVM
     {
         public GameBoardVM(GameBoard gameBoard)
         {
-            Cells = new List<CellVM>();
+            Cells = new List<ICellVM>();
 
             foreach (var value in gameBoard.Fields)
             {
@@ -24,11 +25,11 @@ namespace Sudoku.ViewModels
             }
         }
 
-        public List<CellVM> Cells { get; private set; }
+        public List<ICellVM> Cells { get; private set; }
 
-        private CellVM _selectedCell;
+        private ICellVM _selectedCell;
 
-        public CellVM SelectedCell
+        public ICellVM SelectedCell
         {
             get
             {

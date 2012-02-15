@@ -138,6 +138,10 @@
       <Project>{4A5E40AF-C560-405C-8C6C-2D316CF7F038}</Project>
       <Name>Sudoku.Services</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Sudoku.ViewModels.Interfaces\Sudoku.ViewModels.Interfaces.csproj">
+      <Project>{BA254042-ABCE-48A0-A92D-28CD1CD76899}</Project>
+      <Name>Sudoku.ViewModels.Interfaces</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Sudoku.ViewModels\Sudoku.ViewModels.csproj">
       <Project>{26DBA66E-4860-494B-9C5B-F145A8A99BCC}</Project>
       <Name>Sudoku.ViewModels</Name>

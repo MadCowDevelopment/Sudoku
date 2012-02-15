@@ -1,8 +1,10 @@
 ﻿using System.ComponentModel;
 
+using Sudoku.ViewModels.Interfaces;
+
 namespace Sudoku.ViewModels
 {
-    public class ViewModelBase : INotifyPropertyChanged
+    public class ViewModelBase : IViewModelBase
     {
         #region Events
 

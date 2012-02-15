@@ -1,11 +1,13 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows.Input;
 
+using Sudoku.ViewModels.Interfaces;
+using Sudoku.ViewModels.Interfaces.Tools;
 using Sudoku.ViewModels.Tools;
 
 namespace Sudoku.ViewModels
 {
-    public class GameVM : ViewModelBase
+    public class GameVM : ViewModelBase, IGameVM
     {
         private ToggleToolVM _selectedTool;
 
@@ -13,7 +15,7 @@ namespace Sudoku.ViewModels
         {
             GameBoard = gameBoardVM;
 
-            Tools = new ObservableCollection<ToolVM>();
+            Tools = new ObservableCollection<IToolVM>();
 
             var penTool = new PenToolVM(GameBoard);
             penTool.IsSelected += ToolIsSelected;
@@ -53,8 +55,8 @@ namespace Sudoku.ViewModels
             _selectedTool = sender as ToggleToolVM;
         }
 
-        public ObservableCollection<ToolVM> Tools { get; private set; }
+        public ObservableCollection<IToolVM> Tools { get; private set; }
 
-        public GameBoardVM GameBoard { get; private set; }
+        public IGameBoardVM GameBoard { get; private set; }
     }
 }

@@ -1,15 +1,16 @@
 ﻿using Sudoku.Models;
 using Sudoku.Services;
+using Sudoku.ViewModels.Interfaces;
 
 namespace Sudoku.ViewModels
 {
-    public class MainWindowVM : ViewModelBase
+    public class MainWindowVM : ViewModelBase, IMainWindowVM
     {
         private readonly ISudokuGenerator _sudokuGenerator;
 
         private readonly IPuzzleGenerator _puzzleGenerator;
 
-        private ViewModelBase _content;
+        private IViewModelBase _content;
 
         public MainWindowVM(ISudokuGenerator sudokuGenerator, IPuzzleGenerator puzzleGenerator)
         {
@@ -22,7 +23,7 @@ namespace Sudoku.ViewModels
             Content = new GameVM(new GameBoardVM(gameBoard));
         }
 
-        public ViewModelBase Content
+        public IViewModelBase Content
         {
             get
             {

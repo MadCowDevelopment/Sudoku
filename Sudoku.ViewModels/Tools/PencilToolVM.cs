@@ -1,16 +1,19 @@
-﻿namespace Sudoku.ViewModels.Tools
+﻿using Sudoku.ViewModels.Interfaces;
+using Sudoku.ViewModels.Interfaces.Tools;
+
+namespace Sudoku.ViewModels.Tools
 {
-    public class PencilToolVM : ToggleToolVM
+    public class PencilToolVM : ToggleToolVM, IPencilToolVM
     {
-        public PencilToolVM(GameBoardVM gameBoardVM)
+        public PencilToolVM(IGameBoardVM gameBoardVM)
             : base(gameBoardVM)
         {
             Image = @"..\Images\Pencil.png";
         }
 
-        public override void EnterNumber(CellVM cellVM, int number)
+        public override void EnterNumber(ICellVM cellVM, int number)
         {
-            
+            // TODO: remove pencil marks from other cells
         }
     }
 }

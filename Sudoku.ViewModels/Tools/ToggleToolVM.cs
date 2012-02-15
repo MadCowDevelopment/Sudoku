@@ -1,14 +1,17 @@
 ﻿using System;
 
+using Sudoku.ViewModels.Interfaces;
+using Sudoku.ViewModels.Interfaces.Tools;
+
 namespace Sudoku.ViewModels.Tools
 {
-    public abstract class ToggleToolVM : ToolVM
+    public abstract class ToggleToolVM : ToolVM, IToggleToolVM
     {
-        protected GameBoardVM GameBoardVM { get; set; }
+        protected IGameBoardVM GameBoardVM { get; set; }
 
         private bool _isChecked;
 
-        public ToggleToolVM(GameBoardVM gameBoardVM)
+        public ToggleToolVM(IGameBoardVM gameBoardVM)
         {
             GameBoardVM = gameBoardVM;
         }
@@ -43,6 +46,6 @@ namespace Sudoku.ViewModels.Tools
             }
         }
 
-        public abstract void EnterNumber(CellVM cellVM, int number);
+        public abstract void EnterNumber(ICellVM cellVM, int number);
     }
 }
