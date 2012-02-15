@@ -5,13 +5,13 @@ using Sudoku.ViewModels.Interfaces.Tools;
 
 namespace Sudoku.ViewModels.Tools
 {
-    public abstract class ToggleToolVM : ToolVM, IToggleToolVM
+    public abstract class SelectableToolVM : ToolVM, ISelectableToolVM
     {
         protected IGameBoardVM GameBoardVM { get; set; }
 
         private bool _isChecked;
 
-        public ToggleToolVM(IGameBoardVM gameBoardVM)
+        public SelectableToolVM(IGameBoardVM gameBoardVM)
         {
             GameBoardVM = gameBoardVM;
         }

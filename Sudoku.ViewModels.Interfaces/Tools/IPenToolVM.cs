@@ -1,6 +1,6 @@
 namespace Sudoku.ViewModels.Interfaces.Tools
 {
-    public interface IPenToolVM : IToggleToolVM
+    public interface IPenToolVM : ISelectableToolVM
     {
     }
 }

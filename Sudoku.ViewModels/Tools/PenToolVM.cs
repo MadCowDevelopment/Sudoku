@@ -3,7 +3,7 @@ using Sudoku.ViewModels.Interfaces.Tools;
 
 namespace Sudoku.ViewModels.Tools
 {
-    public class PenToolVM : ToggleToolVM, IPenToolVM
+    public class PenToolVM : SelectableToolVM, IPenToolVM
     {
         public PenToolVM(IGameBoardVM gameBoardVM)
             : base(gameBoardVM)

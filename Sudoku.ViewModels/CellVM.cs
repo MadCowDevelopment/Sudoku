@@ -11,7 +11,7 @@ namespace Sudoku.ViewModels
         private bool _isSelected;
 
         #endregion Fields
-
+        
         protected CellVM(int actualValue)
         {
             Number = actualValue;

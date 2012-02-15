@@ -9,8 +9,10 @@ namespace Sudoku.ViewModels.Interfaces
     {
         ICommand EnterNumberCommand { get; }
 
-        ObservableCollection<IToolVM> Tools { get; }
+        ReadOnlyCollection<IToolVM> Tools { get; }
 
         IGameBoardVM GameBoard { get; }
+
+        ISelectableToolVM SelectedTool { get; }
     }
 }

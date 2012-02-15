@@ -1,45 +1,30 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 
 using Sudoku.ViewModels.Interfaces;
 using Sudoku.ViewModels.Interfaces.Tools;
-using Sudoku.ViewModels.Tools;
 
 namespace Sudoku.ViewModels
 {
     public class GameVM : ViewModelBase, IGameVM
     {
-        private ToggleToolVM _selectedTool;
+        private ICommand _enterNumberCommand;
 
-        public GameVM(GameBoardVM gameBoardVM)
+        private ISelectableToolVM _selectedTool;
+
+        public GameVM(IGameBoardVM gameBoardVM, IEnumerable<IToolVM> tools)
         {
             GameBoard = gameBoardVM;
 
-            Tools = new ObservableCollection<IToolVM>();
+            Tools = new ReadOnlyCollection<IToolVM>(tools.ToList());
 
-            var penTool = new PenToolVM(GameBoard);
-            penTool.IsSelected += ToolIsSelected;
-
-            var pencilTool = new PencilToolVM(GameBoard);
-            pencilTool.IsSelected += ToolIsSelected;
-
-            Tools.Add(penTool);
-            Tools.Add(pencilTool);
-        }
-
-        private void OnNumberEntered(object obj)
-        {
-            if (_selectedTool == null || GameBoard.SelectedCell == null)
+            foreach (var toolVM in Tools.OfType<ISelectableToolVM>())
             {
-                return;
+                toolVM.IsSelected += ToolIsSelected;
             }
-
-            var number = int.Parse(obj.ToString());
-            _selectedTool.EnterNumber(GameBoard.SelectedCell, number);
         }
-
-        private ICommand _enterNumberCommand;
-
 
         public ICommand EnterNumberCommand
         {
@@ -49,14 +34,37 @@ namespace Sudoku.ViewModels
             }
         }
 
-
         private void ToolIsSelected(object sender, System.EventArgs e)
         {
-            _selectedTool = sender as ToggleToolVM;
+            _selectedTool = sender as ISelectableToolVM;
         }
 
-        public ObservableCollection<IToolVM> Tools { get; private set; }
+        public ReadOnlyCollection<IToolVM> Tools { get; private set; }
 
         public IGameBoardVM GameBoard { get; private set; }
+
+        public ISelectableToolVM SelectedTool
+        {
+            get
+            {
+                return _selectedTool;
+            }
+        }
+
+        private void OnNumberEntered(object obj)
+        {
+            if (obj == null || _selectedTool == null || GameBoard.SelectedCell == null)
+            {
+                return;
+            }
+
+            int number;
+            if (!int.TryParse(obj.ToString(), out number))
+            {
+                return;
+            }
+
+            _selectedTool.EnterNumber(GameBoard.SelectedCell, number);
+        }
     }
 }

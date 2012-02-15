@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -47,6 +48,13 @@ namespace Sudoku.Test.Unit.Converters
             var actual = ConvertInteger(10);
 
             Assert.AreEqual(string.Empty, actual);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(NotImplementedException))]
+        public void ConvertBackIsNotImplemented()
+        {
+            _converter.ConvertBack(null, null, null, null);
         }
 
         private object ConvertInteger(int number)

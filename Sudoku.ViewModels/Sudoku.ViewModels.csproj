@@ -54,7 +54,7 @@
     <Compile Include="RelayCommand.cs" />
     <Compile Include="Tools\PencilToolVM.cs" />
     <Compile Include="Tools\PenToolVM.cs" />
-    <Compile Include="Tools\ToggleToolVM.cs" />
+    <Compile Include="Tools\SelectableToolVM.cs" />
     <Compile Include="Tools\ToolVM.cs" />
     <Compile Include="ViewModelBase.cs" />
   </ItemGroup>

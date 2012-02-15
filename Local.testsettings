@@ -28,6 +28,7 @@
                 <CodeCoverageItem binaryFile="Sudoku.Models\bin\Debug\Sudoku.Models.dll" pdbFile="Sudoku.Models\bin\Debug\Sudoku.Models.pdb" instrumentInPlace="true" />
                 <CodeCoverageItem binaryFile="Sudoku.Services\bin\Debug\Sudoku.Services.dll" pdbFile="Sudoku.Services\bin\Debug\Sudoku.Services.pdb" instrumentInPlace="true" />
                 <CodeCoverageItem binaryFile="Sudoku.ViewModels\bin\Debug\Sudoku.ViewModels.dll" pdbFile="Sudoku.ViewModels\bin\Debug\Sudoku.ViewModels.pdb" instrumentInPlace="true" />
+                <CodeCoverageItem binaryFile="Sudoku.Converters\bin\Debug\Sudoku.Converters.dll" pdbFile="Sudoku.Converters\bin\Debug\Sudoku.Converters.pdb" instrumentInPlace="true" />
               </Regular>
             </CodeCoverage>
           </Configuration>

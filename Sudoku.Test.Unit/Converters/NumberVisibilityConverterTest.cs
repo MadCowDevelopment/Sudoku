@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 using System.Windows;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -56,6 +57,13 @@ namespace Sudoku.Test.Unit.Converters
             var actual = ConvertValue("BLA");
 
             Assert.AreEqual(Visibility.Collapsed, actual);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(NotImplementedException))]
+        public void ConvertBackIsNotImplemented()
+        {
+            _converter.ConvertBack(null, null, null, null);
         }
 
         private object ConvertValue(object value)

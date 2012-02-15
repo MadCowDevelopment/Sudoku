@@ -63,6 +63,10 @@
     <Compile Include="TestHelper\NotifyExpectation.cs" />
     <Compile Include="TestHelper\NotifyExpectationList.cs" />
     <Compile Include="TestHelper\NotifyPropertyChangedExtension.cs" />
+    <Compile Include="ViewModels\ChangeableCellVMTest.cs" />
+    <Compile Include="ViewModels\FixedCellVMTest.cs" />
+    <Compile Include="ViewModels\GameBoardVMTest.cs" />
+    <Compile Include="ViewModels\GameVMTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Sudoku.Converters\Sudoku.Converters.csproj">

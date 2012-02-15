@@ -21,7 +21,7 @@
     </DataTemplate>
     
     
-    <DataTemplate DataType="{x:Type Tools:ToggleToolVM}">
+    <DataTemplate DataType="{x:Type Tools:SelectableToolVM}">
         <RadioButton Margin="3" Width="40" Height="40" Style="{StaticResource {x:Type ToggleButton}}" 
                      IsChecked="{Binding IsChecked}" GroupName="Tools">
             <RadioButton.Content>

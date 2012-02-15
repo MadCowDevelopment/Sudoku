@@ -1,6 +1,10 @@
-﻿using Sudoku.Models;
+﻿using System.Collections.Generic;
+
+using Sudoku.Models;
 using Sudoku.Services;
 using Sudoku.ViewModels.Interfaces;
+using Sudoku.ViewModels.Interfaces.Tools;
+using Sudoku.ViewModels.Tools;
 
 namespace Sudoku.ViewModels
 {
@@ -20,7 +24,26 @@ namespace Sudoku.ViewModels
             var gameBoard = sudokuGenerator.GeneratePuzzle();
             puzzleGenerator.GeneratePuzzle(gameBoard, Difficulty.Easy);
 
-            Content = new GameVM(new GameBoardVM(gameBoard));
+            var cells = new List<ICellVM>();
+
+            foreach (var value in gameBoard.Fields)
+            {
+                if (value != 0)
+                {
+                    cells.Add(new FixedCellVM(value));
+                }
+                else
+                {
+                    var cell = new ChangeableCellVM();
+                    cells.Add(cell);
+                }
+            }
+
+            var gameBoardVM = new GameBoardVM(cells);
+            var penTool = new PenToolVM(gameBoardVM);
+            var pencilTool = new PencilToolVM(gameBoardVM);
+            var tools = new List<IToolVM> { penTool, pencilTool };
+            Content = new GameVM(gameBoardVM, tools);
         }
 
         public IViewModelBase Content

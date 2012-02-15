@@ -1,4 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using Sudoku.Test.Unit.TestHelper;
 using Sudoku.ViewModels;
