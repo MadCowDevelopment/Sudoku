@@ -60,6 +60,9 @@
     <Compile Include="Services\PuzzleGeneratorTest.cs" />
     <Compile Include="Services\SudokuGeneratorTest.cs" />
     <Compile Include="ViewModels\CellVMTest.cs" />
+    <Compile Include="TestHelper\NotifyExpectation.cs" />
+    <Compile Include="TestHelper\NotifyExpectationList.cs" />
+    <Compile Include="TestHelper\NotifyPropertyChangedExtension.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Sudoku.Converters\Sudoku.Converters.csproj">
@@ -83,9 +86,7 @@
       <Name>Sudoku.ViewModels</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="TestHelper\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
