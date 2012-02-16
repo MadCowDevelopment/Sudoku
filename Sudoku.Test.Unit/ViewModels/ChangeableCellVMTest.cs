@@ -7,7 +7,13 @@ namespace Sudoku.Test.Unit.ViewModels
     [TestClass]
     public class ChangeableCellVMTest
     {
+        #region Fields
+
         private ChangeableCellVM _changeableCellVM;
+
+        #endregion Fields
+
+        #region Public Methods
 
         [TestInitialize]
         public void Initialize()
@@ -47,6 +53,10 @@ namespace Sudoku.Test.Unit.ViewModels
             }
         }
 
+        #endregion Public Methods
+
+        #region Private Methods
+
         private void AssertAllPencilMarksAreZero()
         {
             for (var i = 0; i < 9; i++)
@@ -54,5 +64,7 @@ namespace Sudoku.Test.Unit.ViewModels
                 Assert.AreEqual(0, _changeableCellVM.PencilMarks[i]);
             }
         }
+
+        #endregion Private Methods
     }
 }

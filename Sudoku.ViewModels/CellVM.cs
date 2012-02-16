@@ -6,32 +6,21 @@ namespace Sudoku.ViewModels
     {
         #region Fields
 
+        private bool _isSelected;
         private int _number;
 
-        private bool _isSelected;
-
         #endregion Fields
-        
+
+        #region Constructors
+
         protected CellVM(int actualValue)
         {
             Number = actualValue;
         }
 
+        #endregion Constructors
+
         #region Public Properties
-
-        public int Number
-        {
-            get
-            {
-                return _number;
-            }
-
-            set
-            {
-                _number = value;
-                RaisePropertyChanged("Number");
-            }
-        }
 
         public bool IsSelected
         {
@@ -44,6 +33,20 @@ namespace Sudoku.ViewModels
             {
                 _isSelected = value;
                 RaisePropertyChanged("IsSelected");
+            }
+        }
+
+        public int Number
+        {
+            get
+            {
+                return _number;
+            }
+
+            set
+            {
+                _number = value;
+                RaisePropertyChanged("Number");
             }
         }
 

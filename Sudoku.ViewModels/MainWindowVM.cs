@@ -10,11 +10,16 @@ namespace Sudoku.ViewModels
 {
     public class MainWindowVM : ViewModelBase, IMainWindowVM
     {
-        private readonly ISudokuGenerator _sudokuGenerator;
+        #region Fields
 
         private readonly IPuzzleGenerator _puzzleGenerator;
+        private readonly ISudokuGenerator _sudokuGenerator;
 
         private IViewModelBase _content;
+
+        #endregion Fields
+
+        #region Constructors
 
         public MainWindowVM(ISudokuGenerator sudokuGenerator, IPuzzleGenerator puzzleGenerator)
         {
@@ -46,6 +51,10 @@ namespace Sudoku.ViewModels
             Content = new GameVM(gameBoardVM, tools);
         }
 
+        #endregion Constructors
+
+        #region Public Properties
+
         public IViewModelBase Content
         {
             get
@@ -59,5 +68,7 @@ namespace Sudoku.ViewModels
                 RaisePropertyChanged("Content");
             }
         }
+
+        #endregion Public Properties
     }
 }

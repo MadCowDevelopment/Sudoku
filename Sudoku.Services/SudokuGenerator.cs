@@ -10,9 +10,9 @@ namespace Sudoku.Services
     {
         #region Fields
 
-        private GameBoard _gameBoard;
-
         private readonly Random _random = new Random((int)DateTime.Now.Ticks);
+
+        private GameBoard _gameBoard;
 
         #endregion Fields
 

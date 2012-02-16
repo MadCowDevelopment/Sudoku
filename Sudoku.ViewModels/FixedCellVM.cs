@@ -6,6 +6,8 @@ namespace Sudoku.ViewModels
 {
     public class FixedCellVM : CellVM, IFixedCellVM
     {
+        #region Constructors
+
         public FixedCellVM(int actualValue)
             : base(actualValue)
         {
@@ -14,5 +16,7 @@ namespace Sudoku.ViewModels
                 throw new ArgumentException("The actual value must be between 1 and 9");
             }
         }
+
+        #endregion Constructors
     }
 }

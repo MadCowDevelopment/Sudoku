@@ -10,9 +10,14 @@ namespace Sudoku.ViewModels
 {
     public class GameVM : ViewModelBase, IGameVM
     {
-        private ICommand _enterNumberCommand;
+        #region Fields
 
+        private ICommand _enterNumberCommand;
         private ISelectableToolVM _selectedTool;
+
+        #endregion Fields
+
+        #region Constructors
 
         public GameVM(IGameBoardVM gameBoardVM, IEnumerable<IToolVM> tools)
         {
@@ -26,6 +31,10 @@ namespace Sudoku.ViewModels
             }
         }
 
+        #endregion Constructors
+
+        #region Public Properties
+
         public ICommand EnterNumberCommand
         {
             get
@@ -34,14 +43,10 @@ namespace Sudoku.ViewModels
             }
         }
 
-        private void ToolIsSelected(object sender, System.EventArgs e)
+        public IGameBoardVM GameBoard
         {
-            _selectedTool = sender as ISelectableToolVM;
+            get; private set;
         }
-
-        public ReadOnlyCollection<IToolVM> Tools { get; private set; }
-
-        public IGameBoardVM GameBoard { get; private set; }
 
         public ISelectableToolVM SelectedTool
         {
@@ -50,6 +55,15 @@ namespace Sudoku.ViewModels
                 return _selectedTool;
             }
         }
+
+        public ReadOnlyCollection<IToolVM> Tools
+        {
+            get; private set;
+        }
+
+        #endregion Public Properties
+
+        #region Private Methods
 
         private void OnNumberEntered(object obj)
         {
@@ -66,5 +80,12 @@ namespace Sudoku.ViewModels
 
             _selectedTool.EnterNumber(GameBoard.SelectedCell, number);
         }
+
+        private void ToolIsSelected(object sender, System.EventArgs e)
+        {
+            _selectedTool = sender as ISelectableToolVM;
+        }
+
+        #endregion Private Methods
     }
 }

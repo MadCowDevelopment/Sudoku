@@ -4,6 +4,13 @@ namespace Sudoku.ViewModels.Tools
 {
     public class ToolVM : ViewModelBase, IToolVM
     {
-        public string Image { get; protected set; }
+        #region Public Properties
+
+        public string Image
+        {
+            get; protected set;
+        }
+
+        #endregion Public Properties
     }
 }

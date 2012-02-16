@@ -9,11 +9,12 @@ namespace Sudoku.Test.Unit.ViewModels
     [TestClass]
     public class FixedCellVMTest
     {
+        #region Public Methods
+
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
-        public void ConstructorArgumentZeroThrowsException()
+        public void ConstructorArgumentNineIsOk()
         {
-            CreateFixedCellVM(0);
+            CreateFixedCellVM(9);
         }
 
         [TestMethod]
@@ -23,21 +24,28 @@ namespace Sudoku.Test.Unit.ViewModels
         }
 
         [TestMethod]
-        public void ConstructorArgumentNineIsOk()
-        {
-            CreateFixedCellVM(9);
-        }
-
-        [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void ConstructorArgumentTenThrowsException()
         {
             CreateFixedCellVM(10);
         }
 
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void ConstructorArgumentZeroThrowsException()
+        {
+            CreateFixedCellVM(0);
+        }
+
+        #endregion Public Methods
+
+        #region Private Methods
+
         private void CreateFixedCellVM(int number)
         {
             new FixedCellVM(number);
         }
+
+        #endregion Private Methods
     }
 }

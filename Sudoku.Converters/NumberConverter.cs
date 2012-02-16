@@ -6,6 +6,8 @@ namespace Sudoku.Converters
 {
     public class NumberConverter : IValueConverter
     {
+        #region Public Methods
+
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var intValue = (int)value;
@@ -22,5 +24,7 @@ namespace Sudoku.Converters
         {
             throw new NotImplementedException();
         }
+
+        #endregion Public Methods
     }
 }

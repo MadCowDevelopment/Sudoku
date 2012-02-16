@@ -64,6 +64,6 @@ namespace Sudoku.Models
             return Fields.Skip(index * 9).Take(9);
         }
 
-        #endregion
+        #endregion Public Methods
     }
 }

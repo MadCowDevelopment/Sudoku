@@ -2,8 +2,18 @@ namespace Sudoku.ViewModels.Interfaces
 {
     public interface ICellVM : IViewModelBase
     {
-        int Number { get; set; }
+        #region Properties
 
-        bool IsSelected { get; set; }
+        bool IsSelected
+        {
+            get; set;
+        }
+
+        int Number
+        {
+            get; set;
+        }
+
+        #endregion Properties
     }
 }

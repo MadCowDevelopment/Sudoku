@@ -6,14 +6,27 @@ namespace Sudoku.ViewModels
 {
     public class GameBoardVM : ViewModelBase, IGameBoardVM
     {
+        #region Fields
+
+        private ICellVM _selectedCell;
+
+        #endregion Fields
+
+        #region Constructors
+
         public GameBoardVM(IEnumerable<ICellVM> cells)
         {
             Cells = new List<ICellVM>(cells);
         }
 
-        public List<ICellVM> Cells { get; private set; }
+        #endregion Constructors
 
-        private ICellVM _selectedCell;
+        #region Public Properties
+
+        public List<ICellVM> Cells
+        {
+            get; private set;
+        }
 
         public ICellVM SelectedCell
         {
@@ -28,5 +41,7 @@ namespace Sudoku.ViewModels
                 RaisePropertyChanged("SelectedCell");
             }
         }
+
+        #endregion Public Properties
     }
 }

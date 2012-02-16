@@ -6,17 +6,18 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Sudoku.Test.Unit.TestHelper
 {
-    public class NotifyExpectation<T> where T : INotifyPropertyChanged
+    public class NotifyExpectation<T>
+        where T : INotifyPropertyChanged
     {
-        private readonly T _owner;
-
-        private readonly string _propertyName;
+        #region Fields
 
         private readonly bool _eventExpected;
+        private readonly T _owner;
+        private readonly string _propertyName;
 
-        internal bool EventWasRaised { get; set; }
+        #endregion Fields
 
-        internal PropertyChangedEventArgs PropertyChangedEventArgs { get; set; }
+        #region Constructors
 
         public NotifyExpectation(T owner, string propertyName, bool eventExpected)
         {
@@ -27,22 +28,23 @@ namespace Sudoku.Test.Unit.TestHelper
             _owner.PropertyChanged += OwnerPropertyChanged;
         }
 
-        private void OwnerPropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == _propertyName)
-            {
-                EventWasRaised = true;
-                PropertyChangedEventArgs = e;
-            }
+        #endregion Constructors
 
-            _owner.PropertyChanged -= OwnerPropertyChanged;
+        #region Internal Properties
+
+        internal bool EventWasRaised
+        {
+            get; set;
         }
 
-        public PropertyChangedEventArgs When(Action<T> action)
+        internal PropertyChangedEventArgs PropertyChangedEventArgs
         {
-            action(_owner);
-            return PropertyChangedEventArgs;
+            get; set;
         }
+
+        #endregion Internal Properties
+
+        #region Public Methods
 
         public NotifyExpectationList<T> And<TProperty>(Expression<Func<T, TProperty>> func)
         {
@@ -56,9 +58,36 @@ namespace Sudoku.Test.Unit.TestHelper
             return new NotifyExpectationList<T>(_owner, new[] { this, expectation });
         }
 
+        public PropertyChangedEventArgs When(Action<T> action)
+        {
+            action(_owner);
+            return PropertyChangedEventArgs;
+        }
+
+        #endregion Public Methods
+
+        #region Internal Methods
+
         internal void Assertion()
         {
             Assert.AreEqual(_eventExpected, EventWasRaised, "PropertyChanged on {0}", _propertyName);
         }
+
+        #endregion Internal Methods
+
+        #region Private Methods
+
+        private void OwnerPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName == _propertyName)
+            {
+                EventWasRaised = true;
+                PropertyChangedEventArgs = e;
+            }
+
+            _owner.PropertyChanged -= OwnerPropertyChanged;
+        }
+
+        #endregion Private Methods
     }
 }

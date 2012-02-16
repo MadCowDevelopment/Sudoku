@@ -11,7 +11,20 @@ namespace Sudoku.Test.Unit.Converters
     [TestClass]
     public class NumberVisibilityConverterTest
     {
+        #region Fields
+
         private NumberVisibilityConverter _converter;
+
+        #endregion Fields
+
+        #region Public Methods
+
+        [TestMethod]
+        [ExpectedException(typeof(NotImplementedException))]
+        public void ConvertBackIsNotImplemented()
+        {
+            _converter.ConvertBack(null, null, null, null);
+        }
 
         [TestInitialize]
         public void Initialize()
@@ -23,6 +36,14 @@ namespace Sudoku.Test.Unit.Converters
         public void Number0ReturnsCollapsed()
         {
             var actual = ConvertValue(0);
+
+            Assert.AreEqual(Visibility.Collapsed, actual);
+        }
+
+        [TestMethod]
+        public void Number10ReturnsCollapsed()
+        {
+            var actual = ConvertValue(10);
 
             Assert.AreEqual(Visibility.Collapsed, actual);
         }
@@ -44,14 +65,6 @@ namespace Sudoku.Test.Unit.Converters
         }
 
         [TestMethod]
-        public void Number10ReturnsCollapsed()
-        {
-            var actual = ConvertValue(10);
-
-            Assert.AreEqual(Visibility.Collapsed, actual);
-        }
-
-        [TestMethod]
         public void ValueThatCannotBeConvertedToIntReturnsCollapsed()
         {
             var actual = ConvertValue("BLA");
@@ -59,16 +72,15 @@ namespace Sudoku.Test.Unit.Converters
             Assert.AreEqual(Visibility.Collapsed, actual);
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(NotImplementedException))]
-        public void ConvertBackIsNotImplemented()
-        {
-            _converter.ConvertBack(null, null, null, null);
-        }
+        #endregion Public Methods
+
+        #region Private Methods
 
         private object ConvertValue(object value)
         {
             return _converter.Convert(value, typeof(Visibility), null, CultureInfo.InvariantCulture);
         }
+
+        #endregion Private Methods
     }
 }

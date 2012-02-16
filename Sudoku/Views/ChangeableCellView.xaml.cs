@@ -19,9 +19,13 @@ namespace Sudoku.Views
     /// </summary>
     public partial class ChangeableCellView : UserControl
     {
+        #region Constructors
+
         public ChangeableCellView()
         {
             InitializeComponent();
         }
+
+        #endregion Constructors
     }
 }

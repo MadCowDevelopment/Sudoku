@@ -4,8 +4,18 @@ namespace Sudoku.ViewModels.Interfaces
 {
     public interface IGameBoardVM : IViewModelBase
     {
-        List<ICellVM> Cells { get; }
+        #region Properties
 
-        ICellVM SelectedCell { get; set; }
+        List<ICellVM> Cells
+        {
+            get;
+        }
+
+        ICellVM SelectedCell
+        {
+            get; set;
+        }
+
+        #endregion Properties
     }
 }

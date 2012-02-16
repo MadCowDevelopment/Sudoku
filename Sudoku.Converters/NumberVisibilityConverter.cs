@@ -7,6 +7,8 @@ namespace Sudoku.Converters
 {
     public class NumberVisibilityConverter : IValueConverter
     {
+        #region Public Methods
+
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             int intValue;
@@ -28,5 +30,7 @@ namespace Sudoku.Converters
         {
             throw new NotImplementedException();
         }
+
+        #endregion Public Methods
     }
 }

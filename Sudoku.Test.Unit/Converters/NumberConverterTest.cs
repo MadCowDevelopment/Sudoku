@@ -10,7 +10,20 @@ namespace Sudoku.Test.Unit.Converters
     [TestClass]
     public class NumberConverterTest
     {
+        #region Fields
+
         private NumberConverter _converter;
+
+        #endregion Fields
+
+        #region Public Methods
+
+        [TestMethod]
+        [ExpectedException(typeof(NotImplementedException))]
+        public void ConvertBackIsNotImplemented()
+        {
+            _converter.ConvertBack(null, null, null, null);
+        }
 
         [TestInitialize]
         public void Initialize()
@@ -22,6 +35,14 @@ namespace Sudoku.Test.Unit.Converters
         public void Number0ReturnsEmptyString()
         {
             var actual = ConvertInteger(0);
+
+            Assert.AreEqual(string.Empty, actual);
+        }
+
+        [TestMethod]
+        public void Number10ReturnsEmptyString()
+        {
+            var actual = ConvertInteger(10);
 
             Assert.AreEqual(string.Empty, actual);
         }
@@ -42,24 +63,15 @@ namespace Sudoku.Test.Unit.Converters
             Assert.AreEqual("9", actual);
         }
 
-        [TestMethod]
-        public void Number10ReturnsEmptyString()
-        {
-            var actual = ConvertInteger(10);
+        #endregion Public Methods
 
-            Assert.AreEqual(string.Empty, actual);
-        }
-
-        [TestMethod]
-        [ExpectedException(typeof(NotImplementedException))]
-        public void ConvertBackIsNotImplemented()
-        {
-            _converter.ConvertBack(null, null, null, null);
-        }
+        #region Private Methods
 
         private object ConvertInteger(int number)
         {
             return _converter.Convert(number, typeof(string), null, CultureInfo.InvariantCulture);
         }
+
+        #endregion Private Methods
     }
 }

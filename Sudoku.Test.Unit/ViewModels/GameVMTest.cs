@@ -14,24 +14,16 @@ namespace Sudoku.Test.Unit.ViewModels
     [TestClass]
     public class GameVMTest
     {
-        private IGameVM _gameVM;
-
-        private List<IToolVM> _tools;
-
-        private Mock<ISelectableToolVM> _selectableToolMock;
+        #region Fields
 
         private Mock<IGameBoardVM> _gameBoardVMMock;
+        private IGameVM _gameVM;
+        private Mock<ISelectableToolVM> _selectableToolMock;
+        private List<IToolVM> _tools;
 
-        [TestInitialize]
-        public void Initialize()
-        {
-            _tools = new List<IToolVM>();
-            _selectableToolMock = new Mock<ISelectableToolVM>();
-            _tools.Add(_selectableToolMock.Object);
-            _gameBoardVMMock = new Mock<IGameBoardVM>();
+        #endregion Fields
 
-            _gameVM = new GameVM(_gameBoardVMMock.Object, _tools);
-        }
+        #region Public Methods
 
         [TestCleanup]
         public void Cleanup()
@@ -43,20 +35,12 @@ namespace Sudoku.Test.Unit.ViewModels
         }
 
         [TestMethod]
-        public void IsSelectedEventHandlerSetsTheSelectedTool()
-        {
-            _selectableToolMock.Raise(p => p.IsSelected += null, new EventArgs());
-
-            Assert.AreEqual(_selectableToolMock.Object, _gameVM.SelectedTool);
-        }
-
-        [TestMethod]
         public void EnterNumberCommandCallsEnterNumberOnTheSelectedToolWithTheCurrentlySelectedCell()
         {
             var selectedCell = new Mock<IChangeableCellVM>();
             _selectableToolMock.Raise(p => p.IsSelected += null, new EventArgs());
             _gameBoardVMMock.Setup(p => p.SelectedCell).Returns(selectedCell.Object);
-            
+
             _gameVM.EnterNumberCommand.Execute("1");
 
             _selectableToolMock.Verify(
@@ -86,15 +70,6 @@ namespace Sudoku.Test.Unit.ViewModels
         }
 
         [TestMethod]
-        public void EnterNumberCommandWithoutSelectedToolDoesNothing()
-        {
-            _gameVM.EnterNumberCommand.Execute(0);
-
-            _selectableToolMock.Verify(
-                p => p.EnterNumber(It.IsAny<IChangeableCellVM>(), It.IsAny<int>()), Times.Never());
-        }
-
-        [TestMethod]
         public void EnterNumberCommandWithoutSelectedCellDoesNothing()
         {
             _selectableToolMock.Raise(p => p.IsSelected += null, new EventArgs());
@@ -104,5 +79,35 @@ namespace Sudoku.Test.Unit.ViewModels
             _selectableToolMock.Verify(
                 p => p.EnterNumber(It.IsAny<IChangeableCellVM>(), It.IsAny<int>()), Times.Never());
         }
+
+        [TestMethod]
+        public void EnterNumberCommandWithoutSelectedToolDoesNothing()
+        {
+            _gameVM.EnterNumberCommand.Execute(0);
+
+            _selectableToolMock.Verify(
+                p => p.EnterNumber(It.IsAny<IChangeableCellVM>(), It.IsAny<int>()), Times.Never());
+        }
+
+        [TestInitialize]
+        public void Initialize()
+        {
+            _tools = new List<IToolVM>();
+            _selectableToolMock = new Mock<ISelectableToolVM>();
+            _tools.Add(_selectableToolMock.Object);
+            _gameBoardVMMock = new Mock<IGameBoardVM>();
+
+            _gameVM = new GameVM(_gameBoardVMMock.Object, _tools);
+        }
+
+        [TestMethod]
+        public void IsSelectedEventHandlerSetsTheSelectedTool()
+        {
+            _selectableToolMock.Raise(p => p.IsSelected += null, new EventArgs());
+
+            Assert.AreEqual(_selectableToolMock.Object, _gameVM.SelectedTool);
+        }
+
+        #endregion Public Methods
     }
 }

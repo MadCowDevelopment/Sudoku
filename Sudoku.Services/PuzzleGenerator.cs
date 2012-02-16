@@ -7,7 +7,13 @@ namespace Sudoku.Services
 {
     public class PuzzleGenerator : IPuzzleGenerator
     {
+        #region Fields
+
         private Random _random = new Random((int)DateTime.Now.Ticks);
+
+        #endregion Fields
+
+        #region Public Methods
 
         public void GeneratePuzzle(GameBoard gameBoard, Difficulty difficulty)
         {
@@ -34,5 +40,7 @@ namespace Sudoku.Services
                 }
             }
         }
+
+        #endregion Public Methods
     }
 }

@@ -7,12 +7,28 @@ namespace Sudoku.ViewModels.Interfaces
 {
     public interface IGameVM : IViewModelBase
     {
-        ICommand EnterNumberCommand { get; }
+        #region Properties
 
-        ReadOnlyCollection<IToolVM> Tools { get; }
+        ICommand EnterNumberCommand
+        {
+            get;
+        }
 
-        IGameBoardVM GameBoard { get; }
+        IGameBoardVM GameBoard
+        {
+            get;
+        }
 
-        ISelectableToolVM SelectedTool { get; }
+        ISelectableToolVM SelectedTool
+        {
+            get;
+        }
+
+        ReadOnlyCollection<IToolVM> Tools
+        {
+            get;
+        }
+
+        #endregion Properties
     }
 }

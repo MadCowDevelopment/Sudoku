@@ -4,6 +4,13 @@ namespace Sudoku.ViewModels.Interfaces
 {
     public interface IChangeableCellVM : ICellVM
     {
-        ObservableCollection<int> PencilMarks { get; }
+        #region Properties
+
+        ObservableCollection<int> PencilMarks
+        {
+            get;
+        }
+
+        #endregion Properties
     }
 }

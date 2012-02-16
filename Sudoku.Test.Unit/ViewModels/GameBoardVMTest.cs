@@ -13,11 +13,21 @@ namespace Sudoku.Test.Unit.ViewModels
     [TestClass]
     public class GameBoardVMTest
     {
-        private GameBoardVM _gameBoardVM;
+        #region Fields
 
         private Mock<ICellVM> _cellMock;
-
         private List<ICellVM> _cells;
+        private GameBoardVM _gameBoardVM;
+
+        #endregion Fields
+
+        #region Public Methods
+
+        [TestMethod]
+        public void ConstructorInitializesCellsCollection()
+        {
+            Assert.AreEqual(_cellMock.Object, _gameBoardVM.Cells[0]);
+        }
 
         [TestInitialize]
         public void Initialize()
@@ -35,10 +45,6 @@ namespace Sudoku.Test.Unit.ViewModels
             _gameBoardVM.RaisesPropertyChanged(p => p.SelectedCell).When(p => p.SelectedCell = _cellMock.Object);
         }
 
-        [TestMethod]
-        public void ConstructorInitializesCellsCollection()
-        {
-            Assert.AreEqual(_cellMock.Object, _gameBoardVM.Cells[0]);
-        }
+        #endregion Public Methods
     }
 }

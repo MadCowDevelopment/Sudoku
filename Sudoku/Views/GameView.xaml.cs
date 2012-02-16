@@ -19,9 +19,13 @@ namespace Sudoku.Views
     /// </summary>
     public partial class GameView : UserControl
     {
+        #region Constructors
+
         public GameView()
         {
             InitializeComponent();
         }
+
+        #endregion Constructors
     }
 }
