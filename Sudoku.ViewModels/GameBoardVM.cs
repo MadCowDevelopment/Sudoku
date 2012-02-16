@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.Composition;
 
 using Sudoku.ViewModels.Interfaces;
 
 namespace Sudoku.ViewModels
 {
+    [Export(typeof(IGameBoardVM))]
     public class GameBoardVM : ViewModelBase, IGameBoardVM
     {
         #region Fields

@@ -1,9 +1,11 @@
 ﻿using System;
+using System.ComponentModel.Composition;
 
 using Sudoku.ViewModels.Interfaces;
 
 namespace Sudoku.ViewModels
 {
+    [Export(typeof(IFixedCellVM))]
     public class FixedCellVM : CellVM, IFixedCellVM
     {
         #region Constructors

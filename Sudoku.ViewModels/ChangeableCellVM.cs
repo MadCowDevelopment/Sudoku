@@ -1,10 +1,12 @@
 ﻿using System.Collections.ObjectModel;
+using System.ComponentModel.Composition;
 using System.Linq;
 
 using Sudoku.ViewModels.Interfaces;
 
 namespace Sudoku.ViewModels
 {
+    [Export(typeof(IChangeableCellVM))]
     public class ChangeableCellVM : CellVM, IChangeableCellVM
     {
         #region Constructors

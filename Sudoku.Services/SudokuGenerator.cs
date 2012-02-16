@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Composition;
 using System.Linq;
 
 using Sudoku.Models;
 
 namespace Sudoku.Services
 {
+    [Export(typeof(ISudokuGenerator))]
     public class SudokuGenerator : ISudokuGenerator
     {
         #region Fields

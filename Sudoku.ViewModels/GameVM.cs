@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel.Composition;
 using System.Linq;
 using System.Windows.Input;
 
@@ -8,6 +9,7 @@ using Sudoku.ViewModels.Interfaces.Tools;
 
 namespace Sudoku.ViewModels
 {
+    [Export(typeof(IGameVM))]
     public class GameVM : ViewModelBase, IGameVM
     {
         #region Fields

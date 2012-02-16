@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.Composition;
 using System.Windows.Input;
 
 using Sudoku.Models;
@@ -7,6 +8,7 @@ using Sudoku.ViewModels.Interfaces.EventArguments;
 
 namespace Sudoku.ViewModels
 {
+    [Export(typeof(IMenuVM))]
     public class MenuVM : ViewModelBase, IMenuVM
     {
         private ICommand _startGameCommand;

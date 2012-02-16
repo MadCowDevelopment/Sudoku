@@ -1,5 +1,5 @@
-﻿using Sudoku.Services;
-using Sudoku.ViewModels;
+﻿using Sudoku.Injection;
+using Sudoku.ViewModels.Interfaces;
 
 namespace Sudoku
 {
@@ -14,9 +14,8 @@ namespace Sudoku
         {
             InitializeComponent();
 
-            var sudokuGenerator = new SudokuGenerator();
-            var puzzleGenerator = new PuzzleGenerator();
-            DataContext = new MainWindowVM(sudokuGenerator, puzzleGenerator);
+            var container = new DependencyComposer();
+            DataContext = container.GetExportedValue<IMainWindowVM>();
         }
 
         #endregion Constructors

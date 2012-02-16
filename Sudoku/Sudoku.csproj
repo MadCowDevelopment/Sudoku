@@ -130,6 +130,10 @@
       <Project>{D13EBFDB-497A-41F3-A775-258C50406C6B}</Project>
       <Name>Sudoku.Converters</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Sudoku.Injection\Sudoku.Injection.csproj">
+      <Project>{C3095EA2-0316-4277-A929-AB88580CC15D}</Project>
+      <Name>Sudoku.Injection</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Sudoku.Models\Sudoku.Models.csproj">
       <Project>{31E55B0E-6F43-498E-9B39-35C99CD344D3}</Project>
       <Name>Sudoku.Models</Name>

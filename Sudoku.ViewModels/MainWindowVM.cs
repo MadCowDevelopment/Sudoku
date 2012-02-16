@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.Composition;
 
 using Sudoku.Models;
 using Sudoku.Services;
@@ -8,6 +9,7 @@ using Sudoku.ViewModels.Tools;
 
 namespace Sudoku.ViewModels
 {
+    [Export(typeof(IMainWindowVM))]
     public class MainWindowVM : ViewModelBase, IMainWindowVM
     {
         #region Fields
@@ -21,6 +23,7 @@ namespace Sudoku.ViewModels
 
         #region Constructors
 
+        [ImportingConstructor]
         public MainWindowVM(
             ISudokuGenerator sudokuGenerator, 
             IPuzzleGenerator puzzleGenerator)

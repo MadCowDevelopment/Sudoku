@@ -1,10 +1,12 @@
 using System;
+using System.ComponentModel.Composition;
 using System.Linq;
 
 using Sudoku.Models;
 
 namespace Sudoku.Services
 {
+    [Export(typeof(IPuzzleGenerator))]
     public class PuzzleGenerator : IPuzzleGenerator
     {
         #region Fields
