@@ -39,7 +39,7 @@ namespace Sudoku.ViewModels
         {
             get
             {
-                return _enterNumberCommand ?? (_enterNumberCommand = new RelayCommand(OnNumberEntered));
+                return _enterNumberCommand ?? (_enterNumberCommand = new RelayCommand<string>(OnNumberEntered));
             }
         }
 
@@ -65,15 +65,15 @@ namespace Sudoku.ViewModels
 
         #region Private Methods
 
-        private void OnNumberEntered(object obj)
+        private void OnNumberEntered(string enteredNumber)
         {
-            if (obj == null || _selectedTool == null || GameBoard.SelectedCell == null)
+            if (enteredNumber == null || _selectedTool == null || GameBoard.SelectedCell == null)
             {
                 return;
             }
 
             int number;
-            if (!int.TryParse(obj.ToString(), out number))
+            if (!int.TryParse(enteredNumber, out number))
             {
                 return;
             }

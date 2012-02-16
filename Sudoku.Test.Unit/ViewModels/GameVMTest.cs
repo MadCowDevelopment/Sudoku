@@ -81,12 +81,10 @@ namespace Sudoku.Test.Unit.ViewModels
         }
 
         [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
         public void EnterNumberCommandWithoutSelectedToolDoesNothing()
         {
             _gameVM.EnterNumberCommand.Execute(0);
-
-            _selectableToolMock.Verify(
-                p => p.EnterNumber(It.IsAny<IChangeableCellVM>(), It.IsAny<int>()), Times.Never());
         }
 
         [TestInitialize]

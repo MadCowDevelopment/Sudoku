@@ -67,6 +67,8 @@
     <Compile Include="ViewModels\FixedCellVMTest.cs" />
     <Compile Include="ViewModels\GameBoardVMTest.cs" />
     <Compile Include="ViewModels\GameVMTest.cs" />
+    <Compile Include="ViewModels\MainWindowVMTest.cs" />
+    <Compile Include="ViewModels\MenuVMTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Sudoku.Converters\Sudoku.Converters.csproj">

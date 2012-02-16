@@ -1,96 +1,115 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Windows.Input;
 
 namespace Sudoku.ViewModels
 {
     /// <summary>
-    /// A command whose sole purpose is to 
-    /// relay its functionality to other
-    /// objects by invoking delegates. The
-    /// default return value for the CanExecute
-    /// method is '<see langword="true"/>'.
+    /// A simple relay command implementation of <c>ICommand</c>.
     /// </summary>
-    public class RelayCommand : ICommand
+    /// <typeparam name="T">The type of the command parameter.</typeparam>
+    public class RelayCommand<T> : ICommand
     {
-        #region Fields
+        private readonly Action<T> _commandAction;
+        private readonly Func<T, bool> _canExecuteFunc;
 
-        /// <summary>
-        /// Predicate that determines whether the action can be executed.
-        /// </summary>
-        private readonly Predicate<object> _canExecute;
-
-        /// <summary>
-        /// Action that will be executed.
-        /// </summary>
-        private readonly Action<object> _execute;
-
-        #endregion Fields
-
-        #region Constructors
-
-        /// <summary>
-        /// Initializes a new instance of the RelayCommand class that can always execute.
-        /// </summary>
-        /// <param name="execute">The execution logic.</param>
-        public RelayCommand(Action<object> execute)
-            : this(execute, null)
+        public RelayCommand(Action<T> commandAction)
         {
+            _commandAction = commandAction;
+        }
+
+        public RelayCommand(Action<T> commandAction, Func<T, bool> canExecuteFunc)
+        {
+            _commandAction = commandAction;
+            _canExecuteFunc = canExecuteFunc;
         }
 
         /// <summary>
-        /// Initializes a new instance of the RelayCommand class.
+        /// Can be used to force a re-evaluation of the <c>CanExecute</c> method.
         /// </summary>
-        /// <param name="execute">The execution logic.</param>
-        /// <param name="canExecute">The execution status logic.</param>
-        public RelayCommand(Action<object> execute, Predicate<object> canExecute)
+        public void RaiseCanExecuteChanged()
         {
-            if (execute == null)
+            var handlers = CanExecuteChanged;
+            if (handlers != null)
             {
-                throw new ArgumentNullException("execute");
+                handlers(this, EventArgs.Empty);
             }
-
-            _execute = execute;
-            _canExecute = canExecute;
         }
 
-        #endregion Constructors
-
-        #region Events
+        #region ICommand implementation
 
         /// <summary>
-        /// This event is fired when the can execute has changed.
+        /// Determines whether the command can be executed or not.
         /// </summary>
-        public event EventHandler CanExecuteChanged
-        {
-            add { CommandManager.RequerySuggested += value; }
-            remove { CommandManager.RequerySuggested -= value; }
-        }
-
-        #endregion Events
-
-        #region Public Methods
-
-        /// <summary>
-        /// Determines whether the command can execute.
-        /// </summary>
-        /// <param name="parameter">Parameter that influences execution.</param>
-        /// <returns>Returns <see langword="true"/> if the command can execute, <see langword="false"/> otherwise.</returns>
-        [DebuggerStepThrough]
         public bool CanExecute(object parameter)
         {
-            return _canExecute == null ? true : _canExecute(parameter);
+            if (_canExecuteFunc == null)
+            {
+                return true;
+            }
+
+            var typedParameter = GetParameter(parameter);
+            return _canExecuteFunc(typedParameter);
         }
+
+        public event EventHandler CanExecuteChanged;
 
         /// <summary>
-        /// Executes the command.
+        /// Executes the command with the given parameter.
         /// </summary>
-        /// <param name="parameter">Parameter for the command to execute.</param>
         public void Execute(object parameter)
         {
-            _execute(parameter);
+            if (_commandAction == null)
+            {
+                return;
+            }
+
+            // we try to do some simple parsing and conversion
+            var typedParameter = GetParameter(parameter);
+            _commandAction(typedParameter);
         }
 
-        #endregion Public Methods
+        #endregion
+
+        private T GetParameter(object parameter)
+        {
+            if (parameter == null)
+            {
+                return default(T);
+            }
+
+            // get the type of the parameter
+            var type = typeof(T);
+
+            // if we have identical types, simply cast the parameter
+            if (parameter.GetType() == type)
+            {
+                return (T)parameter;
+            }
+
+            // if the type is an enum, try to parse the enum value
+            if (type.IsEnum)
+            {
+                return (T)Enum.Parse(type, parameter.ToString(), true);
+            }
+
+            // ok, we cannot use the input parameter
+            throw new ArgumentException("Input type not supported.", "parameter");
+        }
+    }
+
+    /// <summary>
+    /// A convenient class of a relay command that takes no parameters.
+    /// </summary>
+    public class RelayCommand : RelayCommand<object>
+    {
+        public RelayCommand(Action commandAction)
+            : base(o => commandAction())
+        {
+        }
+
+        public RelayCommand(Action commandAction, Func<bool> canExecuteFunc)
+            : base(o => commandAction(), o => canExecuteFunc())
+        {
+        }
     }
 }

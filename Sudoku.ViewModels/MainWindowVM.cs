@@ -21,7 +21,9 @@ namespace Sudoku.ViewModels
 
         #region Constructors
 
-        public MainWindowVM(ISudokuGenerator sudokuGenerator, IPuzzleGenerator puzzleGenerator)
+        public MainWindowVM(
+            ISudokuGenerator sudokuGenerator, 
+            IPuzzleGenerator puzzleGenerator)
         {
             _sudokuGenerator = sudokuGenerator;
             _puzzleGenerator = puzzleGenerator;

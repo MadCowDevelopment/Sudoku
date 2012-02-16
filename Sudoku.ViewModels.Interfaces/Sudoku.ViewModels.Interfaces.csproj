@@ -47,12 +47,20 @@
     <Compile Include="IGameBoardVM.cs" />
     <Compile Include="IGameVM.cs" />
     <Compile Include="IMainWindowVM.cs" />
+    <Compile Include="IMenuVM.cs" />
     <Compile Include="IViewModelBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="EventArguments\StartGameEventArgs.cs" />
     <Compile Include="Tools\IPencilToolVM.cs" />
     <Compile Include="Tools\IPenToolVM.cs" />
     <Compile Include="Tools\ISelectableToolVM.cs" />
     <Compile Include="Tools\IToolVM.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Sudoku.Models\Sudoku.Models.csproj">
+      <Project>{31E55B0E-6F43-498E-9B39-35C99CD344D3}</Project>
+      <Name>Sudoku.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
