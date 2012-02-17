@@ -10,13 +10,13 @@ namespace Sudoku.Test.Unit.ViewModels
     [TestClass]
     public class MenuVMTest
     {
+        #region Fields
+
         private IMenuVM _menuVM;
 
-        [TestInitialize]
-        public void Initialize()
-        {
-            _menuVM = new MenuVM();
-        }
+        #endregion Fields
+
+        #region Public Methods
 
         [TestMethod]
         public void ExecutingCommandToStartEasyGameRaisesStartGameEvent()
@@ -25,16 +25,26 @@ namespace Sudoku.Test.Unit.ViewModels
         }
 
         [TestMethod]
+        public void ExecutingCommandToStartHardGameRaisesStartGameEvent()
+        {
+            AssertGameStartIsRequestedWith(Difficulty.Hard);
+        }
+
+        [TestMethod]
         public void ExecutingCommandToStartMediumGameRaisesStartGameEvent()
         {
             AssertGameStartIsRequestedWith(Difficulty.Medium);
         }
 
-        [TestMethod]
-        public void ExecutingCommandToStartHardGameRaisesStartGameEvent()
+        [TestInitialize]
+        public void Initialize()
         {
-            AssertGameStartIsRequestedWith(Difficulty.Hard);
+            _menuVM = new MenuVM();
         }
+
+        #endregion Public Methods
+
+        #region Private Methods
 
         private void AssertGameStartIsRequestedWith(Difficulty difficulty)
         {
@@ -51,5 +61,7 @@ namespace Sudoku.Test.Unit.ViewModels
             Assert.IsTrue(eventWasRaised);
             Assert.AreEqual(difficulty, eventArgs.Difficulty);
         }
+
+        #endregion Private Methods
     }
 }

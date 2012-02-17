@@ -11,7 +11,19 @@ namespace Sudoku.ViewModels
     [Export(typeof(IMenuVM))]
     public class MenuVM : ViewModelBase, IMenuVM
     {
+        #region Fields
+
         private ICommand _startGameCommand;
+
+        #endregion Fields
+
+        #region Events
+
+        public event EventHandler<StartGameEventArgs> StartGameRequested;
+
+        #endregion Events
+
+        #region Public Properties
 
         public ICommand StartGameCommand
         {
@@ -21,7 +33,9 @@ namespace Sudoku.ViewModels
             }
         }
 
-        public event EventHandler<StartGameEventArgs> StartGameRequested;
+        #endregion Public Properties
+
+        #region Public Methods
 
         public void RaiseStartGameRequested(StartGameEventArgs e)
         {
@@ -32,9 +46,15 @@ namespace Sudoku.ViewModels
             }
         }
 
+        #endregion Public Methods
+
+        #region Private Methods
+
         private void OnStartGame(Difficulty difficulty)
         {
             RaiseStartGameRequested(new StartGameEventArgs(difficulty));
         }
+
+        #endregion Private Methods
     }
 }

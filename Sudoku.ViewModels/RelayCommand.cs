@@ -9,8 +9,14 @@ namespace Sudoku.ViewModels
     /// <typeparam name="T">The type of the command parameter.</typeparam>
     public class RelayCommand<T> : ICommand
     {
-        private readonly Action<T> _commandAction;
+        #region Fields
+
         private readonly Func<T, bool> _canExecuteFunc;
+        private readonly Action<T> _commandAction;
+
+        #endregion Fields
+
+        #region Constructors
 
         public RelayCommand(Action<T> commandAction)
         {
@@ -23,19 +29,15 @@ namespace Sudoku.ViewModels
             _canExecuteFunc = canExecuteFunc;
         }
 
-        /// <summary>
-        /// Can be used to force a re-evaluation of the <c>CanExecute</c> method.
-        /// </summary>
-        public void RaiseCanExecuteChanged()
-        {
-            var handlers = CanExecuteChanged;
-            if (handlers != null)
-            {
-                handlers(this, EventArgs.Empty);
-            }
-        }
+        #endregion Constructors
 
-        #region ICommand implementation
+        #region Events
+
+        public event EventHandler CanExecuteChanged;
+
+        #endregion Events
+
+        #region Public Methods
 
         /// <summary>
         /// Determines whether the command can be executed or not.
@@ -50,8 +52,6 @@ namespace Sudoku.ViewModels
             var typedParameter = GetParameter(parameter);
             return _canExecuteFunc(typedParameter);
         }
-
-        public event EventHandler CanExecuteChanged;
 
         /// <summary>
         /// Executes the command with the given parameter.
@@ -68,7 +68,21 @@ namespace Sudoku.ViewModels
             _commandAction(typedParameter);
         }
 
-        #endregion
+        /// <summary>
+        /// Can be used to force a re-evaluation of the <c>CanExecute</c> method.
+        /// </summary>
+        public void RaiseCanExecuteChanged()
+        {
+            var handlers = CanExecuteChanged;
+            if (handlers != null)
+            {
+                handlers(this, EventArgs.Empty);
+            }
+        }
+
+        #endregion Public Methods
+
+        #region Private Methods
 
         private T GetParameter(object parameter)
         {
@@ -95,6 +109,8 @@ namespace Sudoku.ViewModels
             // ok, we cannot use the input parameter
             throw new ArgumentException("Input type not supported.", "parameter");
         }
+
+        #endregion Private Methods
     }
 
     /// <summary>
@@ -102,6 +118,8 @@ namespace Sudoku.ViewModels
     /// </summary>
     public class RelayCommand : RelayCommand<object>
     {
+        #region Constructors
+
         public RelayCommand(Action commandAction)
             : base(o => commandAction())
         {
@@ -111,5 +129,7 @@ namespace Sudoku.ViewModels
             : base(o => commandAction(), o => canExecuteFunc())
         {
         }
+
+        #endregion Constructors
     }
 }

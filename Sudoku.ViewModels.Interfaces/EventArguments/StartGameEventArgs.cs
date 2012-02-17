@@ -4,11 +4,22 @@ namespace Sudoku.ViewModels.Interfaces.EventArguments
 {
     public class StartGameEventArgs : System.EventArgs
     {
-        public Difficulty Difficulty { get; private set; }
+        #region Constructors
 
         public StartGameEventArgs(Difficulty difficulty)
         {
             Difficulty = difficulty;
         }
+
+        #endregion Constructors
+
+        #region Public Properties
+
+        public Difficulty Difficulty
+        {
+            get; private set;
+        }
+
+        #endregion Public Properties
     }
 }
