@@ -49,7 +49,9 @@
     <Compile Include="ChangeableCellVM.cs" />
     <Compile Include="FixedCellVM.cs" />
     <Compile Include="GameBoardVM.cs" />
+    <Compile Include="Factories\GameBoardVMFactory.cs" />
     <Compile Include="GameVM.cs" />
+    <Compile Include="Factories\GameVMFactory.cs" />
     <Compile Include="MainWindowVM.cs" />
     <Compile Include="MenuVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

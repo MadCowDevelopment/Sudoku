@@ -1,21 +1,18 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.Composition;
+﻿using System.ComponentModel.Composition;
 
-using Sudoku.Models;
-using Sudoku.Services;
 using Sudoku.ViewModels.Interfaces;
-using Sudoku.ViewModels.Interfaces.Tools;
-using Sudoku.ViewModels.Tools;
+using Sudoku.ViewModels.Interfaces.EventArguments;
 
 namespace Sudoku.ViewModels
 {
     [Export(typeof(IMainWindowVM))]
     public class MainWindowVM : ViewModelBase, IMainWindowVM
     {
-        #region Fields
+        private readonly IMenuVM _menuVM;
 
-        private readonly IPuzzleGenerator _puzzleGenerator;
-        private readonly ISudokuGenerator _sudokuGenerator;
+        private readonly IGameVMFactory _gameVMFactory;
+
+        #region Fields
 
         private IViewModelBase _content;
 
@@ -24,36 +21,19 @@ namespace Sudoku.ViewModels
         #region Constructors
 
         [ImportingConstructor]
-        public MainWindowVM(
-            ISudokuGenerator sudokuGenerator, 
-            IPuzzleGenerator puzzleGenerator)
+        public MainWindowVM(IMenuVM menuVM, IGameVMFactory gameVMFactory)
         {
-            _sudokuGenerator = sudokuGenerator;
-            _puzzleGenerator = puzzleGenerator;
+            _menuVM = menuVM;
+            _gameVMFactory = gameVMFactory;
+            _menuVM.StartGameRequested += MenuVMStartGameRequested;  
 
-            var gameBoard = sudokuGenerator.GeneratePuzzle();
-            puzzleGenerator.GeneratePuzzle(gameBoard, Difficulty.Easy);
+            Content = _menuVM;
+        }
 
-            var cells = new List<ICellVM>();
-
-            foreach (var value in gameBoard.Fields)
-            {
-                if (value != 0)
-                {
-                    cells.Add(new FixedCellVM(value));
-                }
-                else
-                {
-                    var cell = new ChangeableCellVM();
-                    cells.Add(cell);
-                }
-            }
-
-            var gameBoardVM = new GameBoardVM(cells);
-            var penTool = new PenToolVM(gameBoardVM);
-            var pencilTool = new PencilToolVM(gameBoardVM);
-            var tools = new List<IToolVM> { penTool, pencilTool };
-            Content = new GameVM(gameBoardVM, tools);
+        private void MenuVMStartGameRequested(object sender, StartGameEventArgs e)
+        {
+            
+            Content = _gameVMFactory.CreateInstance(e.Difficulty);
         }
 
         #endregion Constructors

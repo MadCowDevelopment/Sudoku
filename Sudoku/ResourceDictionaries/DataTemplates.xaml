@@ -20,6 +20,9 @@
         <Views:GameView/>
     </DataTemplate>
     
+    <DataTemplate DataType="{x:Type ViewModels:MenuVM}">
+        <Views:MenuView/>
+    </DataTemplate>
     
     <DataTemplate DataType="{x:Type Tools:SelectableToolVM}">
         <RadioButton Margin="3" Width="40" Height="40" Style="{StaticResource {x:Type ToggleButton}}" 
