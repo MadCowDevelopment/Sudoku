@@ -6,7 +6,7 @@ using Sudoku.Models;
 using Sudoku.ViewModels.Factories;
 using Sudoku.ViewModels.Interfaces.Factories;
 
-namespace Sudoku.Test.Unit.ViewModels
+namespace Sudoku.Test.Unit.ViewModels.Factories
 {
     [TestClass]
     public class GameVMFactoryTest

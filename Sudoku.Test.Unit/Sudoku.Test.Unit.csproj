@@ -65,9 +65,10 @@
     <Compile Include="TestHelper\NotifyExpectationList.cs" />
     <Compile Include="TestHelper\NotifyPropertyChangedExtension.cs" />
     <Compile Include="ViewModels\ChangeableCellVMTest.cs" />
+    <Compile Include="ViewModels\Factories\GameBoardVMFactoryTest.cs" />
     <Compile Include="ViewModels\FixedCellVMTest.cs" />
     <Compile Include="ViewModels\GameBoardVMTest.cs" />
-    <Compile Include="ViewModels\GameVMFactoryTest.cs" />
+    <Compile Include="ViewModels\Factories\GameVMFactoryTest.cs" />
     <Compile Include="ViewModels\GameVMTest.cs" />
     <Compile Include="ViewModels\MainWindowVMTest.cs" />
     <Compile Include="ViewModels\MenuVMTest.cs" />
