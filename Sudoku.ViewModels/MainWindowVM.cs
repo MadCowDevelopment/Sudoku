@@ -25,7 +25,7 @@ namespace Sudoku.ViewModels
 
         [ImportingConstructor]
         public MainWindowVM(
-            ISudokuGenerator sudokuGenerator, 
+            ISudokuGenerator sudokuGenerator,
             IPuzzleGenerator puzzleGenerator)
         {
             _sudokuGenerator = sudokuGenerator;

@@ -13,11 +13,8 @@ namespace Sudoku.Test.Unit.ViewModels
     //public class MainWindowVMTest
     //{
     //    private Mock<ISudokuGenerator> _sudokuGeneratorMock;
-
     //    private Mock<IPuzzleGenerator> _puzzleGeneratorMock;
-
     //    private IMainWindowVM _mainWindowVM;
-
     //    [TestInitialize]
     //    public void Initialize()
     //    {
@@ -25,7 +22,6 @@ namespace Sudoku.Test.Unit.ViewModels
     //        _puzzleGeneratorMock = new Mock<IPuzzleGenerator>();
     //        _mainWindowVM = new MainWindowVM(_sudokuGeneratorMock.Object, _puzzleGeneratorMock.Object);
     //    }
-
     //    [TestMethod]
     //    public void ContentPropertyRaisesPropertyChanged()
     //    {

@@ -7,8 +7,19 @@ namespace Sudoku.ViewModels.Interfaces
 {
     public interface IMenuVM : IViewModelBase
     {
-        ICommand StartGameCommand { get; }
+        #region Events
 
         event EventHandler<StartGameEventArgs> StartGameRequested;
+
+        #endregion Events
+
+        #region Properties
+
+        ICommand StartGameCommand
+        {
+            get;
+        }
+
+        #endregion Properties
     }
 }
