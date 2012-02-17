@@ -7,6 +7,7 @@ using Moq;
 
 using Sudoku.ViewModels;
 using Sudoku.ViewModels.Interfaces;
+using Sudoku.ViewModels.Interfaces.Factories;
 using Sudoku.ViewModels.Interfaces.Tools;
 
 namespace Sudoku.Test.Unit.ViewModels

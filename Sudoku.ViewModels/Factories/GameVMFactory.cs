@@ -3,6 +3,7 @@ using System.ComponentModel.Composition;
 
 using Sudoku.Models;
 using Sudoku.ViewModels.Interfaces;
+using Sudoku.ViewModels.Interfaces.Factories;
 using Sudoku.ViewModels.Interfaces.Tools;
 using Sudoku.ViewModels.Tools;
 

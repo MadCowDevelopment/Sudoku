@@ -6,6 +6,7 @@ using Sudoku.Models;
 using Sudoku.ViewModels;
 using Sudoku.ViewModels.Factories;
 using Sudoku.ViewModels.Interfaces;
+using Sudoku.ViewModels.Interfaces.Factories;
 
 namespace Sudoku.Test.Unit.ViewModels
 {

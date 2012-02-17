@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Sudoku.ViewModels.Interfaces
+namespace Sudoku.ViewModels.Interfaces.Factories
 {
     public interface IGameBoardVM : IViewModelBase
     {

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Input;
 
 using Sudoku.ViewModels.Interfaces;
+using Sudoku.ViewModels.Interfaces.Factories;
 using Sudoku.ViewModels.Interfaces.Tools;
 
 namespace Sudoku.ViewModels

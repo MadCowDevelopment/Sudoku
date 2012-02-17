@@ -4,6 +4,7 @@ using System.ComponentModel.Composition;
 using Sudoku.Models;
 using Sudoku.Services;
 using Sudoku.ViewModels.Interfaces;
+using Sudoku.ViewModels.Interfaces.Factories;
 
 namespace Sudoku.ViewModels.Factories
 {

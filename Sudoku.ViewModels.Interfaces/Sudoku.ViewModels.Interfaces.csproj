@@ -44,8 +44,8 @@
     <Compile Include="ICellVM.cs" />
     <Compile Include="IChangeableCellVM.cs" />
     <Compile Include="IFixedCellVM.cs" />
-    <Compile Include="IGameBoardVM.cs" />
-    <Compile Include="IGameBoardVMFactory.cs" />
+    <Compile Include="Factories\IGameBoardVM.cs" />
+    <Compile Include="Factories\IGameBoardVMFactory.cs" />
     <Compile Include="IGameVM.cs" />
     <Compile Include="IGameVMFactory.cs" />
     <Compile Include="IMainWindowVM.cs" />

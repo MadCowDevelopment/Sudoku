@@ -2,6 +2,7 @@
 using System.ComponentModel.Composition;
 
 using Sudoku.ViewModels.Interfaces;
+using Sudoku.ViewModels.Interfaces.Factories;
 
 namespace Sudoku.ViewModels
 {

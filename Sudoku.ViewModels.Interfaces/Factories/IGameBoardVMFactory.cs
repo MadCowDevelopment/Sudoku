@@ -1,6 +1,6 @@
 ﻿using Sudoku.Models;
 
-namespace Sudoku.ViewModels.Interfaces
+namespace Sudoku.ViewModels.Interfaces.Factories
 {
     public interface IGameBoardVMFactory
     {
