@@ -22,21 +22,21 @@ namespace Sudoku.Test.Unit.Models
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
-        public void ConstructorThrowsExceptionWhenArgumentIsNull()
+        public void ConstructorShouldThrowExceptionWhenArgumentIsNull()
         {
             _gameBoard = new GameBoard(null);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void ConstructorThrowsExceptionWhenArrayIsLessThan81Elements()
+        public void ConstructorShouldThrowExceptionWhenArrayIsLessThan81Elements()
         {
             _gameBoard = new GameBoard(new int[80]);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
-        public void ConstructorThrowsExceptionWhenArrayIsMoreThan81Elements()
+        public void ConstructorShouldThrowExceptionWhenArrayIsMoreThan81Elements()
         {
             _gameBoard = new GameBoard(new int[82]);
         }

@@ -11,6 +11,7 @@
                 >
         <TextBlock 
             Text="{Binding Number}"
+            Foreground="Gray"
             FontSize="32" HorizontalAlignment="Center" VerticalAlignment="Center"/>
     </Border>
 </UserControl>
