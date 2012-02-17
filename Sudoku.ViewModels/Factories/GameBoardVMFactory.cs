@@ -11,9 +11,14 @@ namespace Sudoku.ViewModels.Factories
     [Export(typeof(IGameBoardVMFactory))]
     public class GameBoardVMFactory : IGameBoardVMFactory
     {
-        private readonly ISudokuGenerator _sudokuGenerator;
+        #region Fields
 
         private readonly IPuzzleGenerator _puzzleGenerator;
+        private readonly ISudokuGenerator _sudokuGenerator;
+
+        #endregion Fields
+
+        #region Constructors
 
         [ImportingConstructor]
         public GameBoardVMFactory(ISudokuGenerator sudokuGenerator, IPuzzleGenerator puzzleGenerator)
@@ -21,6 +26,10 @@ namespace Sudoku.ViewModels.Factories
             _sudokuGenerator = sudokuGenerator;
             _puzzleGenerator = puzzleGenerator;
         }
+
+        #endregion Constructors
+
+        #region Public Methods
 
         public IGameBoardVM CreateInstance(Difficulty difficulty)
         {
@@ -44,5 +53,7 @@ namespace Sudoku.ViewModels.Factories
             var gameBoardVM = new GameBoardVM(cells);
             return gameBoardVM;
         }
+
+        #endregion Public Methods
     }
 }

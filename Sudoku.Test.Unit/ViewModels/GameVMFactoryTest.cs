@@ -3,9 +3,7 @@
 using Moq;
 
 using Sudoku.Models;
-using Sudoku.ViewModels;
 using Sudoku.ViewModels.Factories;
-using Sudoku.ViewModels.Interfaces;
 using Sudoku.ViewModels.Interfaces.Factories;
 
 namespace Sudoku.Test.Unit.ViewModels
@@ -13,7 +11,13 @@ namespace Sudoku.Test.Unit.ViewModels
     [TestClass]
     public class GameVMFactoryTest
     {
+        #region Fields
+
         private Mock<IGameBoardVMFactory> _gameBoardVMFactory;
+
+        #endregion Fields
+
+        #region Public Methods
 
         [TestMethod]
         public void InstanceCanBeCreated()
@@ -25,5 +29,7 @@ namespace Sudoku.Test.Unit.ViewModels
 
             Assert.IsNotNull(gameBoardVM);
         }
+
+        #endregion Public Methods
     }
 }

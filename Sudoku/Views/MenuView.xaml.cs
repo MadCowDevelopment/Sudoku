@@ -19,9 +19,13 @@ namespace Sudoku.Views
     /// </summary>
     public partial class MenuView : UserControl
     {
+        #region Constructors
+
         public MenuView()
         {
             InitializeComponent();
         }
+
+        #endregion Constructors
     }
 }

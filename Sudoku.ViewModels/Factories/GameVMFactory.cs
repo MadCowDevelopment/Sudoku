@@ -12,13 +12,23 @@ namespace Sudoku.ViewModels.Factories
     [Export(typeof(IGameVMFactory))]
     public class GameVMFactory : IGameVMFactory
     {
+        #region Fields
+
         private readonly IGameBoardVMFactory _gameBoardVMFactory;
+
+        #endregion Fields
+
+        #region Constructors
 
         [ImportingConstructor]
         public GameVMFactory(IGameBoardVMFactory gameBoardVMFactory)
         {
-            _gameBoardVMFactory = gameBoardVMFactory;            
+            _gameBoardVMFactory = gameBoardVMFactory;
         }
+
+        #endregion Constructors
+
+        #region Public Methods
 
         public IGameVM CreateInstance(Difficulty difficulty)
         {
@@ -31,5 +41,7 @@ namespace Sudoku.ViewModels.Factories
 
             return gameVM;
         }
+
+        #endregion Public Methods
     }
 }

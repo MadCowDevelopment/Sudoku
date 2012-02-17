@@ -8,11 +8,10 @@ namespace Sudoku.ViewModels
     [Export(typeof(IMainWindowVM))]
     public class MainWindowVM : ViewModelBase, IMainWindowVM
     {
-        private readonly IMenuVM _menuVM;
+        #region Fields
 
         private readonly IGameVMFactory _gameVMFactory;
-
-        #region Fields
+        private readonly IMenuVM _menuVM;
 
         private IViewModelBase _content;
 
@@ -25,15 +24,9 @@ namespace Sudoku.ViewModels
         {
             _menuVM = menuVM;
             _gameVMFactory = gameVMFactory;
-            _menuVM.StartGameRequested += MenuVMStartGameRequested;  
+            _menuVM.StartGameRequested += MenuVMStartGameRequested;
 
             Content = _menuVM;
-        }
-
-        private void MenuVMStartGameRequested(object sender, StartGameEventArgs e)
-        {
-            
-            Content = _gameVMFactory.CreateInstance(e.Difficulty);
         }
 
         #endregion Constructors
@@ -55,5 +48,14 @@ namespace Sudoku.ViewModels
         }
 
         #endregion Public Properties
+
+        #region Private Methods
+
+        private void MenuVMStartGameRequested(object sender, StartGameEventArgs e)
+        {
+            Content = _gameVMFactory.CreateInstance(e.Difficulty);
+        }
+
+        #endregion Private Methods
     }
 }

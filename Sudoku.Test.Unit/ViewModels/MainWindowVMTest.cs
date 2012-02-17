@@ -13,13 +13,22 @@ namespace Sudoku.Test.Unit.ViewModels
     [TestClass]
     public class MainWindowVMTest
     {
+        #region Fields
+
+        private Mock<IGameVM> _gameVM;
+        private Mock<IGameVMFactory> _gameVMFactory;
+        private IMainWindowVM _mainWindowVM;
         private Mock<IMenuVM> _menuVMMock;
 
-        private Mock<IGameVMFactory> _gameVMFactory;
+        #endregion Fields
 
-        private Mock<IGameVM> _gameVM; 
+        #region Public Methods
 
-        private IMainWindowVM _mainWindowVM;
+        [TestMethod]
+        public void ContentPropertyRaisesPropertyChanged()
+        {
+            _mainWindowVM.RaisesPropertyChanged(p => p.Content).When(p => p.Content = null);
+        }
 
         [TestInitialize]
         public void Initialize()
@@ -32,12 +41,6 @@ namespace Sudoku.Test.Unit.ViewModels
         }
 
         [TestMethod]
-        public void ContentPropertyRaisesPropertyChanged()
-        {
-            _mainWindowVM.RaisesPropertyChanged(p => p.Content).When(p => p.Content = null);
-        }
-
-        [TestMethod]
         public void WhenNewGameIsStartedTheContentIsSetToAGameVM()
         {
             _gameVMFactory.Setup(p => p.CreateInstance(Difficulty.Easy)).Returns(_gameVM.Object);
@@ -45,5 +48,7 @@ namespace Sudoku.Test.Unit.ViewModels
 
             Assert.IsTrue(_mainWindowVM.Content is IGameVM);
         }
+
+        #endregion Public Methods
     }
 }
