@@ -1,4 +1,5 @@
-﻿using Sudoku.ViewModels.Interfaces;
+﻿using Sudoku.ViewModels.Framework;
+using Sudoku.ViewModels.Interfaces;
 
 namespace Sudoku.ViewModels
 {

@@ -45,6 +45,14 @@ namespace Sudoku.Test.Unit.ViewModels
             _gameBoardVM.RaisesPropertyChanged(p => p.SelectedCell).When(p => p.SelectedCell = _cellMock.Object);
         }
 
+        [TestMethod]
+        public void CellCanBeSet()
+        {
+            _gameBoardVM.SelectedCell = _cellMock.Object;
+
+            Assert.AreEqual(_cellMock.Object, _gameBoardVM.SelectedCell);
+        }
+
         #endregion Public Methods
     }
 }

@@ -63,7 +63,7 @@ namespace Sudoku.ViewModels.Tools
 
         #region Public Methods
 
-        public abstract void EnterNumber(ICellVM cellVM, int number);
+        public abstract void EnterNumber(IChangeableCellVM cellVM, int number);
 
         #endregion Public Methods
 

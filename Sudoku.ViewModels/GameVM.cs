@@ -4,6 +4,7 @@ using System.ComponentModel.Composition;
 using System.Linq;
 using System.Windows.Input;
 
+using Sudoku.ViewModels.Framework;
 using Sudoku.ViewModels.Interfaces;
 using Sudoku.ViewModels.Interfaces.Factories;
 using Sudoku.ViewModels.Interfaces.Tools;
@@ -70,7 +71,10 @@ namespace Sudoku.ViewModels
 
         private void OnNumberEntered(string enteredNumber)
         {
-            if (enteredNumber == null || _selectedTool == null || GameBoard.SelectedCell == null)
+            if (enteredNumber == null || 
+                _selectedTool == null || 
+                GameBoard.SelectedCell == null || 
+                !(GameBoard.SelectedCell is IChangeableCellVM))
             {
                 return;
             }
@@ -81,7 +85,7 @@ namespace Sudoku.ViewModels
                 return;
             }
 
-            _selectedTool.EnterNumber(GameBoard.SelectedCell, number);
+            _selectedTool.EnterNumber(GameBoard.SelectedCell as IChangeableCellVM, number);
         }
 
         private void ToolIsSelected(object sender, System.EventArgs e)

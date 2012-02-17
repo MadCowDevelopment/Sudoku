@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.Composition;
 
+using Sudoku.ViewModels.Framework;
 using Sudoku.ViewModels.Interfaces;
 using Sudoku.ViewModels.Interfaces.EventArguments;
 

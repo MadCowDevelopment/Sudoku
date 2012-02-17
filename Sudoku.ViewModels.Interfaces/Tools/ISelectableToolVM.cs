@@ -21,7 +21,7 @@ namespace Sudoku.ViewModels.Interfaces.Tools
 
         #region Methods
 
-        void EnterNumber(ICellVM cellVM, int number);
+        void EnterNumber(IChangeableCellVM cellVM, int number);
 
         #endregion Methods
     }

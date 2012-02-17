@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace Sudoku.ViewModels
+namespace Sudoku.ViewModels.Framework
 {
     /// <summary>
     /// A simple relay command implementation of <c>ICommand</c>.
@@ -19,12 +19,17 @@ namespace Sudoku.ViewModels
         #region Constructors
 
         public RelayCommand(Action<T> commandAction)
+            : this(commandAction, null)
         {
-            _commandAction = commandAction;
         }
 
         public RelayCommand(Action<T> commandAction, Func<T, bool> canExecuteFunc)
         {
+            if (commandAction == null)
+            {
+                throw new ArgumentNullException();
+            }
+
             _commandAction = commandAction;
             _canExecuteFunc = canExecuteFunc;
         }
@@ -58,12 +63,6 @@ namespace Sudoku.ViewModels
         /// </summary>
         public void Execute(object parameter)
         {
-            if (_commandAction == null)
-            {
-                return;
-            }
-
-            // we try to do some simple parsing and conversion
             var typedParameter = GetParameter(parameter);
             _commandAction(typedParameter);
         }
@@ -91,22 +90,17 @@ namespace Sudoku.ViewModels
                 return default(T);
             }
 
-            // get the type of the parameter
             var type = typeof(T);
-
-            // if we have identical types, simply cast the parameter
             if (parameter.GetType() == type)
             {
                 return (T)parameter;
             }
 
-            // if the type is an enum, try to parse the enum value
             if (type.IsEnum)
             {
                 return (T)Enum.Parse(type, parameter.ToString(), true);
             }
 
-            // ok, we cannot use the input parameter
             throw new ArgumentException("Input type not supported.", "parameter");
         }
 
@@ -123,11 +117,19 @@ namespace Sudoku.ViewModels
         public RelayCommand(Action commandAction)
             : base(o => commandAction())
         {
+            if (commandAction == null)
+            {
+                throw new ArgumentNullException();
+            }
         }
 
         public RelayCommand(Action commandAction, Func<bool> canExecuteFunc)
             : base(o => commandAction(), o => canExecuteFunc())
         {
+            if (commandAction == null)
+            {
+                throw new ArgumentNullException();
+            }
         }
 
         #endregion Constructors

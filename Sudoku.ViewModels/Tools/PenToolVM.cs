@@ -18,7 +18,7 @@ namespace Sudoku.ViewModels.Tools
 
         #region Public Methods
 
-        public override void EnterNumber(ICellVM cellVM, int number)
+        public override void EnterNumber(IChangeableCellVM cellVM, int number)
         {
             cellVM.Number = cellVM.Number == number ? 0 : number;
         }

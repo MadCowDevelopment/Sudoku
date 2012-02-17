@@ -17,7 +17,9 @@ namespace Sudoku.Test.Unit.ViewModels.Factories
         public void InstanceCanBeCreated()
         {
             var sudokuGeneratorMock = new Mock<ISudokuGenerator>();
-            sudokuGeneratorMock.Setup(p => p.GeneratePuzzle()).Returns(new GameBoard());
+            var gameBoard = new GameBoard();
+            gameBoard.Fields[0] = 1;
+            sudokuGeneratorMock.Setup(p => p.GeneratePuzzle()).Returns(gameBoard);
             var puzzleGeneratorMock = new Mock<IPuzzleGenerator>();
             var factory = new GameBoardVMFactory(sudokuGeneratorMock.Object, puzzleGeneratorMock.Object);
 

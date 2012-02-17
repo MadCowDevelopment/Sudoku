@@ -2,7 +2,7 @@
 
 using Sudoku.ViewModels.Interfaces;
 
-namespace Sudoku.ViewModels
+namespace Sudoku.ViewModels.Framework
 {
     public class ViewModelBase : IViewModelBase
     {

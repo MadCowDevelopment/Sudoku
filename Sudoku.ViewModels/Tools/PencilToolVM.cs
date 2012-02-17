@@ -18,9 +18,9 @@ namespace Sudoku.ViewModels.Tools
 
         #region Public Methods
 
-        public override void EnterNumber(ICellVM cellVM, int number)
+        public override void EnterNumber(IChangeableCellVM cellVM, int number)
         {
-            // TODO: remove pencil marks from other cells
+            cellVM.PencilMarks[number - 1] = cellVM.PencilMarks[number - 1] == number ? 0 : number;
         }
 
         #endregion Public Methods

@@ -3,6 +3,7 @@ using System.ComponentModel.Composition;
 using System.Windows.Input;
 
 using Sudoku.Models;
+using Sudoku.ViewModels.Framework;
 using Sudoku.ViewModels.Interfaces;
 using Sudoku.ViewModels.Interfaces.EventArguments;
 

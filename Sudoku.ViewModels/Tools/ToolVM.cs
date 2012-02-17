@@ -1,4 +1,5 @@
-﻿using Sudoku.ViewModels.Interfaces.Tools;
+﻿using Sudoku.ViewModels.Framework;
+using Sudoku.ViewModels.Interfaces.Tools;
 
 namespace Sudoku.ViewModels.Tools
 {
