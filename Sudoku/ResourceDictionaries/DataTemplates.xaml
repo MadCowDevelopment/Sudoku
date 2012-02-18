@@ -37,4 +37,12 @@
         </RadioButton>
     </DataTemplate>
     
+    <DataTemplate DataType="{x:Type Tools:ExecutableToolVM}">
+        <Button Command="{Binding ExecuteCommand}">
+            <Button.Content>
+                <Image Source="{Binding Image}"/>
+            </Button.Content>
+        </Button>
+    </DataTemplate>
+    
 </ResourceDictionary>

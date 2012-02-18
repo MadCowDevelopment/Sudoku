@@ -57,6 +57,7 @@
     <Compile Include="MenuVM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Framework\RelayCommand.cs" />
+    <Compile Include="Tools\ExecutableToolVM.cs" />
     <Compile Include="Tools\PencilToolVM.cs" />
     <Compile Include="Tools\PenToolVM.cs" />
     <Compile Include="Tools\SelectableToolVM.cs" />
