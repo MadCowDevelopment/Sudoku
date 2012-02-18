@@ -11,24 +11,14 @@ namespace Sudoku.Test.Unit.ViewModels.Tools
     [TestClass]
     public class PenToolVMTest
     {
-        private IPenToolVM _penToolVM;
+        #region Fields
 
         private Mock<IChangeableCellVM> _cellVMMock;
-        
-        [TestInitialize]
-        public void Initialize()
-        {
-            _penToolVM = new PenToolVM(null);
+        private IPenToolVM _penToolVM;
 
-            _cellVMMock = new Mock<IChangeableCellVM>();
-            _cellVMMock.SetupProperty(p => p.Number);
-        }
+        #endregion Fields
 
-        [TestMethod]
-        public void ImageIsSetCorrectly()
-        {
-            Assert.AreEqual(@"..\Images\Pen.png", _penToolVM.Image);
-        }
+        #region Public Methods
 
         [TestMethod]
         public void EnteringNumberWhenNumberIsZeroSetsTheNumber()
@@ -48,6 +38,21 @@ namespace Sudoku.Test.Unit.ViewModels.Tools
         }
 
         [TestMethod]
+        public void ImageIsSetCorrectly()
+        {
+            Assert.AreEqual(@"..\Images\Pen.png", _penToolVM.Image);
+        }
+
+        [TestInitialize]
+        public void Initialize()
+        {
+            _penToolVM = new PenToolVM(null);
+
+            _cellVMMock = new Mock<IChangeableCellVM>();
+            _cellVMMock.SetupProperty(p => p.Number);
+        }
+
+        [TestMethod]
         public void SelectingTheToolRaisesAnEvent()
         {
             var eventRaised = false;
@@ -61,5 +66,7 @@ namespace Sudoku.Test.Unit.ViewModels.Tools
             Assert.AreEqual(true, _penToolVM.IsChecked);
             Assert.IsTrue(eventRaised);
         }
+
+        #endregion Public Methods
     }
 }

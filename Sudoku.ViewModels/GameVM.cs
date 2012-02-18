@@ -71,9 +71,9 @@ namespace Sudoku.ViewModels
 
         private void OnNumberEntered(string enteredNumber)
         {
-            if (enteredNumber == null || 
-                _selectedTool == null || 
-                GameBoard.SelectedCell == null || 
+            if (enteredNumber == null ||
+                _selectedTool == null ||
+                GameBoard.SelectedCell == null ||
                 !(GameBoard.SelectedCell is IChangeableCellVM))
             {
                 return;

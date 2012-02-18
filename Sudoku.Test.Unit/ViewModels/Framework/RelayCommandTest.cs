@@ -9,27 +9,44 @@ namespace Sudoku.Test.Unit.ViewModels.Framework
     [TestClass]
     public class RelayCommandTest
     {
-        private RelayCommand _relayCommand;
+        #region Fields
 
         private bool _actionHasBeenCalled;
-
         private bool _canExecute;
+        private RelayCommand _relayCommand;
 
-        [TestInitialize]
-        public void Initialize()
+        #endregion Fields
+
+        #region Public Methods
+
+        [TestMethod]
+        public void CanExecuteIsFalseWhenPredicateReturnsFalse()
         {
-            _relayCommand = new RelayCommand(OnActionCalled, CanExecuteFunction);
-            _actionHasBeenCalled = false;
+            _canExecute = false;
+
+            var actual = _relayCommand.CanExecute(null);
+
+            Assert.IsFalse(actual);
         }
 
         [TestMethod]
-        public void CommandIsExecuted()
+        public void CanExecuteIsTrueWhenPredicateReturnsTrue()
+        {
+            _canExecute = true;
+
+            var actual = _relayCommand.CanExecute(null);
+
+            Assert.IsTrue(actual);
+        }
+
+        [TestMethod]
+        public void CanExecuteIsTrueWhenThereIsNoPredicate()
         {
             _relayCommand = new RelayCommand(OnActionCalled);
 
-            _relayCommand.Execute(null);
+            var actual = _relayCommand.CanExecute(null);
 
-            Assert.AreEqual(true, _actionHasBeenCalled);
+            Assert.IsTrue(actual);
         }
 
         [TestMethod]
@@ -47,45 +64,40 @@ namespace Sudoku.Test.Unit.ViewModels.Framework
         }
 
         [TestMethod]
-        public void CanExecuteIsTrueWhenThereIsNoPredicate()
+        public void CommandIsExecuted()
         {
             _relayCommand = new RelayCommand(OnActionCalled);
 
-            var actual = _relayCommand.CanExecute(null);
+            _relayCommand.Execute(null);
 
-            Assert.IsTrue(actual);
+            Assert.AreEqual(true, _actionHasBeenCalled);
         }
-
-        [TestMethod]
-        public void CanExecuteIsTrueWhenPredicateReturnsTrue()
-        {
-            _canExecute = true;
-
-            var actual = _relayCommand.CanExecute(null);
-
-            Assert.IsTrue(actual);
-        }
-
-        [TestMethod]
-        public void CanExecuteIsFalseWhenPredicateReturnsFalse()
-        {
-            _canExecute = false;
-
-            var actual = _relayCommand.CanExecute(null);
-
-            Assert.IsFalse(actual);
-        }
-
 
         [TestMethod]
         public void ExecuteChangedEventCanBeRaised()
         {
             var eventWasRaised = false;
             _relayCommand.CanExecuteChanged += (sender, args) => { eventWasRaised = true; };
-            
+
             _relayCommand.RaiseCanExecuteChanged();
 
             Assert.IsTrue(eventWasRaised);
+        }
+
+        [TestInitialize]
+        public void Initialize()
+        {
+            _relayCommand = new RelayCommand(OnActionCalled, CanExecuteFunction);
+            _actionHasBeenCalled = false;
+        }
+
+        #endregion Public Methods
+
+        #region Private Methods
+
+        private bool CanExecuteFunction()
+        {
+            return _canExecute;
         }
 
         private void OnActionCalled()
@@ -93,9 +105,6 @@ namespace Sudoku.Test.Unit.ViewModels.Framework
             _actionHasBeenCalled = true;
         }
 
-        private bool CanExecuteFunction()
-        {
-            return _canExecute;
-        }
+        #endregion Private Methods
     }
 }

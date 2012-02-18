@@ -25,23 +25,17 @@ namespace Sudoku.Test.Unit.ViewModels
         }
 
         [TestMethod]
-        public void IsSelectedPropertyRaisesPropertyChanged()
-        {
-            _cellVM.RaisesPropertyChanged(p => p.IsSelected).When(p => p.IsSelected = true);
-        }
-
-        [TestMethod]
-        public void NumberPropertyRaisesPropertyChanged()
-        {
-            _cellVM.RaisesPropertyChanged(p => p.Number).When(p => p.Number = 0);
-        }
-
-        [TestMethod]
         public void IsSelectedIsSetCorrectly()
         {
             _cellVM.IsSelected = true;
 
             Assert.AreEqual(true, _cellVM.IsSelected);
+        }
+
+        [TestMethod]
+        public void IsSelectedPropertyRaisesPropertyChanged()
+        {
+            _cellVM.RaisesPropertyChanged(p => p.IsSelected).When(p => p.IsSelected = true);
         }
 
         [TestMethod]
@@ -52,7 +46,13 @@ namespace Sudoku.Test.Unit.ViewModels
             Assert.AreEqual(1, _cellVM.Number);
         }
 
-    #endregion Public Methods
+        [TestMethod]
+        public void NumberPropertyRaisesPropertyChanged()
+        {
+            _cellVM.RaisesPropertyChanged(p => p.Number).When(p => p.Number = 0);
+        }
+
+        #endregion Public Methods
 
         #region Nested Types
 

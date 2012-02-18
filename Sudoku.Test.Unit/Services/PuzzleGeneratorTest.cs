@@ -26,12 +26,6 @@ namespace Sudoku.Test.Unit.Services
         }
 
         [TestMethod]
-        public void MediumPuzzleContains20Numbers()
-        {
-            AssertPuzzleWithDifficultyHasSpecificNumberOfFields(Difficulty.Medium, 20);
-        }
-
-        [TestMethod]
         public void HardPuzzleContains10Numbers()
         {
             AssertPuzzleWithDifficultyHasSpecificNumberOfFields(Difficulty.Hard, 10);
@@ -58,7 +52,15 @@ namespace Sudoku.Test.Unit.Services
             _generator = new PuzzleGenerator();
         }
 
+        [TestMethod]
+        public void MediumPuzzleContains20Numbers()
+        {
+            AssertPuzzleWithDifficultyHasSpecificNumberOfFields(Difficulty.Medium, 20);
+        }
+
         #endregion Public Methods
+
+        #region Private Methods
 
         private void AssertPuzzleWithDifficultyHasSpecificNumberOfFields(Difficulty difficulty, int numberOfFields)
         {
@@ -66,5 +68,7 @@ namespace Sudoku.Test.Unit.Services
 
             Assert.AreEqual(numberOfFields, _gameBoard.Fields.Count(p => p > 0));
         }
+
+        #endregion Private Methods
     }
 }

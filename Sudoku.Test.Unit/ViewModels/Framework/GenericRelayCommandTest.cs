@@ -9,27 +9,27 @@ namespace Sudoku.Test.Unit.ViewModels.Framework
     [TestClass]
     public class GenericRelayCommandTest
     {
-        private RelayCommand<int> _intRelayCommand;
-
-        private RelayCommand<DummyEnum> _enumRelayCommand; 
-
-        private int _intArgument;
-
-        private DummyEnum _enumArgument;
+        #region Fields
 
         private bool _canExecute;
+        private DummyEnum _enumArgument;
+        private RelayCommand<DummyEnum> _enumRelayCommand;
+        private int _intArgument;
+        private RelayCommand<int> _intRelayCommand;
 
-        [TestInitialize]
-        public void Initialize()
+        #endregion Fields
+
+        #region Enumerations
+
+        private enum DummyEnum
         {
+            OneValue,
+            AnotherValue
         }
 
-        [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void GenericCommandActionIsNotAllowedToBeNullForOverloadedConstructor()
-        {
-            _intRelayCommand = new RelayCommand<int>(null, CanExecuteFunction);
-        }
+        #endregion Enumerations
+
+        #region Public Methods
 
         [TestMethod]
         public void CorrectArgumentIsSent()
@@ -52,12 +52,24 @@ namespace Sudoku.Test.Unit.ViewModels.Framework
         }
 
         [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void GenericCommandActionIsNotAllowedToBeNullForOverloadedConstructor()
+        {
+            _intRelayCommand = new RelayCommand<int>(null, CanExecuteFunction);
+        }
+
+        [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void IncorrectStringThrowsException()
         {
             _enumRelayCommand = new RelayCommand<DummyEnum>(ExecuteFunction, CanExecuteFunction);
 
             _enumRelayCommand.Execute("InvalidValue");
+        }
+
+        [TestInitialize]
+        public void Initialize()
+        {
         }
 
         [TestMethod]
@@ -69,16 +81,10 @@ namespace Sudoku.Test.Unit.ViewModels.Framework
             _intRelayCommand.Execute(0.0);
         }
 
-        private void ExecuteFunction(int i)
-        {
-            _intArgument = i;
-        }
+        #endregion Public Methods
 
-        private void ExecuteFunction(DummyEnum argument)
-        {
-            _enumArgument = argument;
-        }
-        
+        #region Private Methods
+
         private bool CanExecuteFunction(int argument)
         {
             return _canExecute;
@@ -89,10 +95,16 @@ namespace Sudoku.Test.Unit.ViewModels.Framework
             return _canExecute;
         }
 
-        private enum DummyEnum
+        private void ExecuteFunction(int i)
         {
-            OneValue,
-            AnotherValue
+            _intArgument = i;
         }
+
+        private void ExecuteFunction(DummyEnum argument)
+        {
+            _enumArgument = argument;
+        }
+
+        #endregion Private Methods
     }
 }
