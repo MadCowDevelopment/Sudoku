@@ -10,8 +10,8 @@ namespace Sudoku.ViewModels
     {
         #region Constructors
 
-        public FixedCellVM(int actualValue)
-            : base(actualValue)
+        public FixedCellVM(int index, int actualValue)
+            : base(index, actualValue)
         {
             if (actualValue < 1 || actualValue > 9)
             {

@@ -11,6 +11,11 @@ namespace Sudoku.ViewModels.Interfaces.Factories
             get;
         }
 
+        bool IsCompleted
+        {
+            get;
+        }
+
         ICellVM SelectedCell
         {
             get; set;

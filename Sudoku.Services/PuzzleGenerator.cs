@@ -23,6 +23,9 @@ namespace Sudoku.Services
 
             switch (difficulty)
             {
+                case Difficulty.VeryEasy:
+                    numbers = numbers.Take(70).ToList();
+                    break;
                 case Difficulty.Easy:
                     numbers = numbers.Take(60).ToList();
                     break;
@@ -31,6 +34,9 @@ namespace Sudoku.Services
                     break;
                 case Difficulty.Hard:
                     numbers = numbers.Take(25).ToList();
+                    break;
+                case Difficulty.Extreme:
+                    numbers = numbers.Take(17).ToList();
                     break;
             }
 

@@ -39,19 +39,21 @@ namespace Sudoku.ViewModels.Factories
 
             var cells = new List<ICellVM>();
 
-            foreach (var value in gameBoard.Fields)
+            for (int i = 0; i < gameBoard.Fields.Length; i++)
             {
+                var value = gameBoard.Fields[i];
                 if (value != 0)
                 {
-                    cells.Add(new FixedCellVM(value));
+                    cells.Add(new FixedCellVM(i, value));
                 }
                 else
                 {
-                    cells.Add(new ChangeableCellVM());
+                    cells.Add(new ChangeableCellVM(i));
                 }
+
             }
 
-            var gameBoardVM = new GameBoardVM(cells);
+            var gameBoardVM = new GameBoardVM(gameBoard, cells);
             return gameBoardVM;
         }
 

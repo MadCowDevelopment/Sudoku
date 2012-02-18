@@ -11,7 +11,7 @@ namespace Sudoku.Test.Unit.ViewModels.Framework
     {
         #region Fields
 
-        private bool _canExecute;
+        private bool _canExecute = false;
         private DummyEnum _enumArgument;
         private RelayCommand<DummyEnum> _enumRelayCommand;
         private int _intArgument;

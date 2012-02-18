@@ -20,20 +20,30 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         
         <TextBlock Grid.Row="0" Text="WPF Sudoku" FontSize="40" HorizontalAlignment="Center" />
+
+        <Button Grid.Row="1" Content="Very Easy" Command="{Binding StartGameCommand}" 
+                CommandParameter="{x:Static Models:Difficulty.VeryEasy}" 
+                Style="{StaticResource StartGameButtonStyle}"/>
         
-        <Button Grid.Row="1" Content="Easy" Command="{Binding StartGameCommand}" 
+        <Button Grid.Row="2" Content="Easy" Command="{Binding StartGameCommand}" 
                 CommandParameter="{x:Static Models:Difficulty.Easy}" 
                 Style="{StaticResource StartGameButtonStyle}"/>
 
-        <Button Grid.Row="2" Content="Medium" Command="{Binding StartGameCommand}" 
+        <Button Grid.Row="3" Content="Medium" Command="{Binding StartGameCommand}" 
                 CommandParameter="{x:Static Models:Difficulty.Medium}" 
                 Style="{StaticResource StartGameButtonStyle}"/>
 
-        <Button Grid.Row="3" Content="Hard" Command="{Binding StartGameCommand}" 
+        <Button Grid.Row="4" Content="Hard" Command="{Binding StartGameCommand}" 
                 CommandParameter="{x:Static Models:Difficulty.Hard}" 
+                Style="{StaticResource StartGameButtonStyle}"/>
+
+        <Button Grid.Row="5" Content="Extreme" Command="{Binding StartGameCommand}" 
+                CommandParameter="{x:Static Models:Difficulty.Extreme}" 
                 Style="{StaticResource StartGameButtonStyle}"/>
 
     </Grid>

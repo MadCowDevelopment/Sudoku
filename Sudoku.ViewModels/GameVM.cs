@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using System.Linq;
@@ -37,6 +38,12 @@ namespace Sudoku.ViewModels
 
         #endregion Constructors
 
+        #region Events
+
+        public event EventHandler<EventArgs> GameCompleted;
+
+        #endregion Events
+
         #region Public Properties
 
         public ICommand EnterNumberCommand
@@ -67,6 +74,19 @@ namespace Sudoku.ViewModels
 
         #endregion Public Properties
 
+        #region Public Methods
+
+        public void RaiseGameCompleted(EventArgs e)
+        {
+            var handler = GameCompleted;
+            if (handler != null)
+            {
+                handler(this, e);
+            }
+        }
+
+        #endregion Public Methods
+
         #region Private Methods
 
         private void OnNumberEntered(string enteredNumber)
@@ -85,10 +105,15 @@ namespace Sudoku.ViewModels
                 return;
             }
 
-            _selectedTool.EnterNumber(GameBoard.SelectedCell as IChangeableCellVM, number);
+            _selectedTool.EnterNumber(number);
+
+            if (GameBoard.IsCompleted)
+            {
+                RaiseGameCompleted(new EventArgs());
+            }
         }
 
-        private void ToolIsSelected(object sender, System.EventArgs e)
+        private void ToolIsSelected(object sender, EventArgs e)
         {
             _selectedTool = sender as ISelectableToolVM;
         }

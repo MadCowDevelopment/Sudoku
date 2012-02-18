@@ -1,4 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System;
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using Moq;
 
@@ -16,8 +18,13 @@ namespace Sudoku.Test.Unit.ViewModels
         #region Fields
 
         private Mock<IGameVM> _gameVM;
+
+        private Mock<IGameOverVM> _gameOverVM;
+
         private Mock<IGameVMFactory> _gameVMFactory;
+
         private IMainWindowVM _mainWindowVM;
+
         private Mock<IMenuVM> _menuVMMock;
 
         #endregion Fields
@@ -35,9 +42,10 @@ namespace Sudoku.Test.Unit.ViewModels
         {
             _menuVMMock = new Mock<IMenuVM>();
             _gameVM = new Mock<IGameVM>();
+            _gameOverVM = new Mock<IGameOverVM>();
             _gameVMFactory = new Mock<IGameVMFactory>();
 
-            _mainWindowVM = new MainWindowVM(_menuVMMock.Object, _gameVMFactory.Object);
+            _mainWindowVM = new MainWindowVM(_menuVMMock.Object, _gameOverVM.Object, _gameVMFactory.Object);
         }
 
         [TestMethod]
@@ -46,7 +54,15 @@ namespace Sudoku.Test.Unit.ViewModels
             _gameVMFactory.Setup(p => p.CreateInstance(Difficulty.Easy)).Returns(_gameVM.Object);
             _menuVMMock.Raise(p => p.StartGameRequested += null, new StartGameEventArgs(Difficulty.Easy));
 
-            Assert.IsTrue(_mainWindowVM.Content is IGameVM);
+            Assert.AreEqual(_gameVM.Object, _mainWindowVM.Content);
+        }
+
+        [TestMethod]
+        public void WhenMenuIsRequestedTheContentIsSetToTheMenu()
+        {
+            _gameOverVM.Raise(p => p.MenuRequested += null, new EventArgs());
+
+            Assert.AreEqual(_menuVMMock.Object, _mainWindowVM.Content);
         }
 
         #endregion Public Methods

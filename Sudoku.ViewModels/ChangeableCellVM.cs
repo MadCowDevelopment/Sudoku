@@ -11,8 +11,8 @@ namespace Sudoku.ViewModels
     {
         #region Constructors
 
-        public ChangeableCellVM()
-            : base(0)
+        public ChangeableCellVM(int index)
+            : base(index, 0)
         {
             PencilMarks = new ObservableCollection<int>(Enumerable.Repeat(0, 9));
         }

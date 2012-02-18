@@ -25,6 +25,12 @@ namespace Sudoku.Test.Unit.ViewModels
         }
 
         [TestMethod]
+        public void ExecutingCommandToStartExtremeGameRaisesStartGameEvent()
+        {
+            AssertGameStartIsRequestedWith(Difficulty.Extreme);
+        }
+
+        [TestMethod]
         public void ExecutingCommandToStartHardGameRaisesStartGameEvent()
         {
             AssertGameStartIsRequestedWith(Difficulty.Hard);
@@ -34,6 +40,12 @@ namespace Sudoku.Test.Unit.ViewModels
         public void ExecutingCommandToStartMediumGameRaisesStartGameEvent()
         {
             AssertGameStartIsRequestedWith(Difficulty.Medium);
+        }
+
+        [TestMethod]
+        public void ExecutingCommandToStartVeryEasyGameGameRaisesStartGameEvent()
+        {
+            AssertGameStartIsRequestedWith(Difficulty.VeryEasy);
         }
 
         [TestInitialize]

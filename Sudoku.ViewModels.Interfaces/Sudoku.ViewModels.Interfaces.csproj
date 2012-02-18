@@ -41,11 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EventArguments\NumberChangedEventArgs.cs" />
     <Compile Include="ICellVM.cs" />
     <Compile Include="IChangeableCellVM.cs" />
     <Compile Include="IFixedCellVM.cs" />
     <Compile Include="Factories\IGameBoardVM.cs" />
     <Compile Include="Factories\IGameBoardVMFactory.cs" />
+    <Compile Include="IGameOverVM.cs" />
     <Compile Include="IGameVM.cs" />
     <Compile Include="IGameVMFactory.cs" />
     <Compile Include="IMainWindowVM.cs" />

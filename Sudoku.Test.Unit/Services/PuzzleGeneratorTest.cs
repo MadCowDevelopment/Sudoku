@@ -26,15 +26,15 @@ namespace Sudoku.Test.Unit.Services
         }
 
         [TestMethod]
-        public void HardPuzzleContains10Numbers()
+        public void ExtremePuzzleContains17Numbers()
         {
-            AssertPuzzleWithDifficultyHasSpecificNumberOfFields(Difficulty.Hard, 25);
+            AssertPuzzleWithDifficultyHasSpecificNumberOfFields(Difficulty.Extreme, 17);
         }
 
         [TestMethod]
-        public void MediumPuzzleContains20Numbers()
+        public void HardPuzzleContains25Numbers()
         {
-            AssertPuzzleWithDifficultyHasSpecificNumberOfFields(Difficulty.Medium, 40);
+            AssertPuzzleWithDifficultyHasSpecificNumberOfFields(Difficulty.Hard, 25);
         }
 
         [TestInitialize]
@@ -56,6 +56,18 @@ namespace Sudoku.Test.Unit.Services
             _gameBoard = new GameBoard(fields);
 
             _generator = new PuzzleGenerator();
+        }
+
+        [TestMethod]
+        public void MediumPuzzleContains20Numbers()
+        {
+            AssertPuzzleWithDifficultyHasSpecificNumberOfFields(Difficulty.Medium, 40);
+        }
+
+        [TestMethod]
+        public void VeryEasyPuzzleContains70Numbers()
+        {
+            AssertPuzzleWithDifficultyHasSpecificNumberOfFields(Difficulty.VeryEasy, 70);
         }
 
         #endregion Public Methods

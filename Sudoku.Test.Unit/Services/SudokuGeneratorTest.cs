@@ -62,6 +62,12 @@ namespace Sudoku.Test.Unit.Services
             }
         }
 
+        [TestMethod]
+        public void GameBoardIsCompleted()
+        {
+            Assert.IsTrue(_gameBoard.IsCompleted());
+        }
+
         [TestInitialize]
         public void Initialize()
         {

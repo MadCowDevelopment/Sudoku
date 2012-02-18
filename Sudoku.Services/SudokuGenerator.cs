@@ -35,19 +35,6 @@ namespace Sudoku.Services
 
         #region Private Methods
 
-        private bool ContainsNumbersOneThroughNineMoreThanOnce(List<int> numbers)
-        {
-            for (var i = 1; i <= 9; i++)
-            {
-                if (numbers.Count(p => p == i) > 1)
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
         private IEnumerable<int> CreateAllNumbers()
         {
             var result = new List<int>();
@@ -89,7 +76,7 @@ namespace Sudoku.Services
 
                 _gameBoard.Fields[index] = nextNumber;
 
-                if (IsValid())
+                if (_gameBoard.IsValid())
                 {
                     var passingNumbers = remainingNumbers.ToList();
                     passingNumbers.RemoveAt(i);
@@ -102,32 +89,6 @@ namespace Sudoku.Services
 
             _gameBoard.Fields[index] = 0;
             return false;
-        }
-
-        private bool IsValid()
-        {
-            for (int i = 0; i < 9; i++)
-            {
-                var row = _gameBoard.GetRow(i).ToList();
-                if (ContainsNumbersOneThroughNineMoreThanOnce(row))
-                {
-                    return false;
-                }
-
-                var column = _gameBoard.GetColumn(i).ToList();
-                if (ContainsNumbersOneThroughNineMoreThanOnce(column))
-                {
-                    return false;
-                }
-
-                var box = _gameBoard.GetBox(i).ToList();
-                if (ContainsNumbersOneThroughNineMoreThanOnce(box))
-                {
-                    return false;
-                }
-            }
-
-            return true;
         }
 
         #endregion Private Methods

@@ -36,6 +36,21 @@ namespace Sudoku.Test.Unit.ViewModels
         }
 
         [TestMethod]
+        public void EnteringANumberThatFinishesTheGameRaisesAnEvent()
+        {
+            var selectedCell = new Mock<IChangeableCellVM>();
+            _selectableToolMock.Raise(p => p.IsSelected += null, new EventArgs());
+            _gameBoardVMMock.Setup(p => p.SelectedCell).Returns(selectedCell.Object);
+            _gameBoardVMMock.Setup(p => p.IsCompleted).Returns(true);
+            bool eventWasRaised = false;
+            _gameVM.GameCompleted += (sender, args) => { eventWasRaised = true; };
+
+            _gameVM.EnterNumberCommand.Execute("1");
+
+            Assert.IsTrue(eventWasRaised);
+        }
+
+        [TestMethod]
         public void EnterNumberCommandCallsEnterNumberOnTheSelectedToolWithTheCurrentlySelectedCell()
         {
             var selectedCell = new Mock<IChangeableCellVM>();
@@ -45,7 +60,7 @@ namespace Sudoku.Test.Unit.ViewModels
             _gameVM.EnterNumberCommand.Execute("1");
 
             _selectableToolMock.Verify(
-                p => p.EnterNumber(It.Is<IChangeableCellVM>(x => x == selectedCell.Object), It.Is<int>(x => x == 1)));
+                p => p.EnterNumber(It.Is<int>(x => x == 1)));
         }
 
         [TestMethod]
@@ -58,7 +73,7 @@ namespace Sudoku.Test.Unit.ViewModels
             _gameVM.EnterNumberCommand.Execute("XXX");
 
             _selectableToolMock.Verify(
-                p => p.EnterNumber(It.IsAny<IChangeableCellVM>(), It.IsAny<int>()), Times.Never());
+                p => p.EnterNumber(It.IsAny<int>()), Times.Never());
         }
 
         [TestMethod]
@@ -67,7 +82,7 @@ namespace Sudoku.Test.Unit.ViewModels
             _gameVM.EnterNumberCommand.Execute(null);
 
             _selectableToolMock.Verify(
-                p => p.EnterNumber(It.IsAny<IChangeableCellVM>(), It.IsAny<int>()), Times.Never());
+                p => p.EnterNumber(It.IsAny<int>()), Times.Never());
         }
 
         [TestMethod]
@@ -78,7 +93,7 @@ namespace Sudoku.Test.Unit.ViewModels
             _gameVM.EnterNumberCommand.Execute("1");
 
             _selectableToolMock.Verify(
-                p => p.EnterNumber(It.IsAny<IChangeableCellVM>(), It.IsAny<int>()), Times.Never());
+                p => p.EnterNumber(It.IsAny<int>()), Times.Never());
         }
 
         [TestMethod]

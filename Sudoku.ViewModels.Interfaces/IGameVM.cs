@@ -1,3 +1,4 @@
+using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 
@@ -8,6 +9,12 @@ namespace Sudoku.ViewModels.Interfaces
 {
     public interface IGameVM : IViewModelBase
     {
+        #region Events
+
+        event EventHandler<EventArgs> GameCompleted;
+
+        #endregion Events
+
         #region Properties
 
         ICommand EnterNumberCommand

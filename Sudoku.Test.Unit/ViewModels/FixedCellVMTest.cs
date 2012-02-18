@@ -43,7 +43,7 @@ namespace Sudoku.Test.Unit.ViewModels
 
         private void CreateFixedCellVM(int number)
         {
-            new FixedCellVM(number);
+            new FixedCellVM(0, number);
         }
 
         #endregion Private Methods

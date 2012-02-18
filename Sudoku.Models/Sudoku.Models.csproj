@@ -45,6 +45,7 @@
     </Compile>
     <Compile Include="Difficulty.cs" />
     <Compile Include="GameBoard.cs" />
+    <Compile Include="IGameBoard.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

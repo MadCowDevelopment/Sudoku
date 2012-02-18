@@ -71,6 +71,7 @@
     <Compile Include="ViewModels\Framework\RelayCommandTest.cs" />
     <Compile Include="ViewModels\GameBoardVMTest.cs" />
     <Compile Include="ViewModels\Factories\GameVMFactoryTest.cs" />
+    <Compile Include="ViewModels\GameOverVMTest.cs" />
     <Compile Include="ViewModels\GameVMTest.cs" />
     <Compile Include="ViewModels\MainWindowVMTest.cs" />
     <Compile Include="ViewModels\MenuVMTest.cs" />

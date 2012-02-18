@@ -1,6 +1,5 @@
 ﻿using System;
 
-using Sudoku.ViewModels.Interfaces;
 using Sudoku.ViewModels.Interfaces.Factories;
 using Sudoku.ViewModels.Interfaces.Tools;
 
@@ -16,7 +15,7 @@ namespace Sudoku.ViewModels.Tools
 
         #region Constructors
 
-        public SelectableToolVM(IGameBoardVM gameBoardVM)
+        protected SelectableToolVM(IGameBoardVM gameBoardVM)
         {
             GameBoardVM = gameBoardVM;
         }
@@ -63,7 +62,7 @@ namespace Sudoku.ViewModels.Tools
 
         #region Public Methods
 
-        public abstract void EnterNumber(IChangeableCellVM cellVM, int number);
+        public abstract void EnterNumber(int number);
 
         #endregion Public Methods
 

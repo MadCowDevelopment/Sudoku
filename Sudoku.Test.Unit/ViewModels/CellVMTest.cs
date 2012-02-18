@@ -21,7 +21,7 @@ namespace Sudoku.Test.Unit.ViewModels
         [TestInitialize]
         public void Initialize()
         {
-            _cellVM = new TestCellVM(0);
+            _cellVM = new TestCellVM(0, 0);
         }
 
         [TestMethod]
@@ -52,6 +52,17 @@ namespace Sudoku.Test.Unit.ViewModels
             _cellVM.RaisesPropertyChanged(p => p.Number).When(p => p.Number = 0);
         }
 
+        [TestMethod]
+        public void SettingANumberRaisesEvent()
+        {
+            var eventWasRaised = false;
+            _cellVM.NumberChanged += (sender, args) => { eventWasRaised = true; };
+
+            _cellVM.Number = 1;
+
+            Assert.IsTrue(eventWasRaised);
+        }
+
         #endregion Public Methods
 
         #region Nested Types
@@ -60,8 +71,8 @@ namespace Sudoku.Test.Unit.ViewModels
         {
             #region Constructors
 
-            public TestCellVM(int actualValue)
-                : base(actualValue)
+            public TestCellVM(int index, int actualValue)
+                : base(index, actualValue)
             {
             }
 

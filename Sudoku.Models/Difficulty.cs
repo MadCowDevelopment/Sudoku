@@ -4,9 +4,11 @@
 
     public enum Difficulty
     {
+        VeryEasy,
         Easy,
         Medium,
-        Hard
+        Hard,
+        Extreme
     }
 
     #endregion Enumerations

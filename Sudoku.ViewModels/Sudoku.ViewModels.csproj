@@ -50,6 +50,7 @@
     <Compile Include="FixedCellVM.cs" />
     <Compile Include="GameBoardVM.cs" />
     <Compile Include="Factories\GameBoardVMFactory.cs" />
+    <Compile Include="GameOverVM.cs" />
     <Compile Include="GameVM.cs" />
     <Compile Include="Factories\GameVMFactory.cs" />
     <Compile Include="MainWindowVM.cs" />

@@ -18,13 +18,13 @@ namespace Sudoku.Test.Unit.ViewModels
         [TestInitialize]
         public void Initialize()
         {
-            _changeableCellVM = new ChangeableCellVM();
+            _changeableCellVM = new ChangeableCellVM(0);
         }
 
         [TestMethod]
         public void PencilMarksAreInitializedWithNineZeros()
         {
-            _changeableCellVM = new ChangeableCellVM();
+            _changeableCellVM = new ChangeableCellVM(0);
 
             Assert.AreEqual(9, _changeableCellVM.PencilMarks.Count);
             AssertAllPencilMarksAreZero();

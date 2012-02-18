@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Sudoku.Models
 {
-    public class GameBoard
+    public class GameBoard : IGameBoard
     {
         #region Constructors
 
@@ -65,6 +65,59 @@ namespace Sudoku.Models
             return Fields.Skip(index * 9).Take(9);
         }
 
+        public bool IsCompleted()
+        {
+            if (Fields.Contains(0))
+            {
+                return false;
+            }
+
+            return IsValid();
+        }
+
+        public bool IsValid()
+        {
+            for (int i = 0; i < 9; i++)
+            {
+                var row = GetRow(i).ToList();
+                if (ContainsNumbersOneThroughNineMoreThanOnce(row))
+                {
+                    return false;
+                }
+
+                var column = GetColumn(i).ToList();
+                if (ContainsNumbersOneThroughNineMoreThanOnce(column))
+                {
+                    return false;
+                }
+
+                var box = GetBox(i).ToList();
+                if (ContainsNumbersOneThroughNineMoreThanOnce(box))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
         #endregion Public Methods
+
+        #region Private Methods
+
+        private bool ContainsNumbersOneThroughNineMoreThanOnce(List<int> numbers)
+        {
+            for (var i = 1; i <= 9; i++)
+            {
+                if (numbers.Count(p => p == i) > 1)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        #endregion Private Methods
     }
 }
