@@ -38,7 +38,7 @@
     </DataTemplate>
     
     <DataTemplate DataType="{x:Type Tools:ExecutableToolVM}">
-        <Button Command="{Binding ExecuteCommand}">
+        <Button Margin="3" Width="40" Height="40" Command="{Binding ExecuteCommand}">
             <Button.Content>
                 <Image Source="{Binding Image}"/>
             </Button.Content>

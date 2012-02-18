@@ -26,7 +26,7 @@ namespace Sudoku.Test.Unit.ViewModels.Factories
         {
             var tools = _toolVMFactory.CreateTools(_gameBoardVMMock.Object);
 
-            Assert.AreEqual(2, tools.Count);
+            Assert.AreEqual(3, tools.Count);
         }
     }
 }

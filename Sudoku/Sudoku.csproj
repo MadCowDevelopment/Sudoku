@@ -165,7 +165,9 @@
       <Name>Sudoku.ViewModels</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Images\PencilAll.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Pen.png" />
   </ItemGroup>

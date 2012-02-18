@@ -77,6 +77,7 @@
     <Compile Include="ViewModels\GameVMTest.cs" />
     <Compile Include="ViewModels\MainWindowVMTest.cs" />
     <Compile Include="ViewModels\MenuVMTest.cs" />
+    <Compile Include="ViewModels\Tools\PencilAllToolVMTest.cs" />
     <Compile Include="ViewModels\Tools\PencilToolVMTest.cs" />
     <Compile Include="ViewModels\Tools\PenToolVMTest.cs" />
   </ItemGroup>
