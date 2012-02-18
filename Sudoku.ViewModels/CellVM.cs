@@ -35,7 +35,8 @@ namespace Sudoku.ViewModels
 
         public int Index
         {
-            get; private set;
+            get;
+            private set;
         }
 
         public bool IsSelected
@@ -68,6 +69,25 @@ namespace Sudoku.ViewModels
         }
 
         #endregion Public Properties
+
+        #region Public Methods
+
+        public int GetBox()
+        {
+            return ((GetRow() / 3) * 3) + ((GetColumn() / 3) % 9);
+        }
+
+        public int GetColumn()
+        {
+            return Index % 9;
+        }
+
+        public int GetRow()
+        {
+            return Index / 9;
+        }
+
+        #endregion Public Methods
 
         #region Private Methods
 

@@ -7,8 +7,19 @@ namespace Sudoku.Test.Unit.ViewModels
 {
     public interface IGameOverVM : IViewModelBase
     {
-        ICommand ReturnToMenuCommand { get; }
+        #region Events
 
         event EventHandler<EventArgs> MenuRequested;
+
+        #endregion Events
+
+        #region Properties
+
+        ICommand ReturnToMenuCommand
+        {
+            get;
+        }
+
+        #endregion Properties
     }
 }

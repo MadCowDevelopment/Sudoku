@@ -13,14 +13,12 @@ namespace Sudoku.ViewModels
     {
         #region Fields
 
+        private readonly IGameOverVM _gameOverVM;
         private readonly IGameVMFactory _gameVMFactory;
         private readonly IMenuVM _menuVM;
 
-        private IGameVM _gameVM;
-
-        private readonly IGameOverVM _gameOverVM;
-
         private IViewModelBase _content;
+        private IGameVM _gameVM;
 
         #endregion Fields
 
@@ -35,7 +33,7 @@ namespace Sudoku.ViewModels
             _gameOverVM = gameOverVM;
             _gameOverVM.MenuRequested += GameOverVMMenuRequested;
             _gameVMFactory = gameVMFactory;
-            
+
             Content = _menuVM;
         }
 
@@ -61,12 +59,9 @@ namespace Sudoku.ViewModels
 
         #region Private Methods
 
-        private void MenuVMStartGameRequested(object sender, StartGameEventArgs e)
+        private void GameOverVMMenuRequested(object sender, EventArgs e)
         {
-            _gameVM = _gameVMFactory.CreateInstance(e.Difficulty);
-            _gameVM.GameCompleted += GameVMGameCompleted;
-            
-            Content = _gameVM;
+            Content = _menuVM;
         }
 
         private void GameVMGameCompleted(object sender, EventArgs e)
@@ -76,9 +71,12 @@ namespace Sudoku.ViewModels
             Content = _gameOverVM;
         }
 
-        private void GameOverVMMenuRequested(object sender, EventArgs e)
+        private void MenuVMStartGameRequested(object sender, StartGameEventArgs e)
         {
-            Content = _menuVM;
+            _gameVM = _gameVMFactory.CreateInstance(e.Difficulty);
+            _gameVM.GameCompleted += GameVMGameCompleted;
+
+            Content = _gameVM;
         }
 
         #endregion Private Methods

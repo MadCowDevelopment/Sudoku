@@ -30,5 +30,15 @@ namespace Sudoku.ViewModels.Interfaces
         }
 
         #endregion Properties
+
+        #region Methods
+
+        int GetBox();
+
+        int GetColumn();
+
+        int GetRow();
+
+        #endregion Methods
     }
 }

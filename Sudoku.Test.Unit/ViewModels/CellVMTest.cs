@@ -4,6 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using Sudoku.Test.Unit.TestHelper;
 using Sudoku.ViewModels;
+using Sudoku.ViewModels.Interfaces;
 
 namespace Sudoku.Test.Unit.ViewModels
 {
@@ -12,11 +13,47 @@ namespace Sudoku.Test.Unit.ViewModels
     {
         #region Fields
 
-        private TestCellVM _cellVM;
+        private ICellVM _cellVM;
 
         #endregion Fields
 
+        #region Public Properties
+
+        public TestContext TestContext
+        {
+            get; set;
+        }
+
+        #endregion Public Properties
+
         #region Public Methods
+
+        [TestMethod]
+        [DeploymentItem(@"..\..\..\Sudoku.Test.Unit\TestData\CellVMTestData.xlsx")]
+        [DataSource("System.Data.Odbc", "Dsn=Excel Files;dbq=|DataDirectory|\\CellVMTestData.xlsx", "GetBox$",
+            DataAccessMethod.Sequential)]
+        public void CorrectBoxNumberCanBeRetrieved()
+        {
+            AssertFunctionReturnsExpectedValueForIndexInTestData(() => _cellVM.GetBox());
+        }
+
+        [TestMethod]
+        [DeploymentItem(@"..\..\..\Sudoku.Test.Unit\TestData\CellVMTestData.xlsx")]
+        [DataSource("System.Data.Odbc", "Dsn=Excel Files;dbq=|DataDirectory|\\CellVMTestData.xlsx", "GetColumn$",
+            DataAccessMethod.Sequential)]
+        public void CorrectColumnNumberCanBeRetrieved()
+        {
+            AssertFunctionReturnsExpectedValueForIndexInTestData(() => _cellVM.GetColumn());
+        }
+
+        [TestMethod]
+        [DeploymentItem(@"..\..\..\Sudoku.Test.Unit\TestData\CellVMTestData.xlsx")]
+        [DataSource("System.Data.Odbc", "Dsn=Excel Files;dbq=|DataDirectory|\\CellVMTestData.xlsx", "GetRow$", 
+            DataAccessMethod.Sequential)]
+        public void CorrectRowNumberCanBeRetrieved()
+        {
+            AssertFunctionReturnsExpectedValueForIndexInTestData(() => _cellVM.GetRow());
+        }
 
         [TestInitialize]
         public void Initialize()
@@ -64,6 +101,26 @@ namespace Sudoku.Test.Unit.ViewModels
         }
 
         #endregion Public Methods
+
+        #region Private Methods
+
+        private void AssertFunctionReturnsExpectedValueForIndexInTestData(Func<int> function)
+        {
+            int index = Convert.ToInt32(TestContext.DataRow["Index"]);
+            int expectedRow = Convert.ToInt32(TestContext.DataRow["Expected"]);
+            _cellVM = CreateCellVM(index, 0);
+
+            var actualRow = function();
+
+            Assert.AreEqual(expectedRow, actualRow);
+        }
+
+        private TestCellVM CreateCellVM(int index, int actualValue)
+        {
+            return new TestCellVM(index, actualValue);
+        }
+
+        #endregion Private Methods
 
         #region Nested Types
 

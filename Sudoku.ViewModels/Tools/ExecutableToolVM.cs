@@ -7,7 +7,13 @@ namespace Sudoku.ViewModels.Tools
 {
     public abstract class ExecutableToolVM : ToolVM, IExecutableToolVM
     {
+        #region Fields
+
         private ICommand _executeCommand;
+
+        #endregion Fields
+
+        #region Public Properties
 
         public ICommand ExecuteCommand
         {
@@ -17,8 +23,14 @@ namespace Sudoku.ViewModels.Tools
             }
         }
 
-        protected abstract void OnExecute();
+        #endregion Public Properties
+
+        #region Protected Methods
 
         protected abstract bool CanExecute();
+
+        protected abstract void OnExecute();
+
+        #endregion Protected Methods
     }
 }

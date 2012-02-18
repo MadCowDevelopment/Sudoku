@@ -48,6 +48,14 @@ namespace Sudoku.Test.Unit.Models
         }
 
         [TestMethod]
+        public void GameBoardWithAtLeastOneZeroIsNotCompleted()
+        {
+            _gameBoard.Fields[0] = 0;
+
+            Assert.IsFalse(_gameBoard.IsCompleted());
+        }
+
+        [TestMethod]
         public void GetBoxWithIndex0ReturnsFirstBox()
         {
             var box = _gameBoard.GetBox(0).ToList();
@@ -137,14 +145,6 @@ namespace Sudoku.Test.Unit.Models
             {
                 Assert.AreEqual(_gameBoard.Fields[i + 9], row[i]);
             }
-        }
-
-        [TestMethod]
-        public void GameBoardWithAtLeastOneZeroIsNotCompleted()
-        {
-            _gameBoard.Fields[0] = 0;
-
-            Assert.IsFalse(_gameBoard.IsCompleted());
         }
 
         [TestInitialize]

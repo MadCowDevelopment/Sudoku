@@ -10,7 +10,19 @@ namespace Sudoku.ViewModels
     [Export(typeof(IGameOverVM))]
     public class GameOverVM : ViewModelBase, IGameOverVM
     {
+        #region Fields
+
         private ICommand _returnToMenuCommand;
+
+        #endregion Fields
+
+        #region Events
+
+        public event EventHandler<EventArgs> MenuRequested;
+
+        #endregion Events
+
+        #region Public Properties
 
         public ICommand ReturnToMenuCommand
         {
@@ -20,7 +32,9 @@ namespace Sudoku.ViewModels
             }
         }
 
-        public event EventHandler<EventArgs> MenuRequested;
+        #endregion Public Properties
+
+        #region Public Methods
 
         public void RaiseMenuRequested(EventArgs e)
         {
@@ -31,9 +45,15 @@ namespace Sudoku.ViewModels
             }
         }
 
+        #endregion Public Methods
+
+        #region Private Methods
+
         private void OnGoToMenu()
         {
             RaiseMenuRequested(new EventArgs());
         }
+
+        #endregion Private Methods
     }
 }

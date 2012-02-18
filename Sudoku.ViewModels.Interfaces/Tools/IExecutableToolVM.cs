@@ -4,6 +4,13 @@ namespace Sudoku.ViewModels.Interfaces.Tools
 {
     public interface IExecutableToolVM : IToolVM
     {
-        ICommand ExecuteCommand { get; }
+        #region Properties
+
+        ICommand ExecuteCommand
+        {
+            get;
+        }
+
+        #endregion Properties
     }
 }

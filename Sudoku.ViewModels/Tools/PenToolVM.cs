@@ -1,4 +1,6 @@
-﻿using Sudoku.ViewModels.Interfaces;
+﻿using System.Collections.Generic;
+
+using Sudoku.ViewModels.Interfaces;
 using Sudoku.ViewModels.Interfaces.Factories;
 using Sudoku.ViewModels.Interfaces.Tools;
 
@@ -22,6 +24,8 @@ namespace Sudoku.ViewModels.Tools
         {
             var cell = GameBoardVM.SelectedCell;
             cell.Number = cell.Number == number ? 0 : number;
+
+            var changeableCellsInSameRowAsSelectedCell = new List<IChangeableCellVM>();
         }
 
         #endregion Public Methods
