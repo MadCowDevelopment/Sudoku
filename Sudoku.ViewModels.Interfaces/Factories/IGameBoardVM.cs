@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 
+using Sudoku.Models;
+
 namespace Sudoku.ViewModels.Interfaces.Factories
 {
     public interface IGameBoardVM : IViewModelBase
@@ -20,6 +22,8 @@ namespace Sudoku.ViewModels.Interfaces.Factories
         {
             get; set;
         }
+
+        IGameBoard GameBoard { get; }
 
         #endregion Properties
     }

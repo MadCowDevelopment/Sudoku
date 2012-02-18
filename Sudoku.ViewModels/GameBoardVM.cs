@@ -64,6 +64,14 @@ namespace Sudoku.ViewModels
             }
         }
 
+        public IGameBoard GameBoard
+        {
+            get
+            {
+                return _gameboard;
+            }
+        }
+
         #endregion Public Properties
 
         #region Private Methods

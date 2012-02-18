@@ -14,7 +14,7 @@ namespace Sudoku.ViewModels.Factories
         {
             var penTool = new PenToolVM(gameBoardVM);
             var pencilTool = new PencilToolVM(gameBoardVM);
-            var pencilAllTool = new PencilAllToolVM();
+            var pencilAllTool = new PencilAllToolVM(gameBoardVM);
             var tools = new List<IToolVM> { penTool, pencilTool, pencilAllTool };
 
             return tools;

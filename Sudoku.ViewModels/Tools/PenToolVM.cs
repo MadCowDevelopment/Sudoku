@@ -1,4 +1,5 @@
-﻿using Sudoku.ViewModels.Interfaces.Factories;
+﻿using Sudoku.ViewModels.Interfaces;
+using Sudoku.ViewModels.Interfaces.Factories;
 using Sudoku.ViewModels.Interfaces.Tools;
 
 namespace Sudoku.ViewModels.Tools
@@ -19,7 +20,7 @@ namespace Sudoku.ViewModels.Tools
 
         public override void EnterNumber(int number)
         {
-            var cell = GameBoardVM.SelectedCell;
+            var cell = (IChangeableCellVM)GameBoardVM.SelectedCell;
             cell.Number = cell.Number == number ? 0 : number;
         }
 
