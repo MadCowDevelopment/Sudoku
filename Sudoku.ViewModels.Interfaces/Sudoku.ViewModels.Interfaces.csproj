@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EventArguments\NumberChangedEventArgs.cs" />
+    <Compile Include="Factories\IToolVMFactory.cs" />
     <Compile Include="ICellVM.cs" />
     <Compile Include="IChangeableCellVM.cs" />
     <Compile Include="IFixedCellVM.cs" />

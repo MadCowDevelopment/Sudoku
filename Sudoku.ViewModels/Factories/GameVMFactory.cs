@@ -1,11 +1,8 @@
-using System.Collections.Generic;
 using System.ComponentModel.Composition;
 
 using Sudoku.Models;
 using Sudoku.ViewModels.Interfaces;
 using Sudoku.ViewModels.Interfaces.Factories;
-using Sudoku.ViewModels.Interfaces.Tools;
-using Sudoku.ViewModels.Tools;
 
 namespace Sudoku.ViewModels.Factories
 {
@@ -16,14 +13,17 @@ namespace Sudoku.ViewModels.Factories
 
         private readonly IGameBoardVMFactory _gameBoardVMFactory;
 
+        private readonly IToolVMFactory _toolVMFactory;
+
         #endregion Fields
 
         #region Constructors
 
         [ImportingConstructor]
-        public GameVMFactory(IGameBoardVMFactory gameBoardVMFactory)
+        public GameVMFactory(IGameBoardVMFactory gameBoardVMFactory, IToolVMFactory toolVMFactory)
         {
             _gameBoardVMFactory = gameBoardVMFactory;
+            _toolVMFactory = toolVMFactory;
         }
 
         #endregion Constructors
@@ -33,10 +33,8 @@ namespace Sudoku.ViewModels.Factories
         public IGameVM CreateInstance(Difficulty difficulty)
         {
             var gameBoardVM = _gameBoardVMFactory.CreateInstance(difficulty);
+            var tools = _toolVMFactory.CreateTools(gameBoardVM);
 
-            var penTool = new PenToolVM(gameBoardVM);
-            var pencilTool = new PencilToolVM(gameBoardVM);
-            var tools = new List<IToolVM> { penTool, pencilTool };
             var gameVM = new GameVM(gameBoardVM, tools);
 
             return gameVM;

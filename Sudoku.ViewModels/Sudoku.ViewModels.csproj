@@ -47,6 +47,7 @@
     </Compile>
     <Compile Include="CellVM.cs" />
     <Compile Include="ChangeableCellVM.cs" />
+    <Compile Include="Factories\ToolVMFactory.cs" />
     <Compile Include="FixedCellVM.cs" />
     <Compile Include="GameBoardVM.cs" />
     <Compile Include="Factories\GameBoardVMFactory.cs" />

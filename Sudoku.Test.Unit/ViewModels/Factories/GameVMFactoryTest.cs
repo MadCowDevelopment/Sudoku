@@ -1,10 +1,13 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using System.Collections.Generic;
+
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 using Moq;
 
 using Sudoku.Models;
 using Sudoku.ViewModels.Factories;
 using Sudoku.ViewModels.Interfaces.Factories;
+using Sudoku.ViewModels.Interfaces.Tools;
 
 namespace Sudoku.Test.Unit.ViewModels.Factories
 {
@@ -15,15 +18,24 @@ namespace Sudoku.Test.Unit.ViewModels.Factories
 
         private Mock<IGameBoardVMFactory> _gameBoardVMFactory;
 
+        private Mock<IToolVMFactory> _toolVMFactory;
+
         #endregion Fields
 
         #region Public Methods
 
+        [TestInitialize]
+        public void Initialize()
+        {
+            _gameBoardVMFactory = new Mock<IGameBoardVMFactory>();
+            _toolVMFactory = new Mock<IToolVMFactory>();
+        }
+
         [TestMethod]
         public void InstanceCanBeCreated()
         {
-            _gameBoardVMFactory = new Mock<IGameBoardVMFactory>();
-            var factory = new GameVMFactory(_gameBoardVMFactory.Object);
+            _toolVMFactory.Setup(p => p.CreateTools(It.IsAny<IGameBoardVM>())).Returns(new List<IToolVM>());
+            var factory = new GameVMFactory(_gameBoardVMFactory.Object, _toolVMFactory.Object);
 
             var gameBoardVM = factory.CreateInstance(Difficulty.Easy);
 

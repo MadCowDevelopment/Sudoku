@@ -67,6 +67,7 @@
     <Compile Include="TestHelper\NotifyPropertyChangedExtension.cs" />
     <Compile Include="ViewModels\ChangeableCellVMTest.cs" />
     <Compile Include="ViewModels\Factories\GameBoardVMFactoryTest.cs" />
+    <Compile Include="ViewModels\Factories\ToolVMFactoryTest.cs" />
     <Compile Include="ViewModels\FixedCellVMTest.cs" />
     <Compile Include="ViewModels\Framework\GenericRelayCommandTest.cs" />
     <Compile Include="ViewModels\Framework\RelayCommandTest.cs" />
