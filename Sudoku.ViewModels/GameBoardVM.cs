@@ -70,12 +70,7 @@ namespace Sudoku.ViewModels
 
         private void CellVMNumberChanged(object sender, NumberChangedEventArgs e)
         {
-            var cell = sender as ICellVM;
-            if (cell == null)
-            {
-                return;
-            }
-
+            var cell = (ICellVM)sender;
             _gameboard.Fields[cell.Index] = e.Number;
         }
 

@@ -139,6 +139,14 @@ namespace Sudoku.Test.Unit.Models
             }
         }
 
+        [TestMethod]
+        public void GameBoardWithAtLeastOneZeroIsNotCompleted()
+        {
+            _gameBoard.Fields[0] = 0;
+
+            Assert.IsFalse(_gameBoard.IsCompleted());
+        }
+
         [TestInitialize]
         public void Initialize()
         {
