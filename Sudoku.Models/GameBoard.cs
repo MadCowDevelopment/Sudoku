@@ -48,9 +48,10 @@ namespace Sudoku.Models
 
         public IEnumerable<int> GetBox(int index)
         {
-            var result = Fields.Skip(index * 3).Take(3).ToList();
-            result.AddRange(Fields.Skip((index * 3) + 9).Take(3));
-            result.AddRange(Fields.Skip((index * 3) + 18).Take(3));
+            var fieldsToSkip = ((index / 3) * 27) + ((index % 3) * 3);
+            var result = Fields.Skip(fieldsToSkip).Take(3).ToList();
+            result.AddRange(Fields.Skip(fieldsToSkip + 9).Take(3));
+            result.AddRange(Fields.Skip(fieldsToSkip + 18).Take(3));
             return result;
         }
 

@@ -24,13 +24,13 @@ namespace Sudoku.Services
             switch (difficulty)
             {
                 case Difficulty.Easy:
-                    numbers = numbers.Take(30).ToList();
+                    numbers = numbers.Take(60).ToList();
                     break;
                 case Difficulty.Medium:
-                    numbers = numbers.Take(20).ToList();
+                    numbers = numbers.Take(40).ToList();
                     break;
                 case Difficulty.Hard:
-                    numbers = numbers.Take(10).ToList();
+                    numbers = numbers.Take(25).ToList();
                     break;
             }
 

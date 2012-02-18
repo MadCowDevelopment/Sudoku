@@ -80,6 +80,22 @@ namespace Sudoku.Test.Unit.Models
         }
 
         [TestMethod]
+        public void GetBoxWithIndex8ReturnsSecondBox()
+        {
+            var box = _gameBoard.GetBox(8).ToList();
+
+            Assert.AreEqual(_gameBoard.Fields[60], box[0]);
+            Assert.AreEqual(_gameBoard.Fields[61], box[1]);
+            Assert.AreEqual(_gameBoard.Fields[62], box[2]);
+            Assert.AreEqual(_gameBoard.Fields[69], box[3]);
+            Assert.AreEqual(_gameBoard.Fields[70], box[4]);
+            Assert.AreEqual(_gameBoard.Fields[71], box[5]);
+            Assert.AreEqual(_gameBoard.Fields[78], box[6]);
+            Assert.AreEqual(_gameBoard.Fields[79], box[7]);
+            Assert.AreEqual(_gameBoard.Fields[80], box[8]);
+        }
+
+        [TestMethod]
         public void GetColumnWithIndex0ReturnsFirstColumn()
         {
             var column = _gameBoard.GetColumn(0).ToList();
