@@ -32,11 +32,6 @@ namespace Sudoku.ViewModels
 
         #region Public Methods
 
-        public void TogglePencilMark(int index)
-        {
-            PencilMarks[index] = PencilMarks[index] == 0 ? index + 1 : 0;
-        }
-
         public void DisablePencilMarks(IEnumerable<int> numbers)
         {
             foreach (var index in numbers)
@@ -54,6 +49,11 @@ namespace Sudoku.ViewModels
             {
                 PencilMarks[i] = i + 1;
             }
+        }
+
+        public void TogglePencilMark(int index)
+        {
+            PencilMarks[index] = PencilMarks[index] == 0 ? index + 1 : 0;
         }
 
         #endregion Public Methods

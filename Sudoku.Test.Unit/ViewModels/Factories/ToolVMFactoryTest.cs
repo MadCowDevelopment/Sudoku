@@ -10,9 +10,14 @@ namespace Sudoku.Test.Unit.ViewModels.Factories
     [TestClass]
     public class ToolVMFactoryTest
     {
-        private Mock<IGameBoardVM> _gameBoardVMMock;
+        #region Fields
 
+        private Mock<IGameBoardVM> _gameBoardVMMock;
         private ToolVMFactory _toolVMFactory;
+
+        #endregion Fields
+
+        #region Public Methods
 
         [TestInitialize]
         public void Initialize()
@@ -28,5 +33,7 @@ namespace Sudoku.Test.Unit.ViewModels.Factories
 
             Assert.AreEqual(3, tools.Count);
         }
+
+        #endregion Public Methods
     }
 }

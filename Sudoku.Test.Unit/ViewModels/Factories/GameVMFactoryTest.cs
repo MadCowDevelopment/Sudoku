@@ -17,7 +17,6 @@ namespace Sudoku.Test.Unit.ViewModels.Factories
         #region Fields
 
         private Mock<IGameBoardVMFactory> _gameBoardVMFactory;
-
         private Mock<IToolVMFactory> _toolVMFactory;
 
         #endregion Fields

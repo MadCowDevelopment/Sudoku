@@ -14,10 +14,14 @@ namespace Sudoku.ViewModels.Interfaces
 
         #endregion Properties
 
-        void TogglePencilMark(int index);
+        #region Methods
 
         void DisablePencilMarks(IEnumerable<int> numbers);
 
         void EnableAllPencilMarks();
+
+        void TogglePencilMark(int index);
+
+        #endregion Methods
     }
 }

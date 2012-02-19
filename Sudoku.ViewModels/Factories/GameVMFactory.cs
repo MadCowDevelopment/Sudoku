@@ -12,7 +12,6 @@ namespace Sudoku.ViewModels.Factories
         #region Fields
 
         private readonly IGameBoardVMFactory _gameBoardVMFactory;
-
         private readonly IToolVMFactory _toolVMFactory;
 
         #endregion Fields

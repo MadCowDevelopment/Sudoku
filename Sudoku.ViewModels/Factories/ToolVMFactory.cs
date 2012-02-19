@@ -11,6 +11,8 @@ namespace Sudoku.ViewModels.Factories
     [Export(typeof(IToolVMFactory))]
     public class ToolVMFactory : IToolVMFactory
     {
+        #region Public Methods
+
         public List<IToolVM> CreateTools(IGameBoardVM gameBoardVM)
         {
             var penTool = new PenToolVM(gameBoardVM);
@@ -20,5 +22,7 @@ namespace Sudoku.ViewModels.Factories
 
             return tools;
         }
+
+        #endregion Public Methods
     }
 }

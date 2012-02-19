@@ -14,11 +14,21 @@ namespace Sudoku.Test.Unit.ViewModels.Tools
     [TestClass]
     public class PencilAllToolVMTest
     {
-        private IPencilAllToolVM _pencilAllToolVM;
+        #region Fields
 
         private Mock<IChangeableCellVM> _changeableCellVMMock;
-
         private Mock<IGameBoardVM> _gameBoardVMMock;
+        private IPencilAllToolVM _pencilAllToolVM;
+
+        #endregion Fields
+
+        #region Public Methods
+
+        [TestMethod]
+        public void ImageIsSetCorrectly()
+        {
+            Assert.AreEqual(@"..\Images\PencilAll.png", _pencilAllToolVM.Image);
+        }
 
         [TestInitialize]
         public void Initialize()
@@ -33,12 +43,6 @@ namespace Sudoku.Test.Unit.ViewModels.Tools
                 new List<IChangeableCellVM> { _changeableCellVMMock.Object });
 
             _pencilAllToolVM = new PencilAllToolVM(_gameBoardVMMock.Object);
-        }
-
-        [TestMethod]
-        public void ImageIsSetCorrectly()
-        {
-            Assert.AreEqual(@"..\Images\PencilAll.png", _pencilAllToolVM.Image);
         }
 
         [TestMethod]
@@ -57,5 +61,7 @@ namespace Sudoku.Test.Unit.ViewModels.Tools
             _changeableCellVMMock.Verify(p => p.EnableAllPencilMarks(), Times.Once());
             _changeableCellVMMock.Verify(p => p.DisablePencilMarks(It.IsAny<IEnumerable<int>>()), Times.Exactly(3));
         }
+
+        #endregion Public Methods
     }
 }

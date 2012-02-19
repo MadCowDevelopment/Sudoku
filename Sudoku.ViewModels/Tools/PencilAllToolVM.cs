@@ -9,13 +9,23 @@ namespace Sudoku.ViewModels.Tools
     [Export(typeof(IPencilAllToolVM))]
     public class PencilAllToolVM : ExecutableToolVM, IPencilAllToolVM
     {
+        #region Fields
+
         private readonly IGameBoardVM _gameBoardVM;
+
+        #endregion Fields
+
+        #region Constructors
 
         public PencilAllToolVM(IGameBoardVM gameBoardVM)
         {
             _gameBoardVM = gameBoardVM;
             Image = @"..\Images\PencilAll.png";
         }
+
+        #endregion Constructors
+
+        #region Protected Methods
 
         protected override bool CanExecute()
         {
@@ -33,10 +43,18 @@ namespace Sudoku.ViewModels.Tools
             }
         }
 
+        #endregion Protected Methods
+
+        #region Private Static Methods
+
         private static void EnableAllPencilMarks(IChangeableCellVM cell)
         {
             cell.EnableAllPencilMarks();
         }
+
+        #endregion Private Static Methods
+
+        #region Private Methods
 
         private void DisablePencilMarksDependingOnOtherNumbersInBox(IChangeableCellVM cell)
         {
@@ -55,5 +73,7 @@ namespace Sudoku.ViewModels.Tools
             var numbersInRow = _gameBoardVM.GetNumbersInSameRow(cell.GetRowIndex());
             cell.DisablePencilMarks(numbersInRow);
         }
+
+        #endregion Private Methods
     }
 }

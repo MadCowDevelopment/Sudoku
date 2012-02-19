@@ -67,6 +67,8 @@ namespace Sudoku.ViewModels
 
         #endregion Public Properties
 
+        #region Public Methods
+
         public IEnumerable<IChangeableCellVM> GetChangeableCellsThatDontHaveANumberSet()
         {
             return Cells.OfType<IChangeableCellVM>().Where(p => p.Number == 0);
@@ -86,6 +88,8 @@ namespace Sudoku.ViewModels
         {
             return _gameBoard.GetRow(rowIndex);
         }
+
+        #endregion Public Methods
 
         #region Private Methods
 

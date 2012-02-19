@@ -24,6 +24,8 @@ namespace Sudoku.ViewModels.Interfaces.Factories
 
         #endregion Properties
 
+        #region Methods
+
         IEnumerable<IChangeableCellVM> GetChangeableCellsThatDontHaveANumberSet();
 
         IEnumerable<int> GetNumbersInSameBox(int boxIndex);
@@ -31,5 +33,7 @@ namespace Sudoku.ViewModels.Interfaces.Factories
         IEnumerable<int> GetNumbersInSameColumn(int columnIndex);
 
         IEnumerable<int> GetNumbersInSameRow(int rowIndex);
+
+        #endregion Methods
     }
 }
