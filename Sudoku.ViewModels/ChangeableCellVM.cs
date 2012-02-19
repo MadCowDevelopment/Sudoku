@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.Composition;
 using System.Linq;
 
@@ -23,7 +24,8 @@ namespace Sudoku.ViewModels
 
         public ObservableCollection<int> PencilMarks
         {
-            get; private set;
+            get;
+            private set;
         }
 
         #endregion Public Properties
@@ -33,6 +35,25 @@ namespace Sudoku.ViewModels
         public void TogglePencilMark(int index)
         {
             PencilMarks[index] = PencilMarks[index] == 0 ? index + 1 : 0;
+        }
+
+        public void DisablePencilMarks(IEnumerable<int> numbers)
+        {
+            foreach (var index in numbers)
+            {
+                if (index != 0)
+                {
+                    PencilMarks[index - 1] = 0;
+                }
+            }
+        }
+
+        public void EnableAllPencilMarks()
+        {
+            for (int i = 0; i < 9; i++)
+            {
+                PencilMarks[i] = i + 1;
+            }
         }
 
         #endregion Public Methods

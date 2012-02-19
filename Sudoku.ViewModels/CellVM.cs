@@ -72,17 +72,17 @@ namespace Sudoku.ViewModels
 
         #region Public Methods
 
-        public int GetBox()
+        public int GetBoxIndex()
         {
-            return ((GetRow() / 3) * 3) + ((GetColumn() / 3) % 9);
+            return ((GetRowIndex() / 3) * 3) + ((GetColumnIndex() / 3) % 9);
         }
 
-        public int GetColumn()
+        public int GetColumnIndex()
         {
             return Index % 9;
         }
 
-        public int GetRow()
+        public int GetRowIndex()
         {
             return Index / 9;
         }

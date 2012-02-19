@@ -1,7 +1,5 @@
 using System.Collections.Generic;
 
-using Sudoku.Models;
-
 namespace Sudoku.ViewModels.Interfaces.Factories
 {
     public interface IGameBoardVM : IViewModelBase
@@ -20,11 +18,18 @@ namespace Sudoku.ViewModels.Interfaces.Factories
 
         ICellVM SelectedCell
         {
-            get; set;
+            get;
+            set;
         }
 
-        IGameBoard GameBoard { get; }
-
         #endregion Properties
+
+        IEnumerable<IChangeableCellVM> GetChangeableCellsThatDontHaveANumberSet();
+
+        IEnumerable<int> GetNumbersInSameBox(int boxIndex);
+
+        IEnumerable<int> GetNumbersInSameColumn(int columnIndex);
+
+        IEnumerable<int> GetNumbersInSameRow(int rowIndex);
     }
 }

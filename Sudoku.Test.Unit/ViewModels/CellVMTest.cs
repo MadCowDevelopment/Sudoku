@@ -34,7 +34,7 @@ namespace Sudoku.Test.Unit.ViewModels
             DataAccessMethod.Sequential)]
         public void CorrectBoxNumberCanBeRetrieved()
         {
-            AssertFunctionReturnsExpectedValueForIndexInTestData(() => _cellVM.GetBox());
+            AssertFunctionReturnsExpectedValueForIndexInTestData(() => _cellVM.GetBoxIndex());
         }
 
         [TestMethod]
@@ -43,7 +43,7 @@ namespace Sudoku.Test.Unit.ViewModels
             DataAccessMethod.Sequential)]
         public void CorrectColumnNumberCanBeRetrieved()
         {
-            AssertFunctionReturnsExpectedValueForIndexInTestData(() => _cellVM.GetColumn());
+            AssertFunctionReturnsExpectedValueForIndexInTestData(() => _cellVM.GetColumnIndex());
         }
 
         [TestMethod]
@@ -52,7 +52,7 @@ namespace Sudoku.Test.Unit.ViewModels
             DataAccessMethod.Sequential)]
         public void CorrectRowNumberCanBeRetrieved()
         {
-            AssertFunctionReturnsExpectedValueForIndexInTestData(() => _cellVM.GetRow());
+            AssertFunctionReturnsExpectedValueForIndexInTestData(() => _cellVM.GetRowIndex());
         }
 
         [TestInitialize]

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.Composition;
+using System.Linq;
 
 using Sudoku.Models;
 using Sudoku.ViewModels.Framework;
@@ -14,7 +15,7 @@ namespace Sudoku.ViewModels
     {
         #region Fields
 
-        private readonly IGameBoard _gameboard;
+        private readonly IGameBoard _gameBoard;
 
         private ICellVM _selectedCell;
 
@@ -24,7 +25,7 @@ namespace Sudoku.ViewModels
 
         public GameBoardVM(IGameBoard gameboard, IEnumerable<ICellVM> cells)
         {
-            _gameboard = gameboard;
+            _gameBoard = gameboard;
             Cells = new List<ICellVM>(cells);
 
             foreach (var cellVM in Cells)
@@ -46,7 +47,7 @@ namespace Sudoku.ViewModels
         {
             get
             {
-                return _gameboard.IsCompleted();
+                return _gameBoard.IsCompleted();
             }
         }
 
@@ -64,22 +65,34 @@ namespace Sudoku.ViewModels
             }
         }
 
-        public IGameBoard GameBoard
+        #endregion Public Properties
+
+        public IEnumerable<IChangeableCellVM> GetChangeableCellsThatDontHaveANumberSet()
         {
-            get
-            {
-                return _gameboard;
-            }
+            return Cells.OfType<IChangeableCellVM>().Where(p => p.Number == 0);
         }
 
-        #endregion Public Properties
+        public IEnumerable<int> GetNumbersInSameBox(int boxIndex)
+        {
+            return _gameBoard.GetBox(boxIndex);
+        }
+
+        public IEnumerable<int> GetNumbersInSameColumn(int columnIndex)
+        {
+            return _gameBoard.GetColumn(columnIndex);
+        }
+
+        public IEnumerable<int> GetNumbersInSameRow(int rowIndex)
+        {
+            return _gameBoard.GetRow(rowIndex);
+        }
 
         #region Private Methods
 
         private void CellVMNumberChanged(object sender, NumberChangedEventArgs e)
         {
             var cell = (ICellVM)sender;
-            _gameboard.Fields[cell.Index] = e.Number;
+            _gameBoard.Fields[cell.Index] = e.Number;
         }
 
         #endregion Private Methods

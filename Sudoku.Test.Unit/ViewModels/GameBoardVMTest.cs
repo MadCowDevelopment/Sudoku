@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -9,6 +10,7 @@ using Sudoku.Test.Unit.TestHelper;
 using Sudoku.ViewModels;
 using Sudoku.ViewModels.Interfaces;
 using Sudoku.ViewModels.Interfaces.EventArguments;
+using Sudoku.ViewModels.Interfaces.Factories;
 
 namespace Sudoku.Test.Unit.ViewModels
 {
@@ -20,7 +22,7 @@ namespace Sudoku.Test.Unit.ViewModels
         private Mock<ICellVM> _cellMock;
         private List<ICellVM> _cells;
         private Mock<IGameBoard> _gameBoard;
-        private GameBoardVM _gameBoardVM;
+        private IGameBoardVM _gameBoardVM;
 
         #endregion Fields
 
@@ -74,6 +76,54 @@ namespace Sudoku.Test.Unit.ViewModels
             _cellMock.Raise(p => p.NumberChanged += null, new NumberChangedEventArgs(1));
 
             Assert.AreEqual(1, _gameBoard.Object.Fields[0]);
+        }
+
+        [TestMethod]
+        public void AListOfChangeableCellsThatDontHaveANumberSetCanBeRetrieved()
+        {
+            var changeableCell1 = new Mock<IChangeableCellVM>();
+            changeableCell1.Setup(p => p.Number).Returns(1);
+            var changeableCell2 = new Mock<IChangeableCellVM>();
+            changeableCell2.Setup(p => p.Number).Returns(0);
+            _gameBoardVM.Cells.Add(changeableCell1.Object);
+            _gameBoardVM.Cells.Add(changeableCell2.Object);
+
+            var cells = _gameBoardVM.GetChangeableCellsThatDontHaveANumberSet();
+
+            Assert.AreEqual(1, cells.Count());
+        }
+
+        [TestMethod]
+        public void GetNumbersInSameBoxShouldReturnTheSameAsGameBoard()
+        {
+            var fields = new int[81];
+            _gameBoard.Setup(p => p.GetBox(0)).Returns(fields);
+
+            var numbers = _gameBoardVM.GetNumbersInSameBox(0);
+
+            Assert.AreEqual(fields, numbers);
+        }
+
+        [TestMethod]
+        public void GetNumbersInSameColumnShouldReturnTheSameAsGameBoard()
+        {
+            var fields = new int[81];
+            _gameBoard.Setup(p => p.GetColumn(0)).Returns(fields);
+
+            var numbers = _gameBoardVM.GetNumbersInSameColumn(0);
+
+            Assert.AreEqual(fields, numbers);
+        }
+
+        [TestMethod]
+        public void GetNumbersInSameRowShouldReturnTheSameAsGameBoard()
+        {
+            var fields = new int[81];
+            _gameBoard.Setup(p => p.GetRow(0)).Returns(fields);
+
+            var numbers = _gameBoardVM.GetNumbersInSameRow(0);
+
+            Assert.AreEqual(fields, numbers);
         }
 
         #endregion Public Methods

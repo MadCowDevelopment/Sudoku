@@ -33,11 +33,11 @@ namespace Sudoku.ViewModels.Interfaces
 
         #region Methods
 
-        int GetBox();
+        int GetBoxIndex();
 
-        int GetColumn();
+        int GetColumnIndex();
 
-        int GetRow();
+        int GetRowIndex();
 
         #endregion Methods
     }

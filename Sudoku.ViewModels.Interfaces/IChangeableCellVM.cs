@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace Sudoku.ViewModels.Interfaces
@@ -12,5 +13,11 @@ namespace Sudoku.ViewModels.Interfaces
         }
 
         #endregion Properties
+
+        void TogglePencilMark(int index);
+
+        void DisablePencilMarks(IEnumerable<int> numbers);
+
+        void EnableAllPencilMarks();
     }
 }

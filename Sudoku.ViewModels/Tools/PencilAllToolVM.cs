@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.Composition;
-using System.Linq;
+﻿using System.ComponentModel.Composition;
 
 using Sudoku.ViewModels.Interfaces;
 using Sudoku.ViewModels.Interfaces.Factories;
@@ -26,7 +24,7 @@ namespace Sudoku.ViewModels.Tools
 
         protected override void OnExecute()
         {
-            foreach (var cell in _gameBoardVM.Cells.OfType<IChangeableCellVM>().Where(p=>p.Number == 0))
+            foreach (var cell in _gameBoardVM.GetChangeableCellsThatDontHaveANumberSet())
             {
                 EnableAllPencilMarks(cell);
                 DisablePencilMarksDependingOnOtherNumbersInRow(cell);
@@ -35,41 +33,27 @@ namespace Sudoku.ViewModels.Tools
             }
         }
 
-        private void DisablePencilMarksDependingOnOtherNumbersInBox(IChangeableCellVM cell)
+        private static void EnableAllPencilMarks(IChangeableCellVM cell)
         {
-            var numbersInBox = _gameBoardVM.GameBoard.GetBox(cell.GetBox());
-            DisablePencilMarksDependingOnOtherNumbers(cell, numbersInBox);
+            cell.EnableAllPencilMarks();
         }
 
-        private void DisablePencilMarksDependingOnOtherNumbers(IChangeableCellVM cell, IEnumerable<int> numbers)
+        private void DisablePencilMarksDependingOnOtherNumbersInBox(IChangeableCellVM cell)
         {
-            foreach (var number in numbers)
-            {
-                if (number != 0)
-                {
-                    cell.PencilMarks[number - 1] = 0;
-                }
-            }
+            var numbersInBox = _gameBoardVM.GetNumbersInSameBox(cell.GetBoxIndex());
+            cell.DisablePencilMarks(numbersInBox);
         }
 
         private void DisablePencilMarksDependingOnOtherNumbersInColumn(IChangeableCellVM cell)
         {
-            var numbersInColumn = _gameBoardVM.GameBoard.GetColumn(cell.GetColumn());
-            DisablePencilMarksDependingOnOtherNumbers(cell, numbersInColumn);
+            var numbersInColumn = _gameBoardVM.GetNumbersInSameColumn(cell.GetColumnIndex());
+            cell.DisablePencilMarks(numbersInColumn);
         }
 
         private void DisablePencilMarksDependingOnOtherNumbersInRow(IChangeableCellVM cell)
         {
-            var numbersInRow = _gameBoardVM.GameBoard.GetRow(cell.GetRow());
-            DisablePencilMarksDependingOnOtherNumbers(cell, numbersInRow);
-        }
-
-        private static void EnableAllPencilMarks(IChangeableCellVM cell)
-        {
-            for (int i = 0; i < 9; i++)
-            {
-                cell.PencilMarks[i] = i + 1;
-            }
+            var numbersInRow = _gameBoardVM.GetNumbersInSameRow(cell.GetRowIndex());
+            cell.DisablePencilMarks(numbersInRow);
         }
     }
 }
