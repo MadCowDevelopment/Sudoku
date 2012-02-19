@@ -21,7 +21,21 @@ namespace Sudoku.ViewModels.Tools
         public override void EnterNumber(int number)
         {
             var cell = (IChangeableCellVM)GameBoardVM.SelectedCell;
-            cell.Number = cell.Number == number ? 0 : number;
+
+            if (cell.Number == 0)
+            {
+                cell.Number = number;
+
+                cell.DisableAllPencilMarks();
+
+                GameBoardVM.DisablePencilMarksForNumberInRow(number, cell.GetRowIndex());
+                GameBoardVM.DisablePencilMarksForNumberInColumn(number, cell.GetColumnIndex());
+                GameBoardVM.DisablePencilMarksForNumberInBox(number, cell.GetBoxIndex());
+            }
+            else
+            {
+                cell.Number = 0;
+            }
         }
 
         #endregion Public Methods

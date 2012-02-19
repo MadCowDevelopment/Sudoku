@@ -28,6 +28,19 @@ namespace Sudoku.Test.Unit.ViewModels
         }
 
         [TestMethod]
+        public void AllPencilMarksCanBeDisabled()
+        {
+            _changeableCellVM.EnableAllPencilMarks();
+
+            _changeableCellVM.DisableAllPencilMarks();
+
+            for (int i = 0; i < 9; i++)
+            {
+                Assert.AreEqual(0, _changeableCellVM.PencilMarks[i]);
+            }
+        }
+
+        [TestMethod]
         public void AllPencilMarksShouldGetDisabledWhenSuppliedAListOfIndicesFromZeroThroughEight()
         {
             _changeableCellVM.EnableAllPencilMarks();

@@ -31,7 +31,7 @@ namespace Sudoku.Test.Unit.ViewModels.Tools
         }
 
         [TestMethod]
-        public void EnteringSamNumberAgainWillSetTheNumberToZero()
+        public void EnteringSameNumberAgainWillSetTheNumberToZero()
         {
             _penToolVM.EnterNumber(1);
             _penToolVM.EnterNumber(1);
@@ -50,6 +50,10 @@ namespace Sudoku.Test.Unit.ViewModels.Tools
         {
             _cellVMMock = new Mock<IChangeableCellVM>();
             _cellVMMock.SetupProperty(p => p.Number);
+            _cellVMMock.Setup(p => p.Index).Returns(0);
+            _cellVMMock.Setup(p => p.GetRowIndex()).Returns(0);
+            _cellVMMock.Setup(p => p.GetColumnIndex()).Returns(0);
+            _cellVMMock.Setup(p => p.GetBoxIndex()).Returns(0);
             _gameBoardVMMock = new Mock<IGameBoardVM>();
             _gameBoardVMMock.Setup(p => p.SelectedCell).Returns(_cellVMMock.Object);
 
@@ -69,6 +73,38 @@ namespace Sudoku.Test.Unit.ViewModels.Tools
 
             Assert.AreEqual(true, _penToolVM.IsChecked);
             Assert.IsTrue(eventRaised);
+        }
+
+        [TestMethod]
+        public void EnteringNumberShouldDisableAllPencilMarks()
+        {
+            _penToolVM.EnterNumber(1);
+
+            _cellVMMock.Verify(p => p.DisableAllPencilMarks(), Times.Once());
+        }
+
+        [TestMethod]
+        public void EnterinNumberShouldRemoveTheNumberFromAllPencilMarksInTheSameRow()
+        {
+            _penToolVM.EnterNumber(1);
+
+            _gameBoardVMMock.Verify(p => p.DisablePencilMarksForNumberInRow(1, 0), Times.Once());
+        }
+
+        [TestMethod]
+        public void EnterinNumberShouldRemoveTheNumberFromAllPencilMarksInTheSameColumn()
+        {
+            _penToolVM.EnterNumber(1);
+
+            _gameBoardVMMock.Verify(p => p.DisablePencilMarksForNumberInColumn(1, 0), Times.Once());
+        }
+
+        [TestMethod]
+        public void EnterinNumberShouldRemoveTheNumberFromAllPencilMarksInTheSameBox()
+        {
+            _penToolVM.EnterNumber(1);
+
+            _gameBoardVMMock.Verify(p => p.DisablePencilMarksForNumberInBox(1, 0), Times.Once());
         }
 
         #endregion Public Methods

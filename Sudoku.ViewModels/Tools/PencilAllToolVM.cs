@@ -34,7 +34,7 @@ namespace Sudoku.ViewModels.Tools
 
         protected override void OnExecute()
         {
-            foreach (var cell in _gameBoardVM.GetChangeableCellsThatDontHaveANumberSet())
+            foreach (var cell in _gameBoardVM.GetAllChangeableCellsThatDontHaveANumberSet())
             {
                 EnableAllPencilMarks(cell);
                 DisablePencilMarksDependingOnOtherNumbersInRow(cell);

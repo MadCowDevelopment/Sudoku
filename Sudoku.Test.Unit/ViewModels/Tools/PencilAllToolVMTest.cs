@@ -39,7 +39,7 @@ namespace Sudoku.Test.Unit.ViewModels.Tools
             _gameBoardVMMock = new Mock<IGameBoardVM>();
             _gameBoardVMMock.SetupGet(p => p.Cells).Returns(new List<ICellVM>());
             _gameBoardVMMock.Object.Cells.Add(_changeableCellVMMock.Object);
-            _gameBoardVMMock.Setup(p => p.GetChangeableCellsThatDontHaveANumberSet()).Returns(
+            _gameBoardVMMock.Setup(p => p.GetAllChangeableCellsThatDontHaveANumberSet()).Returns(
                 new List<IChangeableCellVM> { _changeableCellVMMock.Object });
 
             _pencilAllToolVM = new PencilAllToolVM(_gameBoardVMMock.Object);
@@ -54,7 +54,7 @@ namespace Sudoku.Test.Unit.ViewModels.Tools
         }
 
         [TestMethod]
-        public void XXXX()
+        public void WhenCommandIsExecutedAllPencilMarksAreEnabledAndThenSelectivelyDisabled()
         {
             _pencilAllToolVM.ExecuteCommand.Execute(null);
 

@@ -56,6 +56,14 @@ namespace Sudoku.ViewModels
             PencilMarks[index] = PencilMarks[index] == 0 ? index + 1 : 0;
         }
 
+        public void DisableAllPencilMarks()
+        {
+            for (int i = 0; i < 9; i++)
+            {
+                PencilMarks[i] = 0;
+            }
+        }
+
         #endregion Public Methods
     }
 }

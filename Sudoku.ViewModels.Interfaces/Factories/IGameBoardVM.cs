@@ -26,7 +26,7 @@ namespace Sudoku.ViewModels.Interfaces.Factories
 
         #region Methods
 
-        IEnumerable<IChangeableCellVM> GetChangeableCellsThatDontHaveANumberSet();
+        IEnumerable<IChangeableCellVM> GetAllChangeableCellsThatDontHaveANumberSet();
 
         IEnumerable<int> GetNumbersInSameBox(int boxIndex);
 
@@ -35,5 +35,11 @@ namespace Sudoku.ViewModels.Interfaces.Factories
         IEnumerable<int> GetNumbersInSameRow(int rowIndex);
 
         #endregion Methods
+
+        void DisablePencilMarksForNumberInRow(int number, int rowIndex);
+
+        void DisablePencilMarksForNumberInColumn(int number, int columnIndex);
+
+        void DisablePencilMarksForNumberInBox(int number, int boxIndex);
     }
 }
