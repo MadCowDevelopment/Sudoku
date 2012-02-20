@@ -22,7 +22,7 @@ namespace Sudoku.ViewModels.Tools
         {
             var cell = (IChangeableCellVM)GameBoardVM.SelectedCell;
 
-            if (cell.Number == 0)
+            if (cell.Number != number)
             {
                 cell.Number = number;
 

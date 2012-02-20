@@ -17,17 +17,6 @@ namespace Sudoku.Test.Unit.ViewModels
         #region Public Methods
 
         [TestMethod]
-        public void AllPencilMarksCanBeEnabled()
-        {
-            _changeableCellVM.EnableAllPencilMarks();
-
-            for (int i = 0; i < 9; i++)
-            {
-                Assert.AreEqual(i + 1, _changeableCellVM.PencilMarks[i]);
-            }
-        }
-
-        [TestMethod]
         public void AllPencilMarksCanBeDisabled()
         {
             _changeableCellVM.EnableAllPencilMarks();
@@ -37,6 +26,17 @@ namespace Sudoku.Test.Unit.ViewModels
             for (int i = 0; i < 9; i++)
             {
                 Assert.AreEqual(0, _changeableCellVM.PencilMarks[i]);
+            }
+        }
+
+        [TestMethod]
+        public void AllPencilMarksCanBeEnabled()
+        {
+            _changeableCellVM.EnableAllPencilMarks();
+
+            for (int i = 0; i < 9; i++)
+            {
+                Assert.AreEqual(i + 1, _changeableCellVM.PencilMarks[i]);
             }
         }
 

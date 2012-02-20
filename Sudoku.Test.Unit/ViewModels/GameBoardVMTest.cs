@@ -21,14 +21,10 @@ namespace Sudoku.Test.Unit.ViewModels
         #region Fields
 
         private List<ICellVM> _cells;
-
-        private Mock<IGameBoard> _gameBoard;
-
-        private IGameBoardVM _gameBoardVM;
-
         private Mock<IChangeableCellVM> _changeableCellMock1;
-
         private Mock<IChangeableCellVM> _changeableCellMock2;
+        private Mock<IGameBoard> _gameBoard;
+        private IGameBoardVM _gameBoardVM;
 
         #endregion Fields
 
@@ -57,6 +53,33 @@ namespace Sudoku.Test.Unit.ViewModels
         {
             Assert.AreEqual(_changeableCellMock1.Object, _gameBoardVM.Cells[0]);
             Assert.AreEqual(_changeableCellMock2.Object, _gameBoardVM.Cells[1]);
+        }
+
+        [TestMethod]
+        public void DisablingPencilMarksDisablesAllPencilMarksInABox()
+        {
+            _gameBoardVM.DisablePencilMarksForNumberInBox(1, 0);
+
+            Assert.AreEqual(0, _changeableCellMock1.Object.PencilMarks[0]);
+            Assert.AreEqual(0, _changeableCellMock2.Object.PencilMarks[0]);
+        }
+
+        [TestMethod]
+        public void DisablingPencilMarksDisablesAllPencilMarksInAColumn()
+        {
+            _gameBoardVM.DisablePencilMarksForNumberInColumn(1, 0);
+
+            Assert.AreEqual(0, _changeableCellMock1.Object.PencilMarks[0]);
+            Assert.AreEqual(1, _changeableCellMock2.Object.PencilMarks[0]);
+        }
+
+        [TestMethod]
+        public void DisablingPencilMarksDisablesAllPencilMarksInARow()
+        {
+            _gameBoardVM.DisablePencilMarksForNumberInRow(1, 0);
+
+            Assert.AreEqual(0, _changeableCellMock1.Object.PencilMarks[0]);
+            Assert.AreEqual(0, _changeableCellMock2.Object.PencilMarks[0]);
         }
 
         [TestMethod]
@@ -113,7 +136,6 @@ namespace Sudoku.Test.Unit.ViewModels
             _cells.Add(_changeableCellMock2.Object);
 
             _gameBoardVM = new GameBoardVM(_gameBoard.Object, _cells);
-
         }
 
         [TestMethod]
@@ -138,33 +160,6 @@ namespace Sudoku.Test.Unit.ViewModels
             _changeableCellMock1.Raise(p => p.NumberChanged += null, new NumberChangedEventArgs(1));
 
             Assert.AreEqual(1, _gameBoard.Object.Fields[0]);
-        }
-
-        [TestMethod]
-        public void DisablingPencilMarksDisablesAllPencilMarksInARow()
-        {
-            _gameBoardVM.DisablePencilMarksForNumberInRow(1, 0);
-
-            Assert.AreEqual(0, _changeableCellMock1.Object.PencilMarks[0]);
-            Assert.AreEqual(0, _changeableCellMock2.Object.PencilMarks[0]);
-        }
-
-        [TestMethod]
-        public void DisablingPencilMarksDisablesAllPencilMarksInAColumn()
-        {
-            _gameBoardVM.DisablePencilMarksForNumberInColumn(1, 0);
-
-            Assert.AreEqual(0, _changeableCellMock1.Object.PencilMarks[0]);
-            Assert.AreEqual(1, _changeableCellMock2.Object.PencilMarks[0]);
-        }
-
-        [TestMethod]
-        public void DisablingPencilMarksDisablesAllPencilMarksInABox()
-        {
-            _gameBoardVM.DisablePencilMarksForNumberInBox(1, 0);
-
-            Assert.AreEqual(0, _changeableCellMock1.Object.PencilMarks[0]);
-            Assert.AreEqual(0, _changeableCellMock2.Object.PencilMarks[0]);
         }
 
         #endregion Public Methods

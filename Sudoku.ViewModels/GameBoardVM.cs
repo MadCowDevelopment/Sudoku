@@ -69,6 +69,24 @@ namespace Sudoku.ViewModels
 
         #region Public Methods
 
+        public void DisablePencilMarksForNumberInBox(int number, int boxIndex)
+        {
+            Cells.OfType<IChangeableCellVM>().Where(p => p.GetBoxIndex() == boxIndex).ToList().ForEach(
+                p => p.PencilMarks[number - 1] = 0);
+        }
+
+        public void DisablePencilMarksForNumberInColumn(int number, int columnIndex)
+        {
+            Cells.OfType<IChangeableCellVM>().Where(p => p.GetColumnIndex() == columnIndex).ToList().ForEach(
+                p => p.PencilMarks[number - 1] = 0);
+        }
+
+        public void DisablePencilMarksForNumberInRow(int number, int rowIndex)
+        {
+            Cells.OfType<IChangeableCellVM>().Where(p => p.GetRowIndex() == rowIndex).ToList().ForEach(
+                p => p.PencilMarks[number - 1] = 0);
+        }
+
         public IEnumerable<IChangeableCellVM> GetAllChangeableCellsThatDontHaveANumberSet()
         {
             return Cells.OfType<IChangeableCellVM>().Where(p => p.Number == 0);
@@ -87,24 +105,6 @@ namespace Sudoku.ViewModels
         public IEnumerable<int> GetNumbersInSameRow(int rowIndex)
         {
             return _gameBoard.GetRow(rowIndex);
-        }
-
-        public void DisablePencilMarksForNumberInRow(int number, int rowIndex)
-        {
-            Cells.OfType<IChangeableCellVM>().Where(p => p.GetRowIndex() == rowIndex).ToList().ForEach(
-                p => p.PencilMarks[number - 1] = 0);
-        }
-
-        public void DisablePencilMarksForNumberInColumn(int number, int columnIndex)
-        {
-            Cells.OfType<IChangeableCellVM>().Where(p => p.GetColumnIndex() == columnIndex).ToList().ForEach(
-                p => p.PencilMarks[number - 1] = 0);
-        }
-
-        public void DisablePencilMarksForNumberInBox(int number, int boxIndex)
-        {
-            Cells.OfType<IChangeableCellVM>().Where(p => p.GetBoxIndex() == boxIndex).ToList().ForEach(
-                p => p.PencilMarks[number - 1] = 0);
         }
 
         #endregion Public Methods

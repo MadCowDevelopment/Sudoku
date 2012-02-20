@@ -16,6 +16,8 @@ namespace Sudoku.ViewModels.Interfaces
 
         #region Methods
 
+        void DisableAllPencilMarks();
+
         void DisablePencilMarks(IEnumerable<int> numbers);
 
         void EnableAllPencilMarks();
@@ -23,7 +25,5 @@ namespace Sudoku.ViewModels.Interfaces
         void TogglePencilMark(int index);
 
         #endregion Methods
-
-        void DisableAllPencilMarks();
     }
 }
