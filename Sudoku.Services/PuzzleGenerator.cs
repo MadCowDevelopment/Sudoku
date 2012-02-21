@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
 
@@ -39,12 +40,110 @@ namespace Sudoku.Services
 
         public void GeneratePuzzle(GameBoard gameBoard, Difficulty difficulty)
         {
+            int numberOfSolutions;
+            List<int> indices;
+            do
+            {
+                indices = GetIndicesToRemoveDependingOnDifficulty(difficulty);
+
+                var fields = new int[81];
+                for (var i = 0; i < 81; i++)
+                {
+                    if (indices.Contains(i))
+                    {
+                        fields[i] = 0;
+                    }
+                    else
+                    {
+                        fields[i] = gameBoard.Fields[i];
+                    }
+                }
+
+                numberOfSolutions = SolvePuzzle(new GameBoard(fields));
+            } 
+            while (numberOfSolutions != 1);
+
+            foreach (var index in indices)
+            {
+                gameBoard.Fields[index] = 0;
+            }
+        }
+
+        private int SolvePuzzle(GameBoard gameBoard)
+        {
+            var numbers = Enumerable.Range(1, 9).ToList();
+
+            var solutions = 0;
+            for (var i = 0; i < 81; i++)
+            {
+                if (gameBoard.Fields[i] != 0)
+                {
+                    continue;
+                }
+
+                foreach (var number in numbers)
+                {
+                    gameBoard.Fields[i] = number;
+                    var result = SolvePuzzleRec(gameBoard);
+                    if (result)
+                    {
+                        solutions++;
+                        if (solutions > 1)
+                        {
+                            return solutions;
+                        }
+                    }
+                }
+            }
+
+            return solutions;
+        }
+
+        public bool SolvePuzzleRec(GameBoard gameBoard)
+        {
+            var numbers = Enumerable.Range(1, 9).ToList();
+
+            for (var i = 0; i < 81; i++)
+            {
+                if (gameBoard.Fields[i] != 0)
+                {
+                    continue;
+                }
+
+                foreach (var number in numbers)
+                {
+                    gameBoard.Fields[i] = number;
+
+                    if (!gameBoard.IsValid())
+                    {
+                        continue;
+                    }
+
+                    if (gameBoard.IsCompleted())
+                    {
+                        return true;
+                    }
+
+                    var result = SolvePuzzleRec(gameBoard);
+                    if (result)
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+
+        private List<int> GetIndicesToRemoveDependingOnDifficulty(Difficulty difficulty)
+        {
             var numbers = Enumerable.Range(0, 81).OrderBy(p => _random.Next(0, 81)).ToList();
 
             switch (difficulty)
             {
                 case Difficulty.VeryEasy:
-                    numbers = numbers.Take(60).ToList();
+                    numbers = numbers.Take(3).ToList();
                     break;
                 case Difficulty.Easy:
                     numbers = numbers.Take(40).ToList();
@@ -60,13 +159,7 @@ namespace Sudoku.Services
                     break;
             }
 
-            for (int i = 0; i < 81; i++)
-            {
-                if (!numbers.Contains(i))
-                {
-                    gameBoard.Fields[i] = 0;
-                }
-            }
+            return numbers;
         }
 
         #endregion Public Methods
