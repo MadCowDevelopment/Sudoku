@@ -40,33 +40,82 @@ namespace Sudoku.Services
 
         public void GeneratePuzzle(GameBoard gameBoard, Difficulty difficulty)
         {
-            int numberOfSolutions;
-            List<int> indices;
+            var t = new DancingLinksEngine();
+            var result = t.GenerateOne(1);
+
+            var lines = result.StringRep.Split('\n');
+
+            string mergedLines = string.Empty;
+            foreach (var line in lines)
+            {
+                mergedLines += line;
+            }
+            for (int i = 0; i < 81; i++)
+            {
+                if (mergedLines[i] == '.')
+                {
+                    gameBoard.Fields[i] = 0;
+                }
+                else
+                {
+                    gameBoard.Fields[i] = int.Parse(mergedLines[i].ToString());
+                }
+            }
+
+
+            //var numberOfFieldsToRemove = GetNumberOfFieldsToRemoveDependingOnDifficulty(difficulty);
+
+            //bool isValid;
+            //do
+            //{
+            //    var indices = Enumerable.Range(0, 81).OrderBy(p => _random.Next(0, 81)).ToList();
+            //    isValid = Create(gameBoard, indices, numberOfFieldsToRemove);
+            //}
+            //while (!isValid);
+        }
+
+        private bool Create(GameBoard gameBoard, List<int> indices, int numberOfFieldsToRemove)
+        {
+            if (indices.Count <= 81 - numberOfFieldsToRemove)
+            {
+                return true;
+            }
+
             do
             {
-                indices = GetIndicesToRemoveDependingOnDifficulty(difficulty);
+                var nextIndex = indices[0];
+                
+                indices.RemoveAt(0);
+                var oldValue = gameBoard.Fields[nextIndex];
+                gameBoard.Fields[nextIndex] = 0;
 
-                var fields = new int[81];
-                for (var i = 0; i < 81; i++)
+                if (SolvePuzzle(DeepCopyGameBoard(gameBoard)) == 1)
                 {
-                    if (indices.Contains(i))
+                    var result = Create(gameBoard, indices, numberOfFieldsToRemove);
+                    if (result)
                     {
-                        fields[i] = 0;
-                    }
-                    else
-                    {
-                        fields[i] = gameBoard.Fields[i];
+                        return true;
                     }
                 }
-
-                numberOfSolutions = SolvePuzzle(new GameBoard(fields));
+                else
+                {
+                    gameBoard.Fields[nextIndex] = oldValue;
+                }
             }
-            while (numberOfSolutions != 1);
+            while (indices.Count > 81 - numberOfFieldsToRemove);
 
-            foreach (var index in indices)
+            return false;
+        }
+
+        private GameBoard DeepCopyGameBoard(GameBoard gameBoard)
+        {
+            var fields = new int[81];
+            for (int i = 0; i < 81; i++)
             {
-                gameBoard.Fields[index] = 0;
+                fields[i] = gameBoard.Fields[i];
             }
+
+            return new GameBoard(fields);
         }
 
         private int SolvePuzzle(GameBoard gameBoard)
@@ -121,31 +170,23 @@ namespace Sudoku.Services
 
         }
 
-
-        private List<int> GetIndicesToRemoveDependingOnDifficulty(Difficulty difficulty)
+        private int GetNumberOfFieldsToRemoveDependingOnDifficulty(Difficulty difficulty)
         {
-            var numbers = Enumerable.Range(0, 81).OrderBy(p => _random.Next(0, 81)).ToList();
-
             switch (difficulty)
             {
                 case Difficulty.VeryEasy:
-                    numbers = numbers.Take(10).ToList();
-                    break;
+                    return 10;
                 case Difficulty.Easy:
-                    numbers = numbers.Take(40).ToList();
-                    break;
+                    return 40;
                 case Difficulty.Medium:
-                    numbers = numbers.Take(50).ToList();
-                    break;
+                    return 50;
                 case Difficulty.Hard:
-                    numbers = numbers.Take(56).ToList();
-                    break;
+                    return 56;
                 case Difficulty.Extreme:
-                    numbers = numbers.Take(63).ToList();
-                    break;
+                    return 63;
             }
 
-            return numbers;
+            throw new InvalidOperationException("Unsupported difficulty.");
         }
 
         #endregion Public Methods
