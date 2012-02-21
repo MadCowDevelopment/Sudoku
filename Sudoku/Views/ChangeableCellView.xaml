@@ -11,11 +11,7 @@
         <Converters:NumberConverter x:Key="NumberConverter" />
         <Converters:NumberVisibilityConverter x:Key="NumberVisibilityConverter" />
     </UserControl.Resources>
-
-    <UserControl.InputBindings>
-        <KeyBinding Key="D1" Command="{Binding EnterNumberCommand}" CommandParameter="1"/>
-    </UserControl.InputBindings>
-
+    
     <Grid>
         <ListBox 
             BorderThickness="0"

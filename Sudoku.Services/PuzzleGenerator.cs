@@ -60,7 +60,7 @@ namespace Sudoku.Services
                 }
 
                 numberOfSolutions = SolvePuzzle(new GameBoard(fields));
-            } 
+            }
             while (numberOfSolutions != 1);
 
             foreach (var index in indices)
@@ -71,68 +71,54 @@ namespace Sudoku.Services
 
         private int SolvePuzzle(GameBoard gameBoard)
         {
-            var numbers = Enumerable.Range(1, 9).ToList();
-
-            var solutions = 0;
-            for (var i = 0; i < 81; i++)
-            {
-                if (gameBoard.Fields[i] != 0)
-                {
-                    continue;
-                }
-
-                foreach (var number in numbers)
-                {
-                    gameBoard.Fields[i] = number;
-                    var result = SolvePuzzleRec(gameBoard);
-                    if (result)
-                    {
-                        solutions++;
-                        if (solutions > 1)
-                        {
-                            return solutions;
-                        }
-                    }
-                }
-            }
-
-            return solutions;
+            var solutionsFound = 0;
+            SolvePuzzleRec(gameBoard, ref solutionsFound);
+            return solutionsFound;
         }
 
-        public bool SolvePuzzleRec(GameBoard gameBoard)
+        public void SolvePuzzleRec(GameBoard gameBoard, ref int solutionsFound)
         {
             var numbers = Enumerable.Range(1, 9).ToList();
 
-            for (var i = 0; i < 81; i++)
+            var indexOfFirstEmptyField = -1;
+            for (int i = 0; i < 81; i++)
             {
-                if (gameBoard.Fields[i] != 0)
+                if (gameBoard.Fields[i] == 0)
+                {
+                    indexOfFirstEmptyField = i;
+                    break;
+                }
+            }
+
+            if (indexOfFirstEmptyField == -1)
+            {
+                return;
+            }
+
+            foreach (var number in numbers)
+            {
+                gameBoard.Fields[indexOfFirstEmptyField] = number;
+
+                if (!gameBoard.IsValid())
                 {
                     continue;
                 }
 
-                foreach (var number in numbers)
+                if (gameBoard.IsCompleted())
                 {
-                    gameBoard.Fields[i] = number;
+                    solutionsFound++;
+                    return;
+                }
 
-                    if (!gameBoard.IsValid())
-                    {
-                        continue;
-                    }
-
-                    if (gameBoard.IsCompleted())
-                    {
-                        return true;
-                    }
-
-                    var result = SolvePuzzleRec(gameBoard);
-                    if (result)
-                    {
-                        return true;
-                    }
+                SolvePuzzleRec(gameBoard, ref solutionsFound);
+                if (solutionsFound > 1)
+                {
+                    return;
                 }
             }
 
-            return false;
+            gameBoard.Fields[indexOfFirstEmptyField] = 0;
+
         }
 
 
@@ -143,19 +129,19 @@ namespace Sudoku.Services
             switch (difficulty)
             {
                 case Difficulty.VeryEasy:
-                    numbers = numbers.Take(3).ToList();
+                    numbers = numbers.Take(10).ToList();
                     break;
                 case Difficulty.Easy:
                     numbers = numbers.Take(40).ToList();
                     break;
                 case Difficulty.Medium:
-                    numbers = numbers.Take(30).ToList();
+                    numbers = numbers.Take(50).ToList();
                     break;
                 case Difficulty.Hard:
-                    numbers = numbers.Take(26).ToList();
+                    numbers = numbers.Take(56).ToList();
                     break;
                 case Difficulty.Extreme:
-                    numbers = numbers.Take(17).ToList();
+                    numbers = numbers.Take(63).ToList();
                     break;
             }
 
