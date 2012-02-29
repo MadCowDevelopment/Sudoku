@@ -6,7 +6,7 @@ namespace Sudoku.Services
     {
         #region Methods
 
-        void GeneratePuzzle(GameBoard gameBoard, Difficulty difficulty);
+        IGameBoard GeneratePuzzle(Difficulty difficulty);
 
         #endregion Methods
     }

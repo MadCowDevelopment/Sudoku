@@ -18,7 +18,7 @@ namespace Sudoku.Models
             }
         }
 
-        public GameBoard(int[] fields)
+        public GameBoard(int[] fields, Difficulty difficulty)
         {
             if (fields == null)
             {
@@ -31,6 +31,7 @@ namespace Sudoku.Models
             }
 
             Fields = fields;
+            Difficulty = difficulty;
         }
 
         #endregion Constructors
@@ -41,6 +42,8 @@ namespace Sudoku.Models
         {
             get; private set;
         }
+
+        public Difficulty Difficulty { get; private set; }
 
         #endregion Public Properties
 

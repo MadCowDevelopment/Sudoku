@@ -13,8 +13,7 @@ namespace Sudoku.Test.Unit.Models
     {
         #region Fields
 
-        private GameBoard _gameBoard;
-        private SudokuGenerator _sudokuGenerator;
+        private IGameBoard _gameBoard;
 
         #endregion Fields
 
@@ -24,21 +23,21 @@ namespace Sudoku.Test.Unit.Models
         [ExpectedException(typeof(ArgumentNullException))]
         public void ConstructorShouldThrowExceptionWhenArgumentIsNull()
         {
-            _gameBoard = new GameBoard(null);
+            _gameBoard = new GameBoard(null, Difficulty.Easy);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void ConstructorShouldThrowExceptionWhenArrayIsLessThan81Elements()
         {
-            _gameBoard = new GameBoard(new int[80]);
+            _gameBoard = new GameBoard(new int[80], Difficulty.Easy);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void ConstructorShouldThrowExceptionWhenArrayIsMoreThan81Elements()
         {
-            _gameBoard = new GameBoard(new int[82]);
+            _gameBoard = new GameBoard(new int[82], Difficulty.Easy);
         }
 
         [TestMethod]
@@ -150,8 +149,7 @@ namespace Sudoku.Test.Unit.Models
         [TestInitialize]
         public void Initialize()
         {
-            _sudokuGenerator = new SudokuGenerator();
-            _gameBoard = _sudokuGenerator.GeneratePuzzle();
+            _gameBoard = new PuzzleGenerator().GeneratePuzzle(Difficulty.Easy);
         }
 
         #endregion Public Methods

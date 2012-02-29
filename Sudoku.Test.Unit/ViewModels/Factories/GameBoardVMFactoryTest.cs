@@ -16,12 +16,11 @@ namespace Sudoku.Test.Unit.ViewModels.Factories
         [TestMethod]
         public void InstanceCanBeCreated()
         {
-            var sudokuGeneratorMock = new Mock<ISudokuGenerator>();
             var gameBoard = new GameBoard();
             gameBoard.Fields[0] = 1;
-            sudokuGeneratorMock.Setup(p => p.GeneratePuzzle()).Returns(gameBoard);
             var puzzleGeneratorMock = new Mock<IPuzzleGenerator>();
-            var factory = new GameBoardVMFactory(sudokuGeneratorMock.Object, puzzleGeneratorMock.Object);
+            puzzleGeneratorMock.Setup(p => p.GeneratePuzzle(Difficulty.Easy)).Returns(gameBoard);
+            var factory = new GameBoardVMFactory(puzzleGeneratorMock.Object);
 
             var gameBoardVM = factory.CreateInstance(Difficulty.Easy);
 

@@ -15,16 +15,14 @@ namespace Sudoku.ViewModels.Factories
         #region Fields
 
         private readonly IPuzzleGenerator _puzzleGenerator;
-        private readonly ISudokuGenerator _sudokuGenerator;
 
         #endregion Fields
 
         #region Constructors
 
         [ImportingConstructor]
-        public GameBoardVMFactory(ISudokuGenerator sudokuGenerator, IPuzzleGenerator puzzleGenerator)
+        public GameBoardVMFactory(IPuzzleGenerator puzzleGenerator)
         {
-            _sudokuGenerator = sudokuGenerator;
             _puzzleGenerator = puzzleGenerator;
         }
 
@@ -34,8 +32,7 @@ namespace Sudoku.ViewModels.Factories
 
         public IGameBoardVM CreateInstance(Difficulty difficulty)
         {
-            var gameBoard = _sudokuGenerator.GeneratePuzzle();
-            _puzzleGenerator.GeneratePuzzle(gameBoard, difficulty);
+            var gameBoard = _puzzleGenerator.GeneratePuzzle(difficulty);
 
             var cells = new List<ICellVM>();
 
@@ -50,7 +47,6 @@ namespace Sudoku.ViewModels.Factories
                 {
                     cells.Add(new ChangeableCellVM(i));
                 }
-
             }
 
             var gameBoardVM = new GameBoardVM(gameBoard, cells);

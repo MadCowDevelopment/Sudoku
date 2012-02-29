@@ -15,6 +15,8 @@ namespace Sudoku.Models
 
         #region Methods
 
+        Difficulty Difficulty { get; }
+
         IEnumerable<int> GetBox(int index);
 
         IEnumerable<int> GetColumn(int index);

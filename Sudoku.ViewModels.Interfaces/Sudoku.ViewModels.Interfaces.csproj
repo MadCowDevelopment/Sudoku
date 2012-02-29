@@ -41,6 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Sudoku\CommonAssemblyInfo.cs">
+      <Link>CommonAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="EventArguments\NumberChangedEventArgs.cs" />
     <Compile Include="Factories\IToolVMFactory.cs" />
     <Compile Include="ICellVM.cs" />
